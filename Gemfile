@@ -46,6 +46,7 @@ group :development, :test do
   gem 'pry-rails'
 
   gem 'capybara'
+  gem 'factory_bot_rails'
   gem 'guard'
   gem 'guard-rspec', require: false
   gem 'rspec-rails', '~> 3.7'
