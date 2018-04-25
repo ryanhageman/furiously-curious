@@ -4,3 +4,7 @@ Style/Documentation:
   Include:
     - app/models/**/*
     - lib/**/*
+AllCops:
+  Excludes:
+    - Gemfile
+    - db/**
