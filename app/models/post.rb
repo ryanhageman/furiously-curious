@@ -8,5 +8,8 @@ class Post < ApplicationRecord
   has_many :post_categories
   has_many :categories, through: :post_categories
 
+  has_one_attached :main_image
+  has_many_attached :images
+
   validates_presence_of :title, :body, :author_id, :author
 end
