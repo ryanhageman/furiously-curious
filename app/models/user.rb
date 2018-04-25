@@ -8,4 +8,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_one :profile, dependent: :destroy
+  has_many :posts, foreign_key: :author_id
 end
