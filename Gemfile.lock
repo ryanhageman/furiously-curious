@@ -85,6 +85,9 @@ GEM
       railties (>= 3.0.0)
     ffi (1.9.23)
     formatador (0.2.5)
+    fuubar (2.3.1)
+      rspec-core (~> 3.0)
+      ruby-progressbar (~> 1.4)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     guard (2.14.2)
@@ -124,6 +127,7 @@ GEM
       mimemagic (~> 0.3.2)
     method_source (0.9.0)
     mimemagic (0.3.2)
+    mini_magick (4.8.0)
     mini_mime (1.0.0)
     mini_portile2 (2.3.0)
     minitest (5.11.3)
@@ -207,6 +211,7 @@ GEM
       rspec-mocks (~> 3.7.0)
       rspec-support (~> 3.7.0)
     rspec-support (3.7.1)
+    ruby-progressbar (1.9.0)
     ruby_dep (1.5.0)
     sass (3.5.6)
       sass-listen (~> 4.0.0)
@@ -271,11 +276,13 @@ DEPENDENCIES
   database_cleaner
   devise
   factory_bot_rails
+  fuubar
   guard
   guard-rspec
   jbuilder (~> 2.5)
   letter_opener
   listen (>= 3.0.5, < 3.2)
+  mini_magick (~> 4.8)
   pg (>= 0.18, < 2.0)
   pry-byebug
   pry-rails

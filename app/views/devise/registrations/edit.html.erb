@@ -1,5 +1,11 @@
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
+<% if current_user.profile %>
+  <%= link_to 'Update your profile', edit_profile_path(current_user.profile) %>
+<% else %>
+  <%= link_to 'Setup your profile', new_profile_path %>
+<% end %>
+
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= f.error_notification %>
 
