@@ -47,7 +47,7 @@ class ProfilesController < ApplicationController
     params.require(:profile).permit(
       :first_name, :last_name,
       :username, :bio, :user_id,
-      :avatar
+      :avatar, :delete_avatar
     )
   end
 

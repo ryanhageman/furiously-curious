@@ -1,5 +1,11 @@
 <h3><%= @profile.username %>'s Profile</h3>
-<%= image_tag @profile.avatar %>
+
+<% if @profile.avatar.attached? %>
+  <%= image_tag @profile.avatar.variant(resize: '200x200') %>
+<% else %>
+  <%=  image_tag 'no_image_available.svg', size: '200x200' %>
+<% end %>
+
 <ul>
   <li><strong>Name: </strong><%= @profile.first_name %> <%= @profile.last_name %></li>
   <li><strong>Bio: </strong><%= @profile.bio %></li>
