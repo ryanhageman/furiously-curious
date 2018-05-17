@@ -1,0 +1,9 @@
+<h3><%= @profile.username %>'s Profile</h3>
+<%= image_tag @profile.avatar %>
+<ul>
+  <li><strong>Name: </strong><%= @profile.first_name %> <%= @profile.last_name %></li>
+  <li><strong>Bio: </strong><%= @profile.bio %></li>
+</ul>
+
+<%= link_to 'Edit your profile', edit_profile_path(@profile) %><br>
+<%= link_to 'Delete your profile', profile_path(@profile), method: :delete %>

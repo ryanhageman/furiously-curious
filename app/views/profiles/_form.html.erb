@@ -1,0 +1,13 @@
+<%= simple_form_for(@profile) do |f| %>
+  <% if @profile.avatar %>
+    <%= image_tag @profile.avatar %>
+  <% end %>
+  
+  <%= f.input :avatar, as: :file %>
+  <%= f.input :first_name %>
+  <%= f.input :last_name %>
+  <%= f.input :username %>
+  <%= f.input :bio %>
+
+  <%= f.button :submit %>
+<% end %>

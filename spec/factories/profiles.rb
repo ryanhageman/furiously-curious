@@ -24,5 +24,9 @@ FactoryBot.define do
       last_name 'LastName'
       bio 'I like to move it move it!'
     end
+
+    trait :invalid_username do
+      username nil
+    end
   end
 end

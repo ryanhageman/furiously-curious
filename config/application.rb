@@ -31,5 +31,6 @@ module FuriouslyCurious
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+    config.annotations.register_directories('spec')
   end
 end
