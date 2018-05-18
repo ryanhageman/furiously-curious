@@ -4,7 +4,7 @@ class ProfilePolicy < ApplicationPolicy
   def index?
     true
   end
-  
+
   def show?
     true
   end
@@ -18,15 +18,15 @@ class ProfilePolicy < ApplicationPolicy
   end
 
   def edit?
-    users_own_profile?
+    users_own_profile? || user.admin?
   end
 
   def update?
-    users_own_profile?
+    users_own_profile? || user.admin?
   end
 
   def destroy?
-    users_own_profile?
+    users_own_profile? || user.admin?
   end
 
   private

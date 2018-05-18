@@ -8,17 +8,17 @@ RSpec.describe ProfilePolicy do
   let(:user) { create(:user) }
   let(:profile) { create(:profile, user_id: user.id) }
 
-  context 'user creating a new profile' do
+  context 'any user creating a new profile' do
     it { is_expected.to permit_new_and_create_actions }
   end
 
-  context 'user accessing their own profile' do
+  context 'any user accessing their own profile' do
     it { is_expected.to permit_action(:show) }
     it { is_expected.to permit_edit_and_update_actions }
     it { is_expected.to permit_action(:destroy) }
   end
 
-  context "user accessing someone else's profile" do
+  context "user or author accessing someone else's profile" do
     let(:user2) { create(:user) }
     let(:profile) { create(:profile, user_id: user2.id) }
 
@@ -27,7 +27,7 @@ RSpec.describe ProfilePolicy do
     it { is_expected.to forbid_action(:destroy) }
   end
 
-  context 'user accessing profile index view' do
+  context 'any user accessing profile index view' do
     it { is_expected.to permit_action(:index) }
   end
 end
