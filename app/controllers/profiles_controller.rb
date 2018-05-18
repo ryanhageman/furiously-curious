@@ -3,6 +3,7 @@
 class ProfilesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_profile, only: %i[show edit update destroy]
+  after_action :verify_authorized, except: %i[index show]
 
   def index
     @profiles = Profile.all
@@ -12,12 +13,14 @@ class ProfilesController < ApplicationController
 
   def new
     @profile = Profile.new
+    authorize @profile
   end
 
   def create
     @profile = Profile.new(profile_params)
     @profile.user_id = current_user.id
 
+    authorize @profile
     if @profile.save
       redirect_to @profile, notice: "Here's your new Profile"
     else
@@ -25,9 +28,12 @@ class ProfilesController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit
+    authorize @profile
+  end
 
   def update
+    authorize @profile
     if @profile.update(profile_params)
       redirect_to @profile, notice: 'Your profile has been updated.'
     else
@@ -36,6 +42,7 @@ class ProfilesController < ApplicationController
   end
 
   def destroy
+    authorize @profile
     @profile.destroy
 
     redirect_to edit_user_registration_path

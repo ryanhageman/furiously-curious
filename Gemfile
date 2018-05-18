@@ -38,8 +38,9 @@ gem 'mini_magick', '~> 4.8'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
-# User authentication
+# User authentication / authorization
 gem 'devise'
+gem 'pundit'
 
 # Clean forms
 gem 'simple_form'
@@ -61,6 +62,7 @@ end
 
 group :test do
   gem 'database_cleaner'
+  gem 'pundit-matchers', '~> 1.5.1'
   gem 'rails-controller-testing'
   gem 'shoulda-matchers', '~> 3.1'
 end
