@@ -26,7 +26,12 @@ RSpec.feature 'Profile Features', type: :feature do
 
   describe 'User visits the profile show view' do
     scenario 'they see the details of the profile' do
-      create(:profile, :full_profile, username: 'look_at_me', user_id: current_user.id)
+      create(
+        :profile,
+        :full_profile,
+        username: 'look_at_me',
+        user_id: current_user.id
+      )
 
       visit profiles_path
       click_on 'look_at_me'
@@ -38,7 +43,6 @@ RSpec.feature 'Profile Features', type: :feature do
 
   describe 'User creates a new profile' do
     scenario 'they see the details of their new profile' do
-
       visit edit_user_registration_path
 
       click_on 'Setup your profile'
