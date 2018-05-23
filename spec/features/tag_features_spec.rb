@@ -25,10 +25,10 @@ RSpec.feature 'Tag Features', type: :feature do
 
       click_on 'New Tag'
 
-      fill_in 'Name', with: 'the first tag'
+      fill_in 'Name', with: 'the new tag'
       click_on 'Create Tag'
 
-      expect(page).to have_content('the first tag')
+      expect(page).to have_content('the new tag')
     end
 
     scenario 'user edits a tag' do
@@ -54,5 +54,4 @@ RSpec.feature 'Tag Features', type: :feature do
       expect(page).to have_content('second tag')
     end
   end
-
 end
