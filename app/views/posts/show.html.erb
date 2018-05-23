@@ -1,0 +1,11 @@
+<%= link_to 'Edit', edit_post_path(@post) %>
+
+<h1><%= @post.title %></h1>
+
+<% if @post.author.profile %>
+  <h2>By: <%= @post.author.profile.try(:username) %></h2>
+<% end %>
+
+<div>
+  <%= @post.body %>
+</div>
