@@ -3,3 +3,10 @@
   <%= f.input :body %>
   <%= f.button :submit %>
 <% end %>
+
+<script type="text/javascript">
+  var editor = new Editor({
+    element: document.getElementById('post_body')
+  });
+  editor.render();
+</script>
