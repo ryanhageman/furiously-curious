@@ -2,6 +2,7 @@
 
 # Post Model
 class Post < ApplicationRecord
+  attr_accessor :raw_tags, :raw_categories
   belongs_to :author, class_name: 'User'
   has_many :post_tags
   has_many :tags, through: :post_tags
