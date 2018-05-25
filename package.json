@@ -3,6 +3,7 @@
   "private": true,
   "dependencies": {
     "@rails/webpacker": "3.5",
+    "awesomplete": "^1.1.2",
     "caniuse-lite": "^1.0.30000844",
     "stimulus": "^1.0.1",
     "webpack": "^4.8.3"
