@@ -1,12 +1,22 @@
 <%= simple_form_for(@post) do |f| %>
   <%= f.input :title %>
-  <%= f.input :body %>
+  <%= f.input :raw_tags, label: 'Tags' %>
+  <%= f.input :raw_categories, label: 'Categories' %>
+  <%= f.input :body, label: false %>
   <%= f.button :submit %>
 <% end %>
 
 <script type="text/javascript">
-  var editor = new Editor({
-    element: document.getElementById('post_body')
-  });
-  editor.render();
+    var tagInput = document.getElementById('post_raw_tags');
+    var tagList = <%= raw @tags %>;
+    var categoryInput = document.getElementById('post_raw_categories');
+    var categoryList = <%= raw @categories %>
+
+    autocomplete(tagInput, tagList);
+    autocomplete(categoryInput, categoryList);
+
+    var editor = new Editor({
+      element: document.getElementById('post_body')
+    });
+    editor.render();
 </script>

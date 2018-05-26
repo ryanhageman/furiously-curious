@@ -12,6 +12,7 @@
 //
 //= require editor
 //= require marked
+//= require awesomplete
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
