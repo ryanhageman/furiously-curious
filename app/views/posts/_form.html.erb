@@ -1,4 +1,10 @@
 <%= simple_form_for(@post) do |f| %>
+  <% if @post.main_image.attached? %>
+    <%= image_tag @post.main_image.variant(resize: '200x200') %>
+    <%= f.input :delete_main_image, as: :boolean, label: 'Delete image' %>
+  <% end %>
+
+  <%= f.input :main_image, as: :file %>
   <%= f.input :title %>
   <%= f.input :raw_tags, label: 'Tags' %>
   <%= f.input :raw_categories, label: 'Categories' %>

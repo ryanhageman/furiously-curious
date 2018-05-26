@@ -1,4 +1,8 @@
 <%= link_to 'Edit', edit_post_path(@post) %>
+<br>
+<% if @post.main_image.attached? %>
+  <%= image_tag @post.main_image %>
+<% end %>
 
 <h1><%= @post.title %></h1>
 
