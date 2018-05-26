@@ -6,6 +6,20 @@
   <h2>By: <%= @post.author.profile.try(:username) %></h2>
 <% end %>
 
+<h4>Tags</h4>
+<ul>
+  <% @post.tags.each do |tag| %>
+    <li><%= tag.name %></li>
+  <% end %>
+</ul>
+
+<h4>Categories</h4>
+<ul>
+  <% @post.categories.each do |category| %>
+    <li><%= category.name %></li>
+  <% end %>
+</ul>
+
 <div>
   <%= markdown @post.body %>
 </div>
