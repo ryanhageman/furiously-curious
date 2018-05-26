@@ -55,7 +55,7 @@ RSpec.feature 'Profile Features', type: :feature do
       click_on 'Create Profile'
 
       expect(page).to have_content('Name: Billy Bones')
-      expect(page).to have_content("Bio: #{bio}")
+      expect(page).to have_content("#{bio}")
     end
   end
 
@@ -75,20 +75,7 @@ RSpec.feature 'Profile Features', type: :feature do
       click_on 'Update Profile'
 
       expect(page).to have_content('Name: Billy Bones')
-      expect(page).to have_content("Bio: #{bio}")
-    end
-  end
-
-  describe 'User deletes their profile' do
-    scenario 'they are returned to their user account details' do
-      create(:profile, user_id: current_user.id)
-
-      visit profile_path(current_user.profile)
-
-      click_on 'Delete your profile'
-
-      expect { Profile.find(current_user.profile.id) }
-        .to raise_exception(ActiveRecord::RecordNotFound)
+      expect(page).to have_content("#{bio}")
     end
   end
 end

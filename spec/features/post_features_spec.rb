@@ -34,7 +34,7 @@ RSpec.feature 'Post Features', type: :feature do
       click_on 'New Post'
 
       fill_in 'Title', with: 'A New Post'
-      fill_in 'Body', with: 'All the news thats fit to print'
+      fill_in 'post_body', with: 'All the news thats fit to print'
       click_on 'Create Post'
 
       expect(page).to have_content('A New Post')
