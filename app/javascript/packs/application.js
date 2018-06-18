@@ -1,4 +1,5 @@
-/* eslint no-console:0 */
+/* eslint no-console:0 */ 
+/* global require */
 // This file is automatically compiled by Webpack, along with any other files
 // present in this directory. You're encouraged to place your actual application logic in
 // a relevant structure within app/javascript and only use these pack files to reference
@@ -9,9 +10,9 @@
 
 // console.log('Hello World from Webpacker hello')
 
-import { Application } from "stimulus"
-import { definitionsFromContext } from "stimulus/webpack-helpers"
+import { Application } from 'stimulus'
+import { definitionsFromContext } from 'stimulus/webpack-helpers'
 
 const application = Application.start()
-const context = require.context("controllers", true, /.js$/)
+const context = require.context('controllers', true, /.js$/)
 application.load(definitionsFromContext(context))

@@ -6,6 +6,8 @@
     "stimulus": "^1.0.1"
   },
   "devDependencies": {
+    "babel-eslint": "^8.2.3",
+    "eslint": "^4.19.1",
     "webpack-dev-server": "2.11.2"
   }
 }
