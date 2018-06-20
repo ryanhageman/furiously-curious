@@ -47,6 +47,7 @@ gem 'simple_form'
 
 # JavaScript
 gem 'webpacker', '~> 3.5'
+gem 'jquery-rails'
 
 # Markdown
 gem 'redcarpet'

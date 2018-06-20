@@ -10,9 +10,11 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require jquery
 //= require editor
 //= require marked
 //= require awesomplete
+//= require dropzone
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
