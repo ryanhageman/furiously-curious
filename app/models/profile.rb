@@ -6,6 +6,7 @@ class Profile < ApplicationRecord
   belongs_to :user, optional: true
 
   has_one_attached :avatar
+  has_many_attached :post_images
 
   validates :username, presence: true, uniqueness: true
 

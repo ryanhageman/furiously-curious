@@ -3,7 +3,11 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  resources :profiles
+  namespace :accounts do
+    resources :profiles
+    resources :post_images
+  end
+  
   resources :posts
   resources :tags
   resources :categories
