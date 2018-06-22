@@ -10,12 +10,16 @@
               value="![](<%= url_for(image) %>)"
               placeholder="link"
               readonly>
-
+      <br>
       <button id="clipbutton"
                data-action="clipboard#copy">
         Copy Link
       </button>
-      <%= button_to 'Remove', accounts_post_image_path(image.blob_id), method: :delete, remote: true %>
+
+      <%= button_to 'Remove',
+              accounts_post_image_path(image.blob_id),
+              method: :delete,
+              remote: true %>
 
     </div>
   <% end %>
