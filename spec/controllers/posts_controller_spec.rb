@@ -5,7 +5,10 @@ require 'rails_helper'
 RSpec.describe PostsController, type: :controller do
   let(:current_user) { create(:user) }
 
-  before { sign_in current_user }
+  before do
+    sign_in current_user
+    create(:profile, user_id: current_user.id)
+  end
 
   context 'with invalid attributes' do
     let(:invalid_attributes) { attributes_for(:post, title: nil) }

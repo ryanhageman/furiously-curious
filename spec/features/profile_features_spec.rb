@@ -17,7 +17,7 @@ RSpec.feature 'Profile Features', type: :feature do
       create(:profile, username: 'first_user', user_id: current_user.id)
       create(:profile, username: 'second_user', user_id: user2.id)
 
-      visit profiles_path
+      visit accounts_profiles_path
 
       expect(page).to have_content('first_user')
       expect(page).to have_content('second_user')
@@ -33,7 +33,7 @@ RSpec.feature 'Profile Features', type: :feature do
         user_id: current_user.id
       )
 
-      visit profiles_path
+      visit accounts_profiles_path
       click_on 'look_at_me'
 
       expect(page).to have_content('Firstname')

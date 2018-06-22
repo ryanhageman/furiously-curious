@@ -19,6 +19,75 @@ RSpec.describe Post, type: :model do
   it { is_expected.to validate_presence_of(:author_id) }
   it { is_expected.to validate_presence_of(:author) }
 
+
+  context 'state' do
+    it 'should go from draft to published' do
+      expect(post).to transition_from(:draft).to(:published).on_event(:publish)
+    end
+
+    it 'should go from hidden to published' do
+      expect(post).to transition_from(:hidden).to(:published).on_event(:publish)
+    end
+
+    it 'should go from published to hidden' do
+      expect(post).to transition_from(:published).to(:hidden).on_event(:hide)
+    end
+
+    it 'should not go from draft to hidden' do
+      expect(post).not_to allow_event(:hide)
+    end
+
+    it 'should go from published to draft' do
+      expect(post).to transition_from(:published).to(:draft).on_event(:save_as_draft)
+    end
+
+    it 'should go from hidden to draft' do
+      expect(post).to(
+        transition_from(:hidden)
+        .to(:draft)
+        .on_event(:save_as_draft)
+      )
+    end
+  end
+
+  context 'scopes' do
+    it 'visible_posts scope only returns published/visible posts' do
+      create_list(:post, 2, :published, :visible)
+      create(:post, :published, :unreleased)
+      create(:post, :draft, :visible)
+
+      expect(Post.visible_posts.count).to eq(2)
+    end
+
+    it 'unreleased_posts only returns published/unreleased posts' do
+      create_list(:post, 3, :published, :unreleased)
+      create(:post, :published, :visible)
+      create(:post, :draft, :unreleased)
+
+      expect(Post.unreleased_posts.count).to eq(3)
+    end
+  end
+
+  context 'visibility check' do
+    it '#visible? true when it is published & publish date is before now' do
+      post = create(:post, :published, :visible)
+
+      expect(post.visible?).to be(true)
+    end
+
+    it '#wait_to_show? true when publish_date hasnt arrived' do
+      post = create(:post, :unreleased)
+
+      expect(post.wait_to_show?).to be(true)
+    end
+
+    it '#ready_to_show? true when publish_date is before now' do
+      post = create(:post, :visible)
+
+      expect(post.ready_to_show?).to be(true)
+    end
+  end
+
   describe 'raw_data_to_array' do
     it 'splits a raw data string into an array' do
       data_string = 'first tag, second, third cat e gory here'

@@ -71,7 +71,7 @@ class PostsController < ApplicationController
 
   def set_profile
     @profile = current_user.profile
-    redirect_to new_profile_url if @profile.nil?
+    redirect_to new_accounts_profile_url if @profile.nil?
   end
 
   def set_tags_and_categories

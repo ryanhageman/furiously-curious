@@ -5,7 +5,10 @@ require 'rails_helper'
 RSpec.feature 'Post Features', type: :feature do
   let(:current_user) { create(:user) }
 
-  before { login_as current_user }
+  before do
+    login_as current_user
+    create(:profile, user_id: current_user.id)
+  end
 
   describe 'user visits the post index' do
     before do

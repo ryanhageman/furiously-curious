@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe ProfilesController, type: :controller do
+RSpec.describe Accounts::ProfilesController, type: :controller do
   let(:current_user) { create(:user) }
 
   before { sign_in current_user }
