@@ -4,19 +4,19 @@
         "es6": true
     },
     "globals": {
-      "Awesomplete": 1
+      
     },
     "extends": "eslint:recommended",
+    "parser": "babel-eslint",
     "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        },
-        "sourceType": "module"
+      "sourceType": "module",
+      "allowImportExportEverywhere": false,
+      "codeFrame": false
     },
     "rules": {
         "indent": [
             "error",
-            4
+            2
         ],
         "linebreak-style": [
             "error",
@@ -25,10 +25,6 @@
         "quotes": [
             "error",
             "single"
-        ],
-        "semi": [
-            "error",
-            "always"
         ]
     }
 }

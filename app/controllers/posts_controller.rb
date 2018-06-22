@@ -4,6 +4,7 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_post, only: %i[show edit update destroy]
   before_action :set_tags_and_categories, only: %i[new create edit update]
+  before_action :set_profile
 
   def index
     @posts = Post.all
@@ -56,11 +57,21 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :body, :raw_tags, :raw_categories)
+    params.require(:post).permit(
+      :main_image, :title,
+      :body, :raw_tags,
+      :raw_categories, :delete_main_image,
+      profiles_attributes: [post_images: []]
+    )
   end
 
   def set_post
     @post = Post.find(params[:id])
+  end
+
+  def set_profile
+    @profile = current_user.profile
+    redirect_to new_profile_url if @profile.nil?
   end
 
   def set_tags_and_categories

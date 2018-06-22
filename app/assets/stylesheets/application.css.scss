@@ -1,3 +1,5 @@
+// sass-lint:disable no-css-comments
+
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
@@ -15,4 +17,6 @@
  */
 
 @import 'editor';
+@import 'basic';
+@import 'dropzone';
 @import 'awesomplete/awesomplete';

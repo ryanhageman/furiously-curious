@@ -1,0 +1,28 @@
+<% if @profile.post_images.attached? %>
+  <% @profile.post_images.each do |image| %>
+    <div data-controller="clipboard">
+      <%= image_tag(image.variant(resize: "120x120"),
+              "data-action": "click->clipboard#copy")  %>
+
+      <input style="border: none; width: 0.1px;"
+              data-target="clipboard.source"
+              type="text"
+              value="![](<%= url_for(image) %>)"
+              placeholder="link"
+              readonly>
+      <br>
+      <button id="clipbutton"
+               data-action="clipboard#copy">
+        Copy Link
+      </button>
+
+      <%= button_to 'Remove',
+              accounts_post_image_path(image.blob_id),
+              method: :delete,
+              remote: true %>
+
+    </div>
+  <% end %>
+<% else %>
+  <h3>No images available</h3>
+<% end %>

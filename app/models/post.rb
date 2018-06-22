@@ -2,7 +2,7 @@
 
 # Post Model
 class Post < ApplicationRecord
-  attr_accessor :raw_tags, :raw_categories
+  attr_accessor :raw_tags, :raw_categories, :delete_main_image
   has_one_attached :main_image
 
   belongs_to :author, class_name: 'User'
@@ -17,6 +17,8 @@ class Post < ApplicationRecord
   has_many_attached :images
 
   validates_presence_of :title, :body, :author_id, :author
+
+  before_validation { main_image.purge if delete_main_image == '1' }
 
   def raw_data_to_array(raw_data)
     raw_data.split(',').map(&:strip)

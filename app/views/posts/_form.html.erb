@@ -1,4 +1,30 @@
+<h1>Add an image</h1>
+
+<div id="content">
+	<%= simple_form_for([:accounts, @profile], html: { multipart: true, class: "dropzone", id: "post-images-dropzone", "data-profile-id": @profile.id }) do |f| %>
+		<div class="dz-message needsclick">
+			<h3>Drop file here</h3> or
+			<strong>click</strong> to upload
+		</div>
+
+		<div class="fallback">
+			<%= f.input :post_images, as: :file %>
+			<%= f.submit 'Upload the Image' %>
+		</div>
+	<% end %>
+</div>
+
+<h1>Choose An Image</h1>
+
+<div id="image-picker"></div>
+
 <%= simple_form_for(@post) do |f| %>
+  <% if @post.main_image.attached? %>
+    <%= image_tag @post.main_image.variant(resize: '200x200') %>
+    <%= f.input :delete_main_image, as: :boolean, label: 'Delete image' %>
+  <% end %>
+
+  <%= f.input :main_image, as: :file %>
   <%= f.input :title %>
   <%= f.input :raw_tags, label: 'Tags' %>
   <%= f.input :raw_categories, label: 'Categories' %>
@@ -7,15 +33,15 @@
 <% end %>
 
 <script type="text/javascript">
-    var tagInput = document.getElementById('post_raw_tags');
-    var tagList = <%= raw @tags %>;
-    var categoryInput = document.getElementById('post_raw_categories');
-    var categoryList = <%= raw @categories %>
+    let tagInput = document.getElementById('post_raw_tags');
+    let tagList = <%= raw @tags %>;
+    let categoryInput = document.getElementById('post_raw_categories');
+    let categoryList = <%= raw @categories %>
 
     autocomplete(tagInput, tagList);
     autocomplete(categoryInput, categoryList);
 
-    var editor = new Editor({
+    let editor = new Editor({
       element: document.getElementById('post_body')
     });
     editor.render();
