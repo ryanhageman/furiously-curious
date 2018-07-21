@@ -5,7 +5,9 @@ class Post < ApplicationRecord
   include AASM
 
   attr_accessor :raw_tags, :raw_categories, :delete_main_image
+
   has_one_attached :main_image
+  has_many_attached :images
 
   belongs_to :author, class_name: 'User'
   has_many :post_tags, dependent: :destroy
@@ -15,8 +17,6 @@ class Post < ApplicationRecord
 
   accepts_nested_attributes_for :post_tags, allow_destroy: true
   accepts_nested_attributes_for :post_categories, allow_destroy: true
-
-  has_many_attached :images
 
   validates_presence_of :title, :body, :author_id, :author
 

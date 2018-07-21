@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.feature 'Post Features', type: :feature do
+RSpec.feature 'Blog Post Features', type: :feature do
   let(:current_user) { create(:user) }
 
   before do
@@ -17,14 +17,14 @@ RSpec.feature 'Post Features', type: :feature do
     end
 
     scenario 'they see a list of all the posts' do
-      visit posts_path
+      visit blog_posts_path
 
       expect(page).to have_content('First Post')
       expect(page).to have_content('Second Post')
     end
 
     scenario 'they can look at a specific post' do
-      visit posts_path
+      visit blog_posts_path
 
       click_on 'First Post'
 
@@ -32,7 +32,7 @@ RSpec.feature 'Post Features', type: :feature do
     end
 
     scenario 'they create a new post' do
-      visit posts_path
+      visit blog_posts_path
 
       click_on 'New Post'
 
@@ -45,7 +45,7 @@ RSpec.feature 'Post Features', type: :feature do
     end
 
     scenario 'they edit a post' do
-      visit posts_path
+      visit blog_posts_path
 
       click_on 'Edit', match: :first
 
@@ -56,7 +56,7 @@ RSpec.feature 'Post Features', type: :feature do
     end
 
     scenario 'they destroy a post' do
-      visit posts_path
+      visit blog_posts_path
 
       expect(page).to have_content('First Post')
 

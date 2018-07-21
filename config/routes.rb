@@ -7,8 +7,11 @@ Rails.application.routes.draw do
     resources :profiles
     resources :post_images
   end
-  
-  resources :posts
+  namespace :blog do
+    resources :posts
+    resources :drafts, only: [:index]
+  end
+
   resources :tags
   resources :categories
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
