@@ -56,41 +56,31 @@ class Post < ApplicationRecord
     published? && ready_to_show?
   end
 
-  def raw_data_to_array(raw_data)
-    raw_data.split(',').map(&:strip)
-  end
-
   def parse_raw_tags(data)
     raw_tags = data[:post][:raw_tags]
 
     return [] unless raw_tags
-    create_tag_id_array(raw_tags)
-  end
-
-  def create_tag_id_array(raw_tags)
-    get_tag_ids(raw_tags).map { |id| { tag_id: id } }
-  end
-
-  def get_tag_ids(raw_tags)
-    raw_data_to_array(raw_tags).map do |tag|
-      Tag.where(name: tag).first_or_create.id
-    end
+    create_id_array(raw_tags, Tag, 'tag_id')
   end
 
   def parse_raw_categories(data)
     raw_categories = data[:post][:raw_categories]
 
     return [] unless raw_categories
-    create_category_id_array(raw_categories)
+    create_id_array(raw_categories, Category, 'category_id')
   end
 
-  def create_category_id_array(raw_categories)
-    get_category_ids(raw_categories).map { |id| { category_id: id } }
+  def create_id_array(data, klass, attribute)
+    get_ids(data, klass).map { |id| { "#{attribute}": id } }
   end
 
-  def get_category_ids(raw_categories)
-    raw_data_to_array(raw_categories).map do |category|
-      Category.where(name: category).first_or_create.id
+  def get_ids(data, klass)
+    raw_data_to_array(data).map do |item|
+      klass.where(name: item).first_or_create.id
     end
+  end
+
+  def raw_data_to_array(raw_data)
+    raw_data.split(',').map(&:strip)
   end
 end

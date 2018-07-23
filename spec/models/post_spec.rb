@@ -121,7 +121,8 @@ RSpec.describe Post, type: :model do
 
     describe 'create_tag_id_array' do
       let(:raw_tag_string) { 'first tag, second tag' }
-      let(:tag_id_array) { post.create_tag_id_array(raw_tag_string) }
+      let(:tag_id_array) { post.create_id_array(raw_tag_string, Tag, 'tag_id') }
+      # let(:tag_id_array) { post.create_tag_id_array(raw_tag_string) }
 
       it 'creates an array of tag ids' do
         expect(tag_id_array.first.include?(:tag_id)).to be(true)
@@ -134,7 +135,7 @@ RSpec.describe Post, type: :model do
 
     describe 'get_tag_ids' do
       let(:raw_tag_string) { 'first tag here, second, third tag' }
-      let(:tag_id_array) { post.get_tag_ids(raw_tag_string) }
+      let(:tag_id_array) { post.get_ids(raw_tag_string, Tag) }
 
       it 'returns 3 tag ids' do
         expect(tag_id_array.count).to eq(3)
@@ -172,7 +173,7 @@ RSpec.describe Post, type: :model do
     describe 'create_category_id_array' do
       let(:raw_category_string) { 'first category, second category' }
       let(:category_id_array) do
-        post.create_category_id_array(raw_category_string)
+        post.create_id_array(raw_category_string, Category, 'category_id')
       end
 
       it 'creates an array of category ids' do
@@ -186,7 +187,7 @@ RSpec.describe Post, type: :model do
 
     describe 'get_category_ids' do
       let(:raw_category_string) { 'first cat e gory, second, third category' }
-      let(:category_id_array) { post.get_category_ids(raw_category_string) }
+      let(:category_id_array) { post.get_ids(raw_category_string, Category) }
 
       it 'returns 3 category ids' do
         expect(category_id_array.count).to eq(3)
