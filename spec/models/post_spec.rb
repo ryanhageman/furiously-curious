@@ -19,7 +19,6 @@ RSpec.describe Post, type: :model do
   it { is_expected.to validate_presence_of(:author_id) }
   it { is_expected.to validate_presence_of(:author) }
 
-
   context 'state' do
     it 'should go from draft to published' do
       expect(post).to transition_from(:draft).to(:published).on_event(:publish)
@@ -38,7 +37,10 @@ RSpec.describe Post, type: :model do
     end
 
     it 'should go from published to draft' do
-      expect(post).to transition_from(:published).to(:draft).on_event(:save_as_draft)
+      expect(post)
+        .to transition_from(:published)
+        .to(:draft)
+        .on_event(:save_as_draft)
     end
 
     it 'should go from hidden to draft' do
@@ -121,8 +123,9 @@ RSpec.describe Post, type: :model do
 
     describe 'create_tag_id_array' do
       let(:raw_tag_string) { 'first tag, second tag' }
-      let(:tag_id_array) { post.create_id_array(raw_tag_string, Tag, 'tag_id') }
-      # let(:tag_id_array) { post.create_tag_id_array(raw_tag_string) }
+      let(:tag_id_array) do
+        post.create_id_array(raw_tag_string, Tag, 'name', 'tag_id')
+      end
 
       it 'creates an array of tag ids' do
         expect(tag_id_array.first.include?(:tag_id)).to be(true)
@@ -135,7 +138,7 @@ RSpec.describe Post, type: :model do
 
     describe 'get_tag_ids' do
       let(:raw_tag_string) { 'first tag here, second, third tag' }
-      let(:tag_id_array) { post.get_ids(raw_tag_string, Tag) }
+      let(:tag_id_array) { post.get_ids(raw_tag_string, Tag, 'name') }
 
       it 'returns 3 tag ids' do
         expect(tag_id_array.count).to eq(3)
@@ -171,9 +174,9 @@ RSpec.describe Post, type: :model do
     end
 
     describe 'create_category_id_array' do
-      let(:raw_category_string) { 'first category, second category' }
+      let(:raw_categories) { 'first category, second category' }
       let(:category_id_array) do
-        post.create_id_array(raw_category_string, Category, 'category_id')
+        post.create_id_array(raw_categories, Category, 'name', 'category_id')
       end
 
       it 'creates an array of category ids' do
@@ -186,8 +189,10 @@ RSpec.describe Post, type: :model do
     end
 
     describe 'get_category_ids' do
-      let(:raw_category_string) { 'first cat e gory, second, third category' }
-      let(:category_id_array) { post.get_ids(raw_category_string, Category) }
+      let(:raw_categories) { 'first cat e gory, second, third category' }
+      let(:category_id_array) do
+        post.get_ids(raw_categories, Category, 'name')
+      end
 
       it 'returns 3 category ids' do
         expect(category_id_array.count).to eq(3)
