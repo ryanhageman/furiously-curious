@@ -2,6 +2,6 @@
 
 class Blog::DraftsController < Blog::BlogController
   def index
-    @posts = Post.draft
+    @posts = Post.draft.page params[:page]
   end
 end

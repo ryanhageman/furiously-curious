@@ -9,6 +9,8 @@ class Post < ApplicationRecord
   has_one_attached :main_image
   has_many_attached :images
 
+  paginates_per 10
+
   belongs_to :author, class_name: 'User'
   has_many :post_tags, dependent: :destroy
   has_many :tags, -> { distinct }, through: :post_tags
