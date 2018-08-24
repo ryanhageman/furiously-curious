@@ -7,7 +7,9 @@ class Blog::PostsController < Blog::BlogController
   before_action :set_profile
 
   def index
-    @posts = Post.all
+    @search = params[:search]
+    @posts = requested_posts
+    # @posts = Post.all
   end
 
   def show; end

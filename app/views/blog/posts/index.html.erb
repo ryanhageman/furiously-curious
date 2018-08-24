@@ -1,3 +1,8 @@
 <h1>Your Posts</h1>
 
-<%= render 'blog/shared/post_list' %>
+<%= render partial: 'blog/shared/search_form',
+              locals: {endpoint: blog_posts_path} %>
+
+<div id="post-list">
+  <%= render 'blog/shared/post_list' %>
+</div>
