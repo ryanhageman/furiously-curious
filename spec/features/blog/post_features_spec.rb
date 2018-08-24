@@ -66,4 +66,24 @@ RSpec.feature 'Blog Post Features', type: :feature do
       expect(page).to have_content('Second Post')
     end
   end
+
+  describe 'user searches posts index' do
+    before do
+      create(:post, title: 'Gambit')
+      create(:post, title: 'Sabertooth Bit Another Reeses Egg')
+      create(:post, title: 'Wolverine')
+    end
+
+    scenario 'they see all the matching posts' do
+      visit blog_posts_path
+
+      fill_in 'search', with: 'bit'
+
+      click_on 'Search'
+
+      expect(page).to have_content('Gambit')
+      expect(page).to have_content('Sabertooth Bit Another Reeses Egg')
+      expect(page).not_to have_content('Wolverine')
+    end
+  end
 end

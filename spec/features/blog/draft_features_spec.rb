@@ -28,4 +28,24 @@ RSpec.feature 'Blog Draft Features', type: :feature do
       expect(page).not_to have_content('First Published')
     end
   end
+
+  describe 'user searches drafts index' do
+    before do
+      create(:post, title: 'Lightsaber')
+      create(:post, title: 'Sabertooth Tiger')
+      create(:post, title: 'Jedi')
+    end
+
+    scenario 'they see all the matching posts' do
+      visit blog_drafts_path
+
+      fill_in 'search', with: 'saber'
+
+      click_on 'Search'
+
+      expect(page).to have_content('Lightsaber')
+      expect(page).to have_content('Sabertooth Tiger')
+      expect(page).not_to have_content('Jedi')
+    end
+  end
 end
