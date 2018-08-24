@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe PostsController, type: :controller do
+RSpec.describe Blog::PostsController, type: :controller do
   let(:current_user) { create(:user) }
 
   before do

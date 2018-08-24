@@ -45,6 +45,9 @@ gem 'pundit'
 # Clean forms
 gem 'simple_form'
 
+# Pagination
+gem 'kaminari'
+
 # JavaScript
 gem 'webpacker', '~> 3.5'
 gem 'jquery-rails'
