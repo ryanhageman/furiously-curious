@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.feature 'Blog Draft Features', type: :feature do
+RSpec.feature 'Blog Draft Post Features', type: :feature do
   let(:current_user) { create(:user) }
 
   before do

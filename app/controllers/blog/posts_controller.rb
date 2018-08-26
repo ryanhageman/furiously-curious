@@ -84,4 +84,11 @@ class Blog::PostsController < Blog::BlogController
   def convert_to_raw(data)
     data.map(&:name).join(', ')
   end
+
+  def requested_posts
+    if params[:search]
+      return Post.where('title ILIKE ?', "%#{params[:search]}%").page params[:page]
+    end
+    Post.page params[:page]
+  end
 end
