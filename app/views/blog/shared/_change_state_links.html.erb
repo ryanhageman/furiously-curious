@@ -1,0 +1,19 @@
+<% if state == 'draft' %>
+  <%= link_to 'Publish',
+   "#{request.base_url}/blog/#{controller_name}/#{post.id}?new_state=published", method: :patch,
+   remote: true %>
+<% elsif state == 'published' %>
+  <%= link_to 'Hide',
+   "#{request.base_url}/blog/#{controller_name}/#{post.id}?new_state=hidden", method: :patch,
+   remote: true %>
+  <%= link_to 'Save as Draft',
+   "#{request.base_url}/blog/#{controller_name}/#{post.id}?new_state=draft", method: :patch,
+   remote: true %>
+<% elsif state == 'hidden' %>
+  <%= link_to 'Publish',
+   "#{request.base_url}/blog/#{controller_name}/#{post.id}?new_state=published", method: :patch,
+   remote: true %>
+  <%= link_to 'Save as Draft',
+   "#{request.base_url}/blog/#{controller_name}/#{post.id}?new_state=draft", method: :patch,
+   remote: true %>
+<% end %>

@@ -9,8 +9,8 @@ Rails.application.routes.draw do
   end
   namespace :blog do
     resources :posts
-    resources :drafts, only: [:index]
-    resources :hidden_posts, only: [:index]
+    resources :drafts, only: [:index, :update]
+    resources :hidden_posts, only: [:index, :update]
   end
 
   resources :tags

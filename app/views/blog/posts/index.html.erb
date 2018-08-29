@@ -4,5 +4,6 @@
               locals: {endpoint: blog_posts_path} %>
 
 <div id="post-list">
-  <%= render 'blog/shared/post_list' %>
+  <%= render partial: 'blog/shared/post_list',
+                locals: {endpoint: blog_post_path(1)}  %>
 </div>

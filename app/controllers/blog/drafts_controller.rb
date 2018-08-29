@@ -2,9 +2,16 @@
 
 class Blog::DraftsController < Blog::BlogController
   before_action :authenticate_user!
-  
+
   def index
     @search = params[:search]
+    @posts = requested_drafts
+  end
+
+  def update
+    @post = Post.find(params[:id])
+    @new_state = params[:new_state]
+    update_post_state(@post, @new_state) if @new_state
     @posts = requested_drafts
   end
 
