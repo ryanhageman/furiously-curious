@@ -37,16 +37,22 @@ class Blog::PostsController < Blog::BlogController
   end
 
   def update
-    @post.post_tags.destroy_all
-    @post.post_categories.destroy_all
-
-    @post.post_tags_attributes = @post.parse_raw_tags(params)
-    @post.post_categories_attributes = @post.parse_raw_categories(params)
-
-    if @post.update(post_params)
-      redirect_to blog_post_url(@post), notice: 'Updated'
+    @new_state = params[:new_state]
+    if @new_state
+      update_post_state(@post, @new_state)
+      @posts = requested_posts
     else
-      render :edit, notice: 'There was a problem'
+      @post.post_tags.destroy_all
+      @post.post_categories.destroy_all
+
+      @post.post_tags_attributes = @post.parse_raw_tags(params)
+      @post.post_categories_attributes = @post.parse_raw_categories(params)
+
+      if @post.update(post_params)
+        redirect_to blog_post_url(@post), notice: 'Updated'
+      else
+        render :edit, notice: 'There was a problem'
+      end
     end
   end
 
