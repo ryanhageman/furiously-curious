@@ -1,12 +1,13 @@
   <%= link_to 'New Post', new_blog_post_path %>
 
-  <% @posts.each do |post| %>
+  <% @posts.order('aasm_state').each do |post| %>
     <% present post do |post_presenter| %>
       <div>
-        <%= post_presenter.title_link %>
-        <%= post_presenter.change_state_links %>
-        <%= post_presenter.edit_post_link %>
-        <%= post_presenter.delete_post_link %>
+        <strong><%= post_presenter.title_link %></strong>
+        <small><em><%= post_presenter.state.capitalize %></em></small>
+        (<small><%= post_presenter.change_state_links %></small>
+        <small><%= post_presenter.edit_post_link %></small>
+        <small><%= post_presenter.delete_post_link %></small>)
       </div>
     <% end %>
   <% end %>

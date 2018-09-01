@@ -1,7 +1,23 @@
-var newContent = "<%= j render 'blog/shared/post_list' %>"
+var postList = document.getElementById('post-list')
+var showBody = document.getElementById('show-body')
+var newContent = stuffToShow(postList)
 
-if (<%= @posts.length %> === 0) {
-  newContent = "<h1>Sorry, Didn't Find Anything</h1>"
+function stuffToShow(listView) {
+  if (listView) {
+    return anyPosts()
+  } else {
+    return "<%= j render 'blog/shared/show_body' %>"
+  }
 }
 
-document.getElementById('post-list').innerHTML = newContent
+function anyPosts() {
+  if (<%= @posts.length %> === 0) {
+    return "<h1>Sorry, Didn't Find Anything</h1>"
+  } else {
+    return "<%= j render 'blog/shared/post_list' %>"
+  }
+}
+
+var renderDiv = postList ? postList : showBody
+
+renderDiv.innerHTML = newContent

@@ -1,0 +1,24 @@
+<% present @post do |post_presenter| %>
+  <%= post_presenter.edit_post_link %>
+  <br>
+  <h3><%= post_presenter.state.capitalize %></h3>
+  <%= post_presenter.change_state_links %>
+
+  <br>
+  <%= post_presenter.main_image %>
+
+  <h1><%= post_presenter.title %></h1>
+
+  <h2>By: <%= post_presenter.author_username %></h2>
+
+  <h4>Tags:</h4>
+  <%= post_presenter.post_tags %>
+
+
+  <h4>Categories:</h4>
+  <%= post_presenter.post_categories %>
+
+  <div>
+    <%= post_presenter.markdown_body %>
+  </div>
+<% end %>
