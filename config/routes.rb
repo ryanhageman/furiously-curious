@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     resources :posts
     resources :drafts, only: [:index, :update]
     resources :hidden_posts, only: [:index, :update]
+    resources :published_posts, only: [:index, :update]
   end
 
   resources :tags
