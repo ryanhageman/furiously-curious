@@ -18,8 +18,8 @@ RSpec.describe PostPresenter do
         expect(presenter.author_username).to eq(author_profile.username)
       end
 
-      it 'returns "No Author" when theres no author assigned' do
-        expect(presenter.author_username).to eq('No Author')
+      it 'returns "Anonymous" when theres no author assigned' do
+        expect(presenter.author_username).to eq('Anonymous')
       end
     end
 

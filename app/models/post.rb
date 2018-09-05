@@ -20,9 +20,13 @@ class Post < ApplicationRecord
   accepts_nested_attributes_for :post_tags, allow_destroy: true
   accepts_nested_attributes_for :post_categories, allow_destroy: true
 
-  validates_presence_of :title, :body, :author_id, :author
+  validates :title, :body, :author_id, presence: true
 
   before_validation { main_image.purge if delete_main_image == '1' }
+
+  def author
+    super || GuestUser.new
+  end
 
   aasm do
     state :draft, initial: true

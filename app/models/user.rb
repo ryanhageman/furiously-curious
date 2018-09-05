@@ -15,4 +15,8 @@ class User < ApplicationRecord
 
   has_one :profile, dependent: :destroy
   has_many :posts, foreign_key: :author_id
+
+  def profile
+    super || DefaultProfile.new
+  end
 end

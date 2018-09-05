@@ -13,7 +13,7 @@ class PostPresenter < BasePresenter
   end
 
   def author_username
-    author_username? ? post.author.profile.username : 'No Author'
+    post.author.profile.username
   end
 
   def post_tags
