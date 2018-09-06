@@ -19,7 +19,7 @@ class Blog::DraftsController < Blog::BlogController
 
   def requested_drafts
     if params[:search]
-      return Post.draft.where('title ILIKE ?', "%#{params[:search]}%").page params[:page]
+      return Post.draft.search_titles(params[:search]).page params[:page]
     end
     Post.draft.page params[:page]
   end

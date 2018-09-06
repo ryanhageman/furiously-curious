@@ -50,6 +50,10 @@ class Post < ApplicationRecord
   scope :visible_posts, -> { published.select(&:ready_to_show?) }
   scope :unreleased_posts, -> { published.select(&:wait_to_show?) }
 
+  def self.search_titles(term)
+    where('title ILIKE ?', "%#{term}%")
+  end
+
   def ready_to_show?
     publish_date < Time.current
   end

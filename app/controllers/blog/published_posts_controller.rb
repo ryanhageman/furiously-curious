@@ -19,7 +19,7 @@ class Blog::PublishedPostsController < Blog::BlogController
 
   def requested_published_posts
     if params[:search]
-      return Post.published.where('title ILIKE ?', "%#{params[:search]}%").page params[:page]
+      return Post.published.search_titles(params[:search]).page params[:page]
     end
     Post.published.page params[:page]
   end

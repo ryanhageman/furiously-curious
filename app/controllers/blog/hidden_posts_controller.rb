@@ -19,7 +19,7 @@ class Blog::HiddenPostsController < Blog::BlogController
 
   def requested_hidden_posts
     if params[:search]
-      return Post.hidden.where('title ILIKE ?', "%#{params[:search]}%").page params[:page]
+      return Post.hidden.search_titles(params[:search]).page params[:page]
     end
     Post.hidden.page params[:page]
   end

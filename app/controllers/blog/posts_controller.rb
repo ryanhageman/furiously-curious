@@ -9,7 +9,6 @@ class Blog::PostsController < Blog::BlogController
   def index
     @search = params[:search]
     @posts = requested_posts
-    # @posts = Post.all
   end
 
   def show; end
@@ -93,7 +92,7 @@ class Blog::PostsController < Blog::BlogController
 
   def requested_posts
     if params[:search]
-      return Post.where('title ILIKE ?', "%#{params[:search]}%").page params[:page]
+      return Post.search_titles(params[:search]).page params[:page]
     end
     Post.page params[:page]
   end
