@@ -25,11 +25,13 @@ class PostPresenter < BasePresenter
   end
 
   def change_state_links
-    case state
-    when 'draft' then publish_post_link
-    when 'published' then links_for_published_posts
-    when 'hidden' then links_for_hidden_posts
-    end
+    state_links = {
+      draft: links_for_drafts,
+      published: links_for_published_posts,
+      hidden: links_for_hidden_posts
+    }
+
+    state_links[post.aasm_state.to_sym]
   end
 
   def title_link
@@ -54,10 +56,6 @@ class PostPresenter < BasePresenter
     post.main_image.attached?
   end
 
-  def author_username?
-    post.author.profile.try(:username)
-  end
-
   def render_tags
     h.content_tag :ul do
       post.tags.collect { |tag| h.content_tag :li, tag.name }.join.html_safe
@@ -72,35 +70,28 @@ class PostPresenter < BasePresenter
     end
   end
 
-  def post_url
-    "/blog/#{h.controller_name}/#{post.id}"
+  def path_to_change_state(new_state)
+    "/blog/#{h.controller_name}/#{post.id}?new_state=#{new_state}"
+  end
+
+  def link_options
+    { method: :patch, remote: true }
   end
 
   def publish_post_link
-    h.link_to(
-      'Publish',
-      "#{post_url}?new_state=published",
-      method: :patch,
-      remote: true
-    )
+    h.link_to('Publish', path_to_change_state('published'), link_options)
   end
 
   def hide_post_link
-    h.link_to(
-      'Hide',
-      "#{post_url}?new_state=hidden",
-      method: :patch,
-      remote: true
-    )
+    h.link_to('Hide', path_to_change_state('hidden'), link_options)
   end
 
   def save_as_draft_link
-    h.link_to(
-      'Save as Draft',
-      "#{post_url}?new_state=draft",
-      method: :patch,
-      remote: true
-    )
+    h.link_to('Save as Draft', path_to_change_state('draft'), link_options)
+  end
+
+  def links_for_drafts
+    publish_post_link
   end
 
   def links_for_published_posts
