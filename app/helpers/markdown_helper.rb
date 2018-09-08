@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 module MarkdownHelper
+  def markdown(text)
+    markdown_to_html(text, MARKDOWN_OPTIONS, MARKDOWN_EXTENSIONS)
+  end
+
+  private
+
   MARKDOWN_OPTIONS = {
     filter_html: true,
     prettify: true,
@@ -37,9 +43,5 @@ module MarkdownHelper
     Redcarpet::Markdown
       .new(highlight_syntax(options), extensions)
       .render(text).html_safe
-  end
-
-  def markdown(text)
-    markdown_to_html(text, MARKDOWN_OPTIONS, MARKDOWN_EXTENSIONS)
   end
 end
