@@ -80,6 +80,8 @@ class Post < ApplicationRecord
     create_id_array(raw_categories, Category, 'name', 'category_id')
   end
 
+  private
+
   def create_id_array(data, klass, attribute, identifier)
     get_ids(data, klass, attribute).map { |id| { "#{identifier}": id } }
   end
