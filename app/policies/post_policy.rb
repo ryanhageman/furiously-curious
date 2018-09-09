@@ -2,7 +2,7 @@
 
 class PostPolicy < ApplicationPolicy
   def index?
-    authors_own_post? || user.admin?
+    true
   end
 
   def show?

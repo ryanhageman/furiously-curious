@@ -2,6 +2,7 @@
 
 class Blog::DraftsController < Blog::BlogController
   before_action :authenticate_user!
+  after_action :verify_authorized, except: %i[index]
 
   def index
     @search = params[:search]
@@ -11,6 +12,7 @@ class Blog::DraftsController < Blog::BlogController
   def update
     @post = Post.find(params[:id])
     @new_state = params[:new_state]
+    authorize @post
     update_post_state(@post, @new_state) if @new_state
     @posts = requested_drafts
   end

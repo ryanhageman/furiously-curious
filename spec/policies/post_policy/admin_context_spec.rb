@@ -13,7 +13,6 @@ RSpec.describe PostPolicy do
   end
 
   context 'admin accessing a post' do
-    it { is_expected.to permit_action(:index) }
     it { is_expected.to permit_action(:show) }
     it { is_expected.to permit_edit_and_update_actions }
     it { is_expected.to permit_action(:destroy) }

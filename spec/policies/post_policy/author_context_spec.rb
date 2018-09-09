@@ -8,10 +8,6 @@ RSpec.describe PostPolicy do
   let(:user) { create(:user, :author) }
   let(:post) { create(:post, author_id: user.id) }
 
-  context 'author accessing post index view' do
-    it { is_expected.to permit_action(:index) }
-  end
-
   context 'author creating a new post' do
     it { is_expected.to permit_new_and_create_actions }
   end

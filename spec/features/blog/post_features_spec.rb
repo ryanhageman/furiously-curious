@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.feature 'Blog Post Features', type: :feature do
-  let(:current_user) { create(:user) }
+  let(:current_user) { create(:user, :author) }
 
   before do
     login_as current_user
@@ -12,8 +12,11 @@ RSpec.feature 'Blog Post Features', type: :feature do
 
   describe 'user visits the post index' do
     before do
-      create(:post, title: 'First Post', body: 'a post for the world')
-      create(:post, title: 'Second Post')
+      create(:post,
+             title: 'First Post',
+             body: 'a post for the world',
+             author_id: current_user.id)
+      create(:post, title: 'Second Post', author_id: current_user.id)
     end
 
     scenario 'they see a list of all the posts' do

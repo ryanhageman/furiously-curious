@@ -13,7 +13,6 @@ RSpec.describe PostPolicy do
   end
 
   context 'any user accessing a post' do
-    it { is_expected.to forbid_action(:index) }
     it { is_expected.to forbid_action(:show) }
     it { is_expected.to forbid_edit_and_update_actions }
     it { is_expected.to forbid_action(:destroy) }
