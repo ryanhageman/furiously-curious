@@ -6,7 +6,7 @@ RSpec.describe PostPresenter do
   let(:view) { ActionController::Base.new.view_context }
   let(:post) { create(:post) }
   let(:author) { post.author }
-  let(:profile) { create(:profile, user_id: author.id)}
+  let(:profile) { create(:profile, user_id: author.id) }
   let(:tagged_post) { create(:post, :with_tags) }
   let(:categorized_post) { create(:post, :with_categories) }
   let(:presenter) { PostPresenter.new(post, view) }
@@ -18,7 +18,7 @@ RSpec.describe PostPresenter do
         expect(presenter.author_username).to eq(author_profile.username)
       end
 
-      it 'returns "Anonymous" when theres no author assigned' do
+      it 'returns "Anonymous" when no author is assigned' do
         expect(presenter.author_username).to eq('Anonymous')
       end
     end
