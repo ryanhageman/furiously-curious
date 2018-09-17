@@ -31,15 +31,15 @@ class PostPresenter < BasePresenter
   end
 
   def title_link
-    h.link_to post.title, h.blog_post_path(post)
+    h.link_to post.title, h.blog_admin_post_path(post)
   end
 
   def edit_post_link
-    h.link_to 'Edit', h.edit_blog_post_path(post)
+    h.link_to 'Edit', h.edit_blog_admin_post_path(post)
   end
 
   def delete_post_link
-    h.link_to 'Delete', h.blog_post_path(post), method: :delete
+    h.link_to 'Delete', h.blog_admin_post_path(post), method: :delete
   end
 
   def markdown_body

@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     resources :profiles
     resources :post_images
   end
-  namespace :blog do
+  namespace :blog_admin do
     resources :posts
     resources :drafts, only: [:index, :update]
     resources :hidden_posts, only: [:index, :update]

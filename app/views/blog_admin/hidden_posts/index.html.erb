@@ -1,0 +1,8 @@
+<h1>Your Hidden Posts</h1>
+
+<%= render partial: 'blog_admin/shared/search_form',
+              locals: {endpoint: blog_admin_hidden_posts_path} %>
+
+<div id="hidden-post-list">
+  <%= render 'blog_admin/shared/post_list' %>
+</div>

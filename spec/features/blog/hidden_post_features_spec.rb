@@ -17,13 +17,13 @@ RSpec.feature 'Blog Hidden Post Features', type: :feature do
     end
 
     scenario 'they see a list of all the hidden posts' do
-      visit blog_hidden_posts_path
+      visit blog_admin_hidden_posts_path
 
       expect(page).to have_content('First Hidden Post')
     end
 
     scenario 'they do NOT see published posts' do
-      visit blog_hidden_posts_path
+      visit blog_admin_hidden_posts_path
 
       expect(page).not_to have_content('First Published Post')
     end
@@ -37,7 +37,7 @@ RSpec.feature 'Blog Hidden Post Features', type: :feature do
     end
 
     scenario 'they see all the matching hidden posts' do
-      visit blog_hidden_posts_path
+      visit blog_admin_hidden_posts_path
 
       fill_in 'search', with: 'expect'
 

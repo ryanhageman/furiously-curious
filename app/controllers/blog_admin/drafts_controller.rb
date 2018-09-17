@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-class Blog::HiddenPostsController < BlogController
+class BlogAdmin::DraftsController < BlogAdminController
   before_action :authenticate_user!
   after_action :verify_authorized, except: %i[index]
 
   def index
     @search = params[:search]
-    @posts = requested_hidden_posts
+    @posts = requested_drafts
   end
 
   def update
@@ -14,15 +14,15 @@ class Blog::HiddenPostsController < BlogController
     @new_state = params[:new_state]
     authorize @post
     update_post_state(@post, @new_state) if @new_state
-    @posts = requested_hidden_posts
+    @posts = requested_drafts
   end
 
   private
 
-  def requested_hidden_posts
+  def requested_drafts
     if params[:search]
-      return Post.hidden.search_titles(params[:search]).page params[:page]
+      return Post.draft.search_titles(params[:search]).page params[:page]
     end
-    Post.hidden.page params[:page]
+    Post.draft.page params[:page]
   end
 end

@@ -1,0 +1,8 @@
+<h1>Your Drafts</h1>
+
+<%= render partial: 'blog_admin/shared/search_form',
+              locals: {endpoint: blog_admin_drafts_path} %>
+
+<div id="draft-post-list">
+  <%= render 'blog_admin/shared/post_list'%>
+</div>

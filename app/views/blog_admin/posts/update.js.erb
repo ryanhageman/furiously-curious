@@ -6,7 +6,7 @@ function stuffToShow(listView) {
   if (listView) {
     return anyPosts()
   } else {
-    return "<%= j render 'blog/shared/show_body' %>"
+    return "<%= j render 'blog_admin/shared/show_body' %>"
   }
 }
 
@@ -14,7 +14,7 @@ function anyPosts() {
   if (<%= @posts.length %> === 0) {
     return "<h1>Sorry, Didn't Find Anything</h1>"
   } else {
-    return "<%= j render 'blog/shared/post_list' %>"
+    return "<%= j render 'blog_admin/shared/post_list' %>"
   }
 }
 

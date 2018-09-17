@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Blog::PostsController < BlogController
+class BlogAdmin::PostsController < BlogAdminController
   before_action :authenticate_user!
   before_action :set_post, only: %i[show edit update destroy]
   before_action :set_tags_and_categories, only: %i[new create edit update]
@@ -29,7 +29,7 @@ class Blog::PostsController < BlogController
     @post.post_categories_attributes = @post.parse_raw_categories(params)
 
     if @post.save
-      redirect_to blog_post_url(@post), notice: 'Saved'
+      redirect_to blog_admin_post_url(@post), notice: 'Saved'
     else
       render :new, notice: 'There was a problem, try again.'
     end
@@ -55,7 +55,7 @@ class Blog::PostsController < BlogController
       @post.post_categories_attributes = @post.parse_raw_categories(params)
 
       if @post.update(post_params)
-        redirect_to blog_post_url(@post), notice: 'Updated'
+        redirect_to blog_admin_post_url(@post), notice: 'Updated'
       else
         render :edit, notice: 'There was a problem'
       end
@@ -66,7 +66,7 @@ class Blog::PostsController < BlogController
     authorize @post
     @post.destroy
 
-    redirect_to blog_posts_url
+    redirect_to blog_admin_posts_url
   end
 
   private

@@ -18,7 +18,7 @@
 
 <div id="image-picker"></div>
 
-<%= simple_form_for([:blog, @post]) do |f| %>
+<%= simple_form_for([:blog_admin, @post]) do |f| %>
   <% if @post.main_image.attached? %>
     <%= image_tag @post.main_image.variant(resize: '200x200') %>
     <%= f.input :delete_main_image, as: :boolean, label: 'Delete image' %>

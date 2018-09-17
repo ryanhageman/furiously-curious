@@ -17,13 +17,13 @@ RSpec.feature 'Blog Draft Post Features', type: :feature do
     end
 
     scenario 'they see a list of all the drafts' do
-      visit blog_drafts_path
+      visit blog_admin_drafts_path
 
       expect(page).to have_content('First Draft')
     end
 
     scenario 'they do NOT see published posts' do
-      visit blog_drafts_path
+      visit blog_admin_drafts_path
 
       expect(page).not_to have_content('First Published')
     end
@@ -37,7 +37,7 @@ RSpec.feature 'Blog Draft Post Features', type: :feature do
     end
 
     scenario 'they see all the matching posts' do
-      visit blog_drafts_path
+      visit blog_admin_drafts_path
 
       fill_in 'search', with: 'saber'
 

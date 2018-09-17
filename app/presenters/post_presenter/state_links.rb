@@ -17,7 +17,7 @@ class PostPresenter
     end
 
     def path_to_change_state(new_state)
-      "/blog/#{h.controller_name}/#{post.id}?new_state=#{new_state}"
+      "/blog_admin/#{h.controller_name}/#{post.id}?new_state=#{new_state}"
     end
 
     def link_options

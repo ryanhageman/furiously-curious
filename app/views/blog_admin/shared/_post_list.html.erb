@@ -1,4 +1,4 @@
-  <%= link_to 'New Post', new_blog_post_path %>
+  <%= link_to 'New Post', new_blog_admin_post_path %>
 
   <% @posts.order('aasm_state').each do |post| %>
     <% present post do |post_presenter| %>

@@ -20,14 +20,14 @@ RSpec.feature 'Blog Post Features', type: :feature do
     end
 
     scenario 'they see a list of all the posts' do
-      visit blog_posts_path
+      visit blog_admin_posts_path
 
       expect(page).to have_content('First Post')
       expect(page).to have_content('Second Post')
     end
 
     scenario 'they can look at a specific post' do
-      visit blog_posts_path
+      visit blog_admin_posts_path
 
       click_on 'First Post'
 
@@ -35,7 +35,7 @@ RSpec.feature 'Blog Post Features', type: :feature do
     end
 
     scenario 'they create a new post' do
-      visit blog_posts_path
+      visit blog_admin_posts_path
 
       click_on 'New Post'
 
@@ -48,7 +48,7 @@ RSpec.feature 'Blog Post Features', type: :feature do
     end
 
     scenario 'they edit a post' do
-      visit blog_posts_path
+      visit blog_admin_posts_path
 
       click_on 'Edit', match: :first
 
@@ -59,7 +59,7 @@ RSpec.feature 'Blog Post Features', type: :feature do
     end
 
     scenario 'they destroy a post' do
-      visit blog_posts_path
+      visit blog_admin_posts_path
 
       expect(page).to have_content('First Post')
 
@@ -78,7 +78,7 @@ RSpec.feature 'Blog Post Features', type: :feature do
     end
 
     scenario 'they see all the matching posts' do
-      visit blog_posts_path
+      visit blog_admin_posts_path
 
       fill_in 'search', with: 'bit'
 
