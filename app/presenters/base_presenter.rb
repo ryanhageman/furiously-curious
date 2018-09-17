@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class BasePresenter
+  attr_reader :object, :template
+
   def initialize(object, template)
     @object = object
     @template = template
@@ -8,7 +10,7 @@ class BasePresenter
 
   def self.presents(name)
     define_method(name) do
-      @object
+      object
     end
   end
 
@@ -17,6 +19,6 @@ class BasePresenter
   private
 
   def h
-    @template
+    template
   end
 end

@@ -25,13 +25,9 @@ class PostPresenter < BasePresenter
   end
 
   def change_state_links
-    state_links = {
-      draft: links_for_drafts,
-      published: links_for_published_posts,
-      hidden: links_for_hidden_posts
-    }
-
-    state_links[post.aasm_state.to_sym]
+    PostPresenter::StateLinks
+      .new(post, template)
+      .links(state)
   end
 
   def title_link
@@ -68,37 +64,5 @@ class PostPresenter < BasePresenter
         h.content_tag :li, category.name
       end.join.html_safe
     end
-  end
-
-  def path_to_change_state(new_state)
-    "/blog/#{h.controller_name}/#{post.id}?new_state=#{new_state}"
-  end
-
-  def link_options
-    { method: :patch, remote: true }
-  end
-
-  def publish_post_link
-    h.link_to('Publish', path_to_change_state('published'), link_options)
-  end
-
-  def hide_post_link
-    h.link_to('Hide', path_to_change_state('hidden'), link_options)
-  end
-
-  def save_as_draft_link
-    h.link_to('Save as Draft', path_to_change_state('draft'), link_options)
-  end
-
-  def links_for_drafts
-    publish_post_link
-  end
-
-  def links_for_published_posts
-    [hide_post_link, save_as_draft_link].join(' ').html_safe
-  end
-
-  def links_for_hidden_posts
-    [publish_post_link, save_as_draft_link].join(' ').html_safe
   end
 end
