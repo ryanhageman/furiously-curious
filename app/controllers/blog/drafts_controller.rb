@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Blog::DraftsController < Blog::BlogController
+class Blog::DraftsController < BlogController
   before_action :authenticate_user!
   after_action :verify_authorized, except: %i[index]
 

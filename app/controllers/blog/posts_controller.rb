@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Blog::PostsController < Blog::BlogController
+class Blog::PostsController < BlogController
   before_action :authenticate_user!
   before_action :set_post, only: %i[show edit update destroy]
   before_action :set_tags_and_categories, only: %i[new create edit update]
