@@ -11,20 +11,8 @@ class PostPresenter
 
     private
 
-    def generate_link(link_text, new_state)
-      h.link_to(link_text, path_to_change_state(new_state), link_options)
-    end
-
     def publish_post_link
       generate_link('Publish', 'published')
-    end
-
-    def path_to_change_state(new_state)
-      "/blog_admin/#{h.controller_name}/#{post.id}?new_state=#{new_state}"
-    end
-
-    def link_options
-      { method: :patch, remote: true }
     end
   end
 end
