@@ -1,107 +1,115 @@
 # frozen_string_literal: true
 
-class BlogAdmin::PostsController < BlogAdminController
-  before_action :authenticate_user!
-  before_action :set_post, only: %i[show edit update destroy]
-  before_action :set_tags_and_categories, only: %i[new create edit update]
-  before_action :set_profile
-  after_action :verify_authorized, except: %i[index]
+module BlogAdmin
+  class PostsController < BlogAdminController
+    before_action :authenticate_user!
+    before_action :set_and_authorize_post, only: %i[show edit update destroy]
+    before_action :set_tags_and_categories, only: %i[new create edit update]
+    before_action :set_profile
+    after_action :verify_authorized, except: %i[index]
 
-  def index
-    @search = params[:search]
-    @posts = requested_posts
-  end
-
-  def show
-    authorize @post
-  end
-
-  def new
-    @post = Post.new
-    authorize @post
-  end
-
-  def create
-    @post = Post.new(post_params)
-    @post.author_id = current_user.id
-    authorize @post
-    @post.post_tags_attributes = @post.parse_raw_tags(params)
-    @post.post_categories_attributes = @post.parse_raw_categories(params)
-
-    if @post.save
-      redirect_to blog_admin_post_url(@post), notice: 'Saved'
-    else
-      render :new, notice: 'There was a problem, try again.'
-    end
-  end
-
-  def edit
-    authorize @post
-    @post.raw_tags = convert_to_raw(@post.tags)
-    @post.raw_categories = convert_to_raw(@post.categories)
-  end
-
-  def update
-    authorize @post
-    @new_state = params[:new_state]
-    if @new_state
-      update_post_state(@post, @new_state)
+    def index
+      @search = params[:search]
       @posts = requested_posts
-    else
-      @post.post_tags.destroy_all
-      @post.post_categories.destroy_all
+    end
 
-      @post.post_tags_attributes = @post.parse_raw_tags(params)
-      @post.post_categories_attributes = @post.parse_raw_categories(params)
+    def show; end
 
-      if @post.update(post_params)
-        redirect_to blog_admin_post_url(@post), notice: 'Updated'
+    def new
+      @post = Post.new
+      authorize @post
+    end
+
+    def create
+      prepare_and_save(Post.new(post_params))
+    end
+
+    def edit
+      PostOrganizer.new(@post).convert_for_form
+    end
+
+    def update
+      if new_state?
+        update_state(@post)
+      else
+        prepare_and_update(@post)
+      end
+    end
+
+    def destroy
+      @post.destroy
+      redirect_to blog_admin_posts_url
+    end
+
+    private
+
+    def post_params
+      params.require(:post).permit(:main_image, :title, :body, :raw_tags,
+                                   :raw_categories, :delete_main_image,
+                                   profiles_attributes: [post_images: []])
+    end
+
+    def author_is_current_user(post)
+      post.author_id = current_user.id
+    end
+
+    def new_state?
+      params[:new_state]
+    end
+
+    def update_state(post)
+      update_post_state(post, params[:new_state])
+      @posts = requested_posts
+    end
+
+    def prepare_and_save(post)
+      author_is_current_user(post)
+      PostOrganizer.new(post, params).prepare_post
+      authorize(post)
+      save_post(post)
+    end
+
+    def prepare_and_update(post)
+      PostOrganizer.new(post, params).prepare_update_post
+      update_post(post)
+    end
+
+    def save_post(post)
+      if post.save
+        redirect_to blog_admin_post_url(post), notice: 'Saved'
+      else
+        render :new, notice: 'There was a problem, try again.'
+      end
+    end
+
+    def update_post(post)
+      if post.update(post_params)
+        redirect_to blog_admin_post_url(post), notice: 'Updated'
       else
         render :edit, notice: 'There was a problem'
       end
     end
-  end
 
-  def destroy
-    authorize @post
-    @post.destroy
-
-    redirect_to blog_admin_posts_url
-  end
-
-  private
-
-  def post_params
-    params.require(:post).permit(
-      :main_image, :title,
-      :body, :raw_tags,
-      :raw_categories, :delete_main_image,
-      profiles_attributes: [post_images: []]
-    )
-  end
-
-  def set_post
-    @post = Post.find(params[:id])
-  end
-
-  def set_profile
-    @profile = current_user.profile
-    redirect_to new_accounts_profile_url if @profile.nil?
-  end
-
-  def set_tags_and_categories
-    @tags = Tag.pluck(:name)
-    @categories = Category.pluck(:name)
-  end
-
-  def convert_to_raw(data)
-    data.map(&:name).join(', ')
-  end
-
-  def requested_posts
-    if params[:search]
-      return Post.search_titles(params[:search]).page params[:page]
+    def set_and_authorize_post
+      @post = Post.find(params[:id])
+      authorize @post
     end
-    Post.page params[:page]
+
+    def set_profile
+      @profile = current_user.profile
+      redirect_to new_accounts_profile_url if @profile.nil?
+    end
+
+    def set_tags_and_categories
+      @tags = Tag.pluck(:name)
+      @categories = Category.pluck(:name)
+    end
+
+    def requested_posts
+      if params[:search]
+        return Post.search_titles(params[:search]).page params[:page]
+      end
+      Post.page params[:page]
+    end
   end
 end
