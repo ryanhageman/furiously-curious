@@ -11,27 +11,35 @@ RSpec.feature 'Blog Post Features', type: :feature do
   end
 
   describe 'user visits the post index' do
-    before do
+    let(:post1) do
       create(:post,
              title: 'First Post',
              body: 'a post for the world',
              author_id: current_user.id)
+    end
+
+    let(:post2) do
       create(:post, title: 'Second Post', author_id: current_user.id)
     end
 
     scenario 'they see a list of all the posts' do
+      subject1 = post1
+      subject2 = post2
+
       visit blog_admin_posts_path
 
-      expect(page).to have_content('First Post')
-      expect(page).to have_content('Second Post')
+      expect(page).to have_content(subject1.title)
+      expect(page).to have_content(subject2.title)
     end
 
     scenario 'they can look at a specific post' do
+      subject = post1
+
       visit blog_admin_posts_path
 
-      click_on 'First Post'
+      click_on subject.title
 
-      expect(page).to have_content('a post for the world')
+      expect(page).to have_content(subject.body)
     end
 
     scenario 'they create a new post' do
@@ -48,9 +56,11 @@ RSpec.feature 'Blog Post Features', type: :feature do
     end
 
     scenario 'they edit a post' do
+      post1
+
       visit blog_admin_posts_path
 
-      click_on 'Edit', match: :first
+      click_on 'Edit'
 
       fill_in 'Title', with: 'Updated Title'
       click_on 'Update Post'
@@ -59,34 +69,35 @@ RSpec.feature 'Blog Post Features', type: :feature do
     end
 
     scenario 'they destroy a post' do
+      subject = post1
+      other_post = post2
+
       visit blog_admin_posts_path
 
-      expect(page).to have_content('First Post')
+      expect(page).to have_content(subject.title)
 
       click_on 'Delete', match: :first
 
-      expect(page).not_to have_content('First Post')
-      expect(page).to have_content('Second Post')
+      expect(page).not_to have_content(subject.title)
+      expect(page).to have_content(other_post.title)
     end
   end
 
   describe 'user searches posts index' do
-    before do
-      create(:post, title: 'Gambit')
-      create(:post, title: 'Sabertooth Bit Another Reeses Egg')
-      create(:post, title: 'Wolverine')
-    end
-
     scenario 'they see all the matching posts' do
+      subject1 = create(:post, title: 'Gambit')
+      subject2 = create(:post, title: 'Sabertooth Bit Another Reeses Egg')
+      other_post = create(:post, title: 'Wolverine')
+
       visit blog_admin_posts_path
 
       fill_in 'search', with: 'bit'
 
       click_on 'Search'
 
-      expect(page).to have_content('Gambit')
-      expect(page).to have_content('Sabertooth Bit Another Reeses Egg')
-      expect(page).not_to have_content('Wolverine')
+      expect(page).to have_content(subject1.title)
+      expect(page).to have_content(subject2.title)
+      expect(page).not_to have_content(other_post.title)
     end
   end
 end

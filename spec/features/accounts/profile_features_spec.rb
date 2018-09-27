@@ -4,40 +4,35 @@ require 'rails_helper'
 
 RSpec.feature 'Profile Features', type: :feature do
   let(:current_user) { create(:user) }
-  let(:user2) { create(:user) }
-  let(:first_name) { 'Billy' }
-  let(:last_name) { 'Bones' }
-  let(:username) { 'the_sea' }
+  let(:second_user) { create(:user) }
   let(:bio) { 'I be the first mate of the sea itself.' }
 
   before { login_as current_user }
 
   describe 'User visits the profile index' do
     scenario 'they see a list of all the profiles' do
-      create(:profile, username: 'first_user', user_id: current_user.id)
-      create(:profile, username: 'second_user', user_id: user2.id)
+      user1 = create(:profile, username: 'first_user', user_id: current_user.id)
+      user2 = create(:profile, username: 'second_user', user_id: second_user.id)
 
       visit accounts_profiles_path
 
-      expect(page).to have_content('first_user')
-      expect(page).to have_content('second_user')
+      expect(page).to have_content(user1.username)
+      expect(page).to have_content(user2.username)
     end
   end
 
   describe 'User visits the profile show view' do
     scenario 'they see the details of the profile' do
-      create(
-        :profile,
-        :full_profile,
-        username: 'look_at_me',
-        user_id: current_user.id
-      )
+      subject = create(:profile,
+                       :full_profile,
+                       username: 'look_at_me',
+                       user_id: current_user.id)
 
       visit accounts_profiles_path
       click_on 'look_at_me'
 
-      expect(page).to have_content('Firstname')
-      expect(page).to have_content('I like to move it move it!')
+      expect(page).to have_content(subject.first_name)
+      expect(page).to have_content(subject.bio)
     end
   end
 
@@ -47,15 +42,15 @@ RSpec.feature 'Profile Features', type: :feature do
 
       click_on 'Setup your profile'
 
-      fill_in 'First name', with: first_name
-      fill_in 'Last name', with: last_name
-      fill_in 'Username', with: username
+      fill_in 'First name', with: 'Billy'
+      fill_in 'Last name', with: 'Bones'
+      fill_in 'Username', with: 'billybones'
       fill_in 'Bio', with: bio
 
       click_on 'Create Profile'
 
-      expect(page).to have_content('Name: Billy Bones')
-      expect(page).to have_content("#{bio}")
+      expect(page).to have_content('Billy Bones')
+      expect(page).to have_content(bio)
     end
   end
 
@@ -67,15 +62,15 @@ RSpec.feature 'Profile Features', type: :feature do
 
       click_on 'Update your profile'
 
-      fill_in 'First name', with: first_name
-      fill_in 'Last name', with: last_name
-      fill_in 'Username', with: username
+      fill_in 'First name', with: 'Rocky'
+      fill_in 'Last name', with: 'Balboa'
+      fill_in 'Username', with: 'getemrock!'
       fill_in 'Bio', with: bio
 
       click_on 'Update Profile'
 
-      expect(page).to have_content('Name: Billy Bones')
-      expect(page).to have_content("#{bio}")
+      expect(page).to have_content('Rocky Balboa')
+      expect(page).to have_content(bio)
     end
   end
 end
