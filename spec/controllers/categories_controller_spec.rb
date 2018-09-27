@@ -14,22 +14,20 @@ RSpec.describe CategoriesController, type: :controller do
 
     describe '#create' do
       it 're-renders the new category form' do
-        post :create, params: { category: invalid_attributes }
+        result = post :create, params: { category: invalid_attributes }
 
-        expect(response).to render_template(:new)
+        expect(result).to render_template(:new)
       end
     end
 
     describe '#update' do
-      let(:category) { create(:category, name: 'the category') }
+      let(:subject) { create(:category, name: 'the category') }
 
       it 're-renders the edit category form' do
-        patch :update, params: {
-          id: category.id,
-          category: invalid_attributes
-        }
+        result = patch :update,
+                       params: { id: subject.id, category: invalid_attributes }
 
-        expect(response).to render_template(:edit)
+        expect(result).to render_template(:edit)
       end
     end
   end

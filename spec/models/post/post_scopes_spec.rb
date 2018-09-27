@@ -11,7 +11,9 @@ RSpec.describe Post, type: :model do
       create(:post, :published, :unreleased)
       create(:post, :draft, :visible)
 
-      expect(Post.visible_posts.count).to eq(2)
+      result = Post.visible_posts.count
+
+      expect(result).to eq(2)
     end
 
     it 'unreleased_posts only returns published/unreleased posts' do
@@ -19,27 +21,35 @@ RSpec.describe Post, type: :model do
       create(:post, :published, :visible)
       create(:post, :draft, :unreleased)
 
-      expect(Post.unreleased_posts.count).to eq(3)
+      result = Post.unreleased_posts.count
+
+      expect(result).to eq(3)
     end
   end
 
   context 'visibility check' do
     it '#visible? true when it is published & publish date is before now' do
-      post = create(:post, :published, :visible)
+      subject = create(:post, :published, :visible)
 
-      expect(post.visible?).to be(true)
+      result = subject.visible?
+
+      expect(result).to be(true)
     end
 
     it '#wait_to_show? true when publish_date hasnt arrived' do
-      post = create(:post, :unreleased)
+      subject = create(:post, :unreleased)
 
-      expect(post.wait_to_show?).to be(true)
+      result = subject.wait_to_show?
+
+      expect(result).to be(true)
     end
 
     it '#ready_to_show? true when publish_date is before now' do
-      post = create(:post, :visible)
+      subject = create(:post, :visible)
 
-      expect(post.ready_to_show?).to be(true)
+      result = subject.ready_to_show?
+
+      expect(result).to be(true)
     end
   end
 end

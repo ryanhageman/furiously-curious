@@ -15,15 +15,16 @@ RSpec.describe BlogAdmin::PublishedPostsController, type: :controller do
       render_views
 
       it 'only shows posts that are still published' do
-        post = create(:post, :published, title: 'Mr. Wickles CAUGHT!')
-        create(:post, :published, title: 'ZOINKS! Like, THE BLACK KNIGHT!')
+        subject = create(:post, :published, title: 'ZOINKS! THE BLACK KNIGHT!')
+        other_post = create(:post, :published, title: 'Mr. Wickles CAUGHT!')
 
-        patch :update, xhr: true, params: { id: post.id,
-                                            new_state: 'hidden' }
+        result = patch :update,
+                       xhr: true,
+                       params: { id: other_post.id, new_state: 'hidden' }
 
-        expect(response).to render_template(:update)
-        expect(response.body).to include('ZOINKS! Like, THE BLACK KNIGHT!')
-        expect(response.body).not_to include('Mr. Wickles CAUGHT!')
+        expect(result).to render_template(:update)
+        expect(result.body).to include(subject.title)
+        expect(result.body).not_to include(other_post.title)
       end
     end
   end

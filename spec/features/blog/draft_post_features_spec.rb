@@ -11,41 +11,31 @@ RSpec.feature 'Blog Draft Post Features', type: :feature do
   end
 
   describe 'user visits drafts index' do
-    before do
-      create(:post, title: 'First Draft')
-      create(:post, :published, title: 'First Published')
-    end
+    scenario 'they see a list of only the drafts' do
+      subject = create(:post, title: 'First Draft')
+      published_post = create(:post, :published, title: 'First Published')
 
-    scenario 'they see a list of all the drafts' do
       visit blog_admin_drafts_path
 
-      expect(page).to have_content('First Draft')
-    end
-
-    scenario 'they do NOT see published posts' do
-      visit blog_admin_drafts_path
-
-      expect(page).not_to have_content('First Published')
+      expect(page).to have_content(subject.title)
+      expect(page).not_to have_content(published_post.title)
     end
   end
 
   describe 'user searches drafts index' do
-    before do
-      create(:post, title: 'Lightsaber')
-      create(:post, title: 'Sabertooth Tiger')
-      create(:post, title: 'Jedi')
-    end
-
     scenario 'they see all the matching posts' do
+      subject1 = create(:post, title: 'Lightsaber')
+      subject2 = create(:post, title: 'Sabertooth Tiger')
+      other_post = create(:post, title: 'Jedi')
+
       visit blog_admin_drafts_path
-
+      
       fill_in 'search', with: 'saber'
-
       click_on 'Search'
 
-      expect(page).to have_content('Lightsaber')
-      expect(page).to have_content('Sabertooth Tiger')
-      expect(page).not_to have_content('Jedi')
+      expect(page).to have_content(subject1.title)
+      expect(page).to have_content(subject2.title)
+      expect(page).not_to have_content(other_post.title)
     end
   end
 end
