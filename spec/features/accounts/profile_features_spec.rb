@@ -11,13 +11,19 @@ RSpec.feature 'Profile Features', type: :feature do
 
   describe 'User visits the profile index' do
     scenario 'they see a list of all the profiles' do
-      user1 = create(:profile, username: 'first_user', user_id: current_user.id)
-      user2 = create(:profile, username: 'second_user', user_id: second_user.id)
+      subject1 = create(:profile,
+                        username: 'first_user',
+                        user_id: current_user.id)
+      subject2 = create(:profile,
+                        username: 'second_user',
+                        user_id: second_user.id)
 
       visit accounts_profiles_path
 
-      expect(page).to have_content(user1.username)
-      expect(page).to have_content(user2.username)
+      result = page
+
+      expect(result).to have_content(subject1.username)
+      expect(result).to have_content(subject2.username)
     end
   end
 
@@ -31,8 +37,10 @@ RSpec.feature 'Profile Features', type: :feature do
       visit accounts_profiles_path
       click_on 'look_at_me'
 
-      expect(page).to have_content(subject.first_name)
-      expect(page).to have_content(subject.bio)
+      result = page
+
+      expect(result).to have_content(subject.first_name)
+      expect(result).to have_content(subject.bio)
     end
   end
 
@@ -49,8 +57,10 @@ RSpec.feature 'Profile Features', type: :feature do
 
       click_on 'Create Profile'
 
-      expect(page).to have_content('Billy Bones')
-      expect(page).to have_content(bio)
+      result = page
+
+      expect(result).to have_content('Billy Bones')
+      expect(result).to have_content(bio)
     end
   end
 
@@ -69,8 +79,10 @@ RSpec.feature 'Profile Features', type: :feature do
 
       click_on 'Update Profile'
 
-      expect(page).to have_content('Rocky Balboa')
-      expect(page).to have_content(bio)
+      result = page
+
+      expect(result).to have_content('Rocky Balboa')
+      expect(result).to have_content(bio)
     end
   end
 end

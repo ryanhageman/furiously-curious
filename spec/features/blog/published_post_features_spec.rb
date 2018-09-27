@@ -17,8 +17,10 @@ RSpec.feature 'Blog Published Post Features', type: :feature do
 
       visit blog_admin_published_posts_path
 
-      expect(page).to have_content(subject.title)
-      expect(page).not_to have_content(hidden_post.title)
+      result = page
+
+      expect(result).to have_content(subject.title)
+      expect(result).not_to have_content(hidden_post.title)
     end
   end
 
@@ -29,14 +31,14 @@ RSpec.feature 'Blog Published Post Features', type: :feature do
       other_post = create(:post, :published, title: 'A Golden TICKET!!')
 
       visit blog_admin_published_posts_path
-
       fill_in 'search', with: 'loompa'
-
       click_on 'Search'
 
-      expect(page).to have_content(subject1.title)
-      expect(page).to have_content(subject2.title)
-      expect(page).not_to have_content(other_post.title)
+      result = page
+
+      expect(result).to have_content(subject1.title)
+      expect(result).to have_content(subject2.title)
+      expect(result).not_to have_content(other_post.title)
     end
   end
 end

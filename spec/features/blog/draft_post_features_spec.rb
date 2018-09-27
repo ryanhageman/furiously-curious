@@ -17,8 +17,10 @@ RSpec.feature 'Blog Draft Post Features', type: :feature do
 
       visit blog_admin_drafts_path
 
-      expect(page).to have_content(subject.title)
-      expect(page).not_to have_content(published_post.title)
+      result = page
+
+      expect(result).to have_content(subject.title)
+      expect(result).not_to have_content(published_post.title)
     end
   end
 
@@ -29,13 +31,14 @@ RSpec.feature 'Blog Draft Post Features', type: :feature do
       other_post = create(:post, title: 'Jedi')
 
       visit blog_admin_drafts_path
-      
       fill_in 'search', with: 'saber'
       click_on 'Search'
 
-      expect(page).to have_content(subject1.title)
-      expect(page).to have_content(subject2.title)
-      expect(page).not_to have_content(other_post.title)
+      result = page
+
+      expect(result).to have_content(subject1.title)
+      expect(result).to have_content(subject2.title)
+      expect(result).not_to have_content(other_post.title)
     end
   end
 end

@@ -28,44 +28,48 @@ RSpec.feature 'Blog Post Features', type: :feature do
 
       visit blog_admin_posts_path
 
-      expect(page).to have_content(subject1.title)
-      expect(page).to have_content(subject2.title)
+      result = page
+
+      expect(result).to have_content(subject1.title)
+      expect(result).to have_content(subject2.title)
     end
 
     scenario 'they can look at a specific post' do
       subject = post1
 
       visit blog_admin_posts_path
-
       click_on subject.title
 
-      expect(page).to have_content(subject.body)
+      result = page
+
+      expect(result).to have_content(subject.body)
     end
 
     scenario 'they create a new post' do
       visit blog_admin_posts_path
-
       click_on 'New Post'
 
       fill_in 'Title', with: 'A New Post'
       fill_in 'post_body', with: 'All the news thats fit to print'
       click_on 'Create Post'
 
-      expect(page).to have_content('A New Post')
-      expect(page).to have_content('All the news thats fit to print')
+      result = page
+
+      expect(result).to have_content('A New Post')
+      expect(result).to have_content('All the news thats fit to print')
     end
 
     scenario 'they edit a post' do
       post1
 
       visit blog_admin_posts_path
-
       click_on 'Edit'
-
       fill_in 'Title', with: 'Updated Title'
       click_on 'Update Post'
 
-      expect(page).to have_content('Updated Title')
+      result = page
+
+      expect(result).to have_content('Updated Title')
     end
 
     scenario 'they destroy a post' do
@@ -78,8 +82,10 @@ RSpec.feature 'Blog Post Features', type: :feature do
 
       click_on 'Delete', match: :first
 
-      expect(page).not_to have_content(subject.title)
-      expect(page).to have_content(other_post.title)
+      result = page
+
+      expect(result).not_to have_content(subject.title)
+      expect(result).to have_content(other_post.title)
     end
   end
 
@@ -90,14 +96,14 @@ RSpec.feature 'Blog Post Features', type: :feature do
       other_post = create(:post, title: 'Wolverine')
 
       visit blog_admin_posts_path
-
       fill_in 'search', with: 'bit'
-
       click_on 'Search'
 
-      expect(page).to have_content(subject1.title)
-      expect(page).to have_content(subject2.title)
-      expect(page).not_to have_content(other_post.title)
+      result = page
+
+      expect(result).to have_content(subject1.title)
+      expect(result).to have_content(subject2.title)
+      expect(result).not_to have_content(other_post.title)
     end
   end
 end

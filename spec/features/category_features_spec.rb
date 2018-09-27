@@ -17,19 +17,21 @@ RSpec.feature 'Category Features', type: :feature do
 
       visit categories_path
 
-      expect(page).to have_content(subject1.name)
-      expect(page).to have_content(subject2.name)
+      result = page
+
+      expect(result).to have_content(subject1.name)
+      expect(result).to have_content(subject2.name)
     end
 
     scenario 'they create a new category' do
       visit categories_path
-
       click_on 'New Category'
-
       fill_in 'Name', with: 'the new category'
       click_on 'Create Category'
 
-      expect(page).to have_content('the new category')
+      result = page
+
+      expect(result).to have_content('the new category')
     end
 
     scenario 'they edit a category' do
@@ -37,14 +39,14 @@ RSpec.feature 'Category Features', type: :feature do
       other_category = category2
 
       visit categories_path
-
       click_on subject.name
-
       fill_in 'Name', with: 'Updated category'
       click_on 'Update Category'
 
-      expect(page).to have_content('updated category')
-      expect(page).to have_content(other_category.name)
+      result = page
+
+      expect(result).to have_content('updated category')
+      expect(result).to have_content(other_category.name)
     end
 
     scenario 'they destroy a category' do
@@ -57,8 +59,10 @@ RSpec.feature 'Category Features', type: :feature do
 
       click_on 'Delete', match: :first
 
-      expect(page).not_to have_content(subject.name)
-      expect(page).to have_content(other_category.name)
+      result = page
+
+      expect(result).not_to have_content(subject.name)
+      expect(result).to have_content(other_category.name)
     end
   end
 end

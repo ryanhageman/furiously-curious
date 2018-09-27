@@ -17,19 +17,21 @@ RSpec.feature 'Tag Features', type: :feature do
 
       visit tags_path
 
-      expect(page).to have_content(subject1.name)
-      expect(page).to have_content(subject2.name)
+      results = page
+
+      expect(results).to have_content(subject1.name)
+      expect(results).to have_content(subject2.name)
     end
 
     scenario 'user creates a new tag' do
       visit tags_path
-
       click_on 'New Tag'
-
       fill_in 'Name', with: 'the new tag'
       click_on 'Create Tag'
 
-      expect(page).to have_content('the new tag')
+      results = page
+
+      expect(results).to have_content('the new tag')
     end
 
     scenario 'user edits a tag' do
@@ -37,14 +39,14 @@ RSpec.feature 'Tag Features', type: :feature do
       other_tag = tag2
 
       visit tags_path
-
       click_on subject.name
-
       fill_in 'Name', with: 'Updated tag'
       click_on 'Update Tag'
 
-      expect(page).to have_content('updated tag')
-      expect(page).to have_content(other_tag.name)
+      results = page
+
+      expect(results).to have_content('updated tag')
+      expect(results).to have_content(other_tag.name)
     end
 
     scenario 'user destroys a tag' do
@@ -57,8 +59,10 @@ RSpec.feature 'Tag Features', type: :feature do
 
       click_on 'Delete', match: :first
 
-      expect(page).not_to have_content(subject.name)
-      expect(page).to have_content(other_tag.name)
+      results = page
+
+      expect(results).not_to have_content(subject.name)
+      expect(results).to have_content(other_tag.name)
     end
   end
 end
