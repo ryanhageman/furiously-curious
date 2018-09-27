@@ -12,19 +12,25 @@ RSpec.describe Post, type: :model do
       let(:tag_array) { post.parse_raw_tags(data) }
 
       it 'creates new tags from raw data' do
-        first_tag_id = tag_array.first[:tag_id]
+        subject_id = tag_array.first[:tag_id]
 
-        expect(Tag.find(first_tag_id)[:name]).to eq('tag one')
+        result = Tag.find(subject_id)
+
+        expect(result.name).to eq('tag one')
       end
 
       it 'returns an array filled with :tag_id hashes' do
-        expect(tag_array.first.include?(:tag_id)).to be(true)
+        result = tag_array.first.include?(:tag_id)
+
+        expect(result).to be(true)
       end
 
       it 'returns an empty array when no tag data is given' do
-        no_tag_data = { post: {} }
+        subject = { post: {} }
 
-        expect(post.parse_raw_tags(no_tag_data)).to eq([])
+        result = post.parse_raw_tags(subject)
+
+        expect(result).to eq([])
       end
     end
   end

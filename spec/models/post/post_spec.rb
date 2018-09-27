@@ -19,9 +19,12 @@ RSpec.describe Post, type: :model do
   it { is_expected.to validate_presence_of(:author_id) }
 
   context 'Author Null Object' do
-    it 'returns a GuestUser when post.author is nil' do
-      post = build_stubbed(:post, author: nil)
-      expect(post.author).to be_an_instance_of(GuestUser)
+    it 'returns a GuestUser when author is nil' do
+      subject = build_stubbed(:post, author: nil)
+
+      result = subject.author
+
+      expect(result).to be_an_instance_of(GuestUser)
     end
   end
 end
