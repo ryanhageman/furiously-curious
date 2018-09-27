@@ -8,10 +8,12 @@ RSpec.describe PostPresenter::PublishedStateLinks do
   describe 'change_state_links' do
     it 'returns links to save as draft and hide for published posts' do
       post = create(:post, :published)
-      presenter = PostPresenter::PublishedStateLinks.new(post, view)
+      subject = PostPresenter::PublishedStateLinks.new(post, view)
 
-      expect(presenter.links).to include('?new_state=draft')
-      expect(presenter.links).to include('?new_state=hidden')
+      result = subject.links
+
+      expect(result).to include('?new_state=draft')
+      expect(result).to include('?new_state=hidden')
     end
   end
 end

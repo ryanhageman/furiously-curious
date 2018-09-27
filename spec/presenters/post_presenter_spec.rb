@@ -9,16 +9,24 @@ RSpec.describe PostPresenter do
   describe 'attributes' do
     let(:author) { post.author }
     let(:profile) { create(:profile, user_id: author.id) }
-    let(:presenter) { PostPresenter.new(post, view) }
 
     context '#author_username' do
       it 'returns the authors username when there is one' do
-        author_profile = profile
-        expect(presenter.author_username).to eq(author_profile.username)
+        subject = profile
+        presenter = PostPresenter.new(post, view)
+
+        result = presenter.author_username
+
+        expect(result).to eq(subject.username)
       end
 
-      it 'returns "Anonymous" when no author is assigned' do
-        expect(presenter.author_username).to eq('Anonymous')
+      it 'uses GuestUser attributes when no author is assigned' do
+        no_author = GuestUser.new
+        presenter = PostPresenter.new(post, view)
+
+        result = presenter.author_username
+
+        expect(result).to eq(no_author.profile.username)
       end
     end
 
@@ -26,29 +34,43 @@ RSpec.describe PostPresenter do
       let(:tagged_post) { create(:post, :with_tags) }
 
       it 'returns the a list of tags when the post has been tagged' do
+        subject = tagged_post.tags.first.name
         presenter = PostPresenter.new(tagged_post, view)
-        first_tag = tagged_post.tags.first.name
 
-        expect(presenter.post_tags).to include(first_tag)
+        result = presenter.post_tags
+
+        expect(result).to include(subject)
       end
 
       it 'returns "No Tags" when the post has no tags' do
-        expect(presenter.post_tags).to eq('No Tags')
+        tagless_post = post
+        subject = PostPresenter.new(tagless_post, view)
+
+        result = subject.post_tags
+
+        expect(result).to eq('No Tags')
       end
     end
 
     context '#post_categories' do
       let(:categorized_post) { create(:post, :with_categories) }
-      
-      it 'returns the a list of categories when the post has categories' do
-        presenter = PostPresenter.new(categorized_post, view)
-        first_category = categorized_post.categories.first.name
 
-        expect(presenter.post_categories).to include(first_category)
+      it 'returns the a list of categories when the post has categories' do
+        subject = categorized_post.categories.first.name
+        presenter = PostPresenter.new(categorized_post, view)
+
+        result = presenter.post_categories
+
+        expect(result).to include(subject)
       end
 
-      it 'returns "No Categories" when the post has no tags' do
-        expect(presenter.post_categories).to eq('No Categories')
+      it 'returns "No Categories" when the post has no categories' do
+        uncategorized_post = post
+        subject = PostPresenter.new(uncategorized_post, view)
+
+        result = subject.post_categories
+
+        expect(result).to eq('No Categories')
       end
     end
   end

@@ -9,9 +9,11 @@ RSpec.describe PostPresenter::StateLinks do
     it 'returns a link to publish a post for drafts' do
       post = create(:post, :draft)
       state = post.aasm_state
-      presenter = PostPresenter::StateLinks.new(post, view)
+      subject = PostPresenter::StateLinks.new(post, view)
 
-      expect(presenter.links(state)).to include('?new_state=published')
+      result = subject.links(state)
+
+      expect(result).to include('?new_state=published')
     end
 
     it 'returns links to save as draft and hide for published posts' do
