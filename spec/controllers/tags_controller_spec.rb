@@ -14,19 +14,20 @@ RSpec.describe TagsController, type: :controller do
 
     describe '#create' do
       it 're-renders the new tag form' do
-        post :create, params: { tag: invalid_attributes }
+        result = post :create, params: { tag: invalid_attributes }
 
-        expect(response).to render_template(:new)
+        expect(result).to render_template(:new)
       end
     end
 
     describe '#update' do
-      let(:tag) { create(:tag, name: 'the tag') }
+      let(:subject) { create(:tag, name: 'the tag') }
 
       it 're-renders the edit tag form' do
-        patch :update, params: { id: tag.id, tag: invalid_attributes }
+        result = patch :update,
+                       params: { id: subject.id, tag: invalid_attributes }
 
-        expect(response).to render_template(:edit)
+        expect(result).to render_template(:edit)
       end
     end
   end

@@ -15,15 +15,16 @@ RSpec.describe BlogAdmin::DraftsController, type: :controller do
       render_views
 
       it 'only shows posts that are still drafts' do
-        post = create(:post, title: 'Boba Fett Wins')
-        create(:post, title: 'Yoda Turns 984 Today')
+        subject = create(:post, title: 'Yoda Turns 984 Today')
+        other_post = create(:post, title: 'Boba Fett Wins')
 
-        patch :update, xhr: true, params: { id: post.id,
-                                            new_state: 'published' }
+        result = patch :update,
+                       xhr: true,
+                       params: { id: other_post.id, new_state: 'published' }
 
-        expect(response).to render_template(:update)
-        expect(response.body).to include('Yoda Turns 984 Today')
-        expect(response.body).not_to include('Boba Fett Wins')
+        expect(result).to render_template(:update)
+        expect(result.body).to include(subject.title)
+        expect(result.body).not_to include(other_post.title)
       end
     end
   end

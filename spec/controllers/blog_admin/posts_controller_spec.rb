@@ -17,23 +17,24 @@ RSpec.describe BlogAdmin::PostsController, type: :controller do
 
     describe '#create' do
       it 're-renders the new post form' do
-        post :create, params: { post: invalid_attributes }
+        result = post :create, params: { post: invalid_attributes }
 
-        expect(response).to render_template(:new)
+        expect(result).to render_template(:new)
       end
     end
 
     describe '#update' do
-      let(:post) do
+      let(:subject) do
         create(:post,
                title: 'Great Post',
                author_id: current_user.id)
       end
 
       it 're-renders the edit post form' do
-        patch :update, params: { id: post.id, post: invalid_attributes }
+        result = patch :update,
+                       params: { id: subject.id, post: invalid_attributes }
 
-        expect(response).to render_template(:edit)
+        expect(result).to render_template(:edit)
       end
     end
   end

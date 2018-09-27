@@ -15,15 +15,16 @@ RSpec.describe BlogAdmin::HiddenPostsController, type: :controller do
       render_views
 
       it 'only shows posts that are still hidden' do
-        post = create(:post, :hidden, title: 'Weird Slime Covers Ooo')
-        create(:post, :hidden, title: 'PB Cracks Time Travel')
+        subject = create(:post, :hidden, title: 'PB Cracks Time Travel')
+        other_post = create(:post, :hidden, title: 'Weird Slime Covers Ooo')
 
-        patch :update, xhr: true, params: { id: post.id,
-                                            new_state: 'published' }
+        result = patch :update,
+                       xhr: true,
+                       params: { id: other_post.id, new_state: 'published' }
 
-        expect(response).to render_template(:update)
-        expect(response.body).to include('PB Cracks Time Travel')
-        expect(response.body).not_to include('Weird Slime Covers Ooo')
+        expect(result).to render_template(:update)
+        expect(result.body).to include(subject.title)
+        expect(result.body).not_to include(other_post.title)
       end
     end
   end
