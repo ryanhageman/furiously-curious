@@ -25,7 +25,8 @@ module BlogAdmin
     end
 
     def edit
-      PostOrganizer.new(@post).convert_for_form
+      @post.raw_tags = @post.form_friendly_tags
+      @post.raw_categories = @post.form_friendly_categories
     end
 
     def update
@@ -63,14 +64,19 @@ module BlogAdmin
     end
 
     def prepare_and_save(post)
-      author_is_current_user(post)
-      PostOrganizer.new(post, params).prepare_post
       authorize(post)
+      author_is_current_user(post)
+      post.post_tags_attributes = BlogPost::Tagger.new(params).add_post_tags
+      post.post_categories_attributes = BlogPost::Categorizer.new(params).add_post_categories
       save_post(post)
     end
 
     def prepare_and_update(post)
-      PostOrganizer.new(post, params).prepare_update_post
+      authorize(post)
+      post.post_tags.destroy_all
+      post.post_categories.destroy_all
+      post.post_tags_attributes = BlogPost::Tagger.new(params).add_post_tags
+      post.post_categories_attributes = BlogPost::Categorizer.new(params).add_post_categories
       update_post(post)
     end
 
@@ -97,7 +103,6 @@ module BlogAdmin
 
     def set_profile
       @profile = current_user.profile
-      redirect_to new_accounts_profile_url if @profile.nil?
     end
 
     def set_tags_and_categories

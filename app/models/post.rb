@@ -66,33 +66,11 @@ class Post < ApplicationRecord
     published? && ready_to_show?
   end
 
-  def parse_raw_tags(data)
-    raw_tags = data[:post][:raw_tags]
-
-    return [] unless raw_tags
-    create_id_array(raw_tags, Tag, 'name', 'tag_id')
+  def form_friendly_tags
+    tags.map(&:name).join(', ')
   end
 
-  def parse_raw_categories(data)
-    raw_categories = data[:post][:raw_categories]
-
-    return [] unless raw_categories
-    create_id_array(raw_categories, Category, 'name', 'category_id')
-  end
-
-  private
-
-  def create_id_array(data, klass, attribute, identifier)
-    get_ids(data, klass, attribute).map { |id| { "#{identifier}": id } }
-  end
-
-  def get_ids(data, klass, attribute)
-    raw_data_to_array(data).map do |item|
-      klass.where("#{attribute}": item).first_or_create.id
-    end
-  end
-
-  def raw_data_to_array(raw_data)
-    raw_data.split(',').map(&:strip)
+  def form_friendly_categories
+    categories.map(&:name).join(', ')
   end
 end
