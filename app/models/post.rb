@@ -73,4 +73,9 @@ class Post < ApplicationRecord
   def form_friendly_categories
     categories.map(&:name).join(', ')
   end
+
+  def clear_taxonomy
+    post_tags.destroy_all
+    post_categories.destroy_all
+  end
 end

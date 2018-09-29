@@ -50,4 +50,24 @@ RSpec.describe Post, type: :model do
                                 categories[2].name)
     end
   end
+
+  context '#clear_taxonomy' do
+    it 'deletes all the tags on a post' do
+      subject = create(:post, :with_tags)
+      subject.clear_taxonomy
+
+      result = subject.post_tags.count
+
+      expect(result).to eq(0)
+    end
+
+    it 'deletes all the categories on a post' do
+      subject = create(:post, :with_categories)
+      subject.clear_taxonomy
+
+      result = subject.post_categories.count
+
+      expect(result).to eq(0)
+    end
+  end
 end
