@@ -9,7 +9,7 @@ module BlogAdmin
       @profile = current_user.profile
       @search = params[:search]
 
-      if params[:search]
+      if @search
         @posts = Post.search_titles(params[:search]).page params[:page]
       else
         @posts = Post.page params[:page]
@@ -23,16 +23,12 @@ module BlogAdmin
     end
 
     def new
-      @tags = Tag.pluck(:name)
-      @categories = Category.pluck(:name)
       @profile = current_user.profile
       @post = Post.new
       authorize @post
     end
 
     def create
-      @tags = Tag.pluck(:name)
-      @categories = Category.pluck(:name)
       @profile = current_user.profile
       @post = Post.new(post_params)
       authorize(@post)
@@ -48,8 +44,6 @@ module BlogAdmin
     end
 
     def edit
-      @tags = Tag.pluck(:name)
-      @categories = Category.pluck(:name)
       @profile = current_user.profile
       @post = Post.find(params[:id])
       authorize @post
@@ -58,8 +52,6 @@ module BlogAdmin
     end
 
     def update
-      @tags = Tag.pluck(:name)
-      @categories = Category.pluck(:name)
       @profile = current_user.profile
       @post = Post.find(params[:id])
       authorize @post
