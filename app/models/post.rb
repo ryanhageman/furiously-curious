@@ -4,7 +4,8 @@
 class Post < ApplicationRecord
   include AASM
 
-  attr_accessor :raw_tags, :raw_categories, :delete_main_image
+  attr_writer :raw_tags, :raw_categories
+  attr_accessor :delete_main_image
 
   has_one_attached :main_image
   has_many_attached :images
@@ -66,13 +67,25 @@ class Post < ApplicationRecord
     published? && ready_to_show?
   end
 
-  def form_friendly_tags
+  def raw_tags
     tags.map(&:name).join(', ')
   end
 
-  def form_friendly_categories
+  def raw_categories
     categories.map(&:name).join(', ')
   end
+
+  def add_taxonomy(params)
+    self.post_tags_attributes = BlogPost::Tagger.new(params).add_post_tags
+    self.post_categories_attributes = BlogPost::Categorizer.new(params).add_post_categories
+  end
+
+  def update_taxonomy(params)
+    clear_taxonomy
+    add_taxonomy(params)
+  end
+
+  private
 
   def clear_taxonomy
     post_tags.destroy_all

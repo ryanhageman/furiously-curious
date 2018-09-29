@@ -1,8 +1,16 @@
 # frozen_string_literal: true
 
+# Presenter for Posts
 class PostPresenter < BasePresenter
   presents :post
+  attr_reader :all_tags, :all_categories
   delegate :title, to: :post
+
+  def initialize(object, template)
+    super
+    @all_tags = Tag.pluck(:name)
+    @all_categories = Category.pluck(:name)
+  end
 
   def state
     post.aasm_state
