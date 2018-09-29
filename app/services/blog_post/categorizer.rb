@@ -22,7 +22,7 @@ module BlogPost
     end
 
     def raw_data
-      params[:post][:raw_categories]
+      params[:post][:raw_categories] unless params.empty?
     end
   end
 end
