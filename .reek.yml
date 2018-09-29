@@ -1,0 +1,4 @@
+detectors:
+  UncommunicativeMethodName:
+    accept:
+      - h
