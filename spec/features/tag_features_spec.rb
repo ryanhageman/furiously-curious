@@ -11,18 +11,6 @@ RSpec.feature 'Tag Features', type: :feature do
     let(:tag1) { create(:tag, name: 'tag one') }
     let(:tag2) { create(:tag, name: 'tag two') }
 
-    scenario 'they see a list of all the tags' do
-      subject1 = tag1
-      subject2 = tag2
-
-      visit tags_path
-
-      results = page
-
-      expect(results).to have_content(subject1.name)
-      expect(results).to have_content(subject2.name)
-    end
-
     scenario 'user creates a new tag' do
       visit tags_path
       click_on 'New Tag'

@@ -22,18 +22,6 @@ RSpec.feature 'Blog Post Features', type: :feature do
       create(:post, title: 'Second Post', author_id: current_user.id)
     end
 
-    scenario 'they see a list of all the posts' do
-      subject1 = post1
-      subject2 = post2
-
-      visit blog_admin_posts_path
-
-      result = page
-
-      expect(result).to have_content(subject1.title)
-      expect(result).to have_content(subject2.title)
-    end
-
     scenario 'they can look at a specific post' do
       subject = post1
 

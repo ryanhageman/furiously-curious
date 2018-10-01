@@ -25,6 +25,35 @@ RSpec.describe Post, type: :model do
 
       expect(result).to eq(3)
     end
+
+    context 'latest' do
+      it 'only returns the newest 7 posts' do
+        newest_post = create(:post, :published, title: 'Newest Post')
+        create_list(:post, 5, :published, created_at: 2.days.ago)
+        seventh_newest_post = create(:post, :published,
+                                     title: '7th', created_at: 3.days.ago)
+        subject = create(:post, :published,
+                         title: 'Cloaking Device', created_at: 4.days.ago)
+
+        result = Post.latest
+
+        expect(result).to include(newest_post)
+        expect(result).to include(seventh_newest_post)
+        expect(result).not_to include(subject)
+      end
+
+      it 'returns only published posts' do
+        subject = create(:post, :published,  title: 'Published')
+        hidden_post = create(:post, :hidden, title: 'Under The Stairs')
+        draft_post = create(:post, :draft, title: 'Newborn...')
+
+        result = Post.latest
+
+        expect(result).to include(subject)
+        expect(result).not_to include(hidden_post)
+        expect(result).not_to include(draft_post)
+      end
+    end
   end
 
   context 'visibility check' do

@@ -11,18 +11,6 @@ RSpec.feature 'Category Features', type: :feature do
     let(:category1) { create(:category, name: 'category one') }
     let(:category2) { create(:category, name: 'category two') }
 
-    scenario 'they see a list of all the categories' do
-      subject1 = category1
-      subject2 = category2
-
-      visit categories_path
-
-      result = page
-
-      expect(result).to have_content(subject1.name)
-      expect(result).to have_content(subject2.name)
-    end
-
     scenario 'they create a new category' do
       visit categories_path
       click_on 'New Category'

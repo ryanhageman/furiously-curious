@@ -9,24 +9,6 @@ RSpec.feature 'Profile Features', type: :feature do
 
   before { login_as current_user }
 
-  describe 'User visits the profile index' do
-    scenario 'they see a list of all the profiles' do
-      subject1 = create(:profile,
-                        username: 'first_user',
-                        user_id: current_user.id)
-      subject2 = create(:profile,
-                        username: 'second_user',
-                        user_id: second_user.id)
-
-      visit accounts_profiles_path
-
-      result = page
-
-      expect(result).to have_content(subject1.username)
-      expect(result).to have_content(subject2.username)
-    end
-  end
-
   describe 'User visits the profile show view' do
     scenario 'they see the details of the profile' do
       subject = create(:profile,

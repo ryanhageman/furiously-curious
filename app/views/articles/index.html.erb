@@ -1,0 +1,16 @@
+<h1>The Most Recent Articles...</h1>
+
+<%= render partial: 'shared/search_form',
+           locals: {endpoint: articles_path} %>
+
+<% @tags.each do |tag| %>
+  <%= link_to tag.name, articles_path(tag_id: tag.id) %>
+<% end %>
+
+<% @categories.each do |category| %>
+  <%= link_to category.name, articles_path(category_id: category.id) %>
+<% end %>
+
+<div id="articles-list">
+  <%= render 'articles_list'%>
+</div>

@@ -50,9 +50,22 @@ class Post < ApplicationRecord
 
   scope :visible_posts, -> { published.select(&:ready_to_show?) }
   scope :unreleased_posts, -> { published.select(&:wait_to_show?) }
+  scope :latest, -> { published.order(created_at: :desc).limit(7) }
 
   def self.search_titles(term)
     where('title ILIKE ?', "%#{term}%")
+  end
+
+  def self.search_titles_and_body(term)
+    where('title ILIKE ? OR body ILIKE ?', "%#{term}%", "%#{term}%")
+  end
+
+  def self.with_specific_tag(params)
+    joins(:tags).merge(Tag.where(id: params))
+  end
+
+  def self.with_specific_category(params)
+    joins(:categories).merge(Category.where(id: params))
   end
 
   def ready_to_show?
