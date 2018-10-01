@@ -9,6 +9,10 @@ class ArticlesController < ApplicationController
     @categories = Category.select(:name, :id)
   end
 
+  def show
+    @article = Post.find(params[:id])
+  end
+
   private
 
   def set_search

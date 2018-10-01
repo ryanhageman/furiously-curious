@@ -64,4 +64,18 @@ RSpec.feature 'Articles Features', type: :feature do
       expect(result).not_to have_content(post3.title)
     end
   end
+
+  describe 'user clicks a post title' do
+    scenario 'they can look at a specific post' do
+      subject = create(:post, :published)
+
+      visit articles_path
+      click_on subject.title
+
+      result = page
+
+      expect(result).to have_content(subject.title, subject.body)
+      expect(result).to have_content(subject.author.profile.username)
+    end
+  end
 end

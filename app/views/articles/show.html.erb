@@ -1,0 +1,7 @@
+
+<%= image_tag @article.main_image if @article.main_image.attached? %>
+
+<h1><%= @article.title %></h1>
+<h3>By: <%= @article.author.profile.username %></h3>
+
+<p><%= markdown(@article.body) %></p>

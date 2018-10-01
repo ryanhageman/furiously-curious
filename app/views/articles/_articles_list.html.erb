@@ -1,7 +1,5 @@
   <% @articles.each do |article| %>
-    <% present article do |post_presenter| %>
-      <div>
-        <h2><%= post_presenter.title_link %></h2>
-      </div>
-    <% end %>
+    <div>
+      <h2><%= link_to article.title, article_path(article) %></h2>
+    </div>
   <% end %>
