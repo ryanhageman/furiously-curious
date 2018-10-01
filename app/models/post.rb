@@ -60,6 +60,14 @@ class Post < ApplicationRecord
     where('title ILIKE ? OR body ILIKE ?', "%#{term}%", "%#{term}%")
   end
 
+  def self.with_specific_tag(params)
+    joins(:tags).merge(Tag.where(id: params))
+  end
+
+  def self.with_specific_category(params)
+    joins(:categories).merge(Category.where(id: params))
+  end
+
   def ready_to_show?
     publish_date < Time.current
   end

@@ -34,6 +34,26 @@ FactoryBot.define do
     end
   end
 
+  trait :with_specific_tag do
+    transient do
+      tag create(:tag)
+    end
+
+    after(:create) do |post, evaluator|
+      create(:post_tag, post: post, tag: evaluator.tag)
+    end
+  end
+
+  trait :with_specific_category do
+    transient do
+      category create(:category)
+    end
+
+    after(:create) do |post, evaluator|
+      create(:post_category, post: post, category: evaluator.category)
+    end
+  end
+
   trait :with_categories do
     after(:create) do |post|
       cat_list = create_list(:category, 3)
