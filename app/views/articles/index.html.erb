@@ -1,7 +1,8 @@
 <h1>The Most Recent Articles...</h1>
 
-<% @articles.each do |article| %>
-  <%= article.title %>
-  <%= article.body %>
-  <br>
-<% end %>
+<%= render partial: 'shared/search_form',
+           locals: {endpoint: articles_path} %>
+
+<div id="article-list">
+  <%= render 'articles_list'%>
+</div>
