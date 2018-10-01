@@ -2,27 +2,10 @@
 
 require 'rails_helper'
 
-RSpec.feature 'Blog Draft Post Features', type: :feature do
+RSpec.feature 'BlogAdmin::Drafts Features', type: :feature do
   let(:current_user) { create(:user) }
 
-  before do
-    login_as current_user
-    create(:profile, user_id: current_user.id)
-  end
-
-  describe 'user visits drafts index' do
-    scenario 'they see a list of only the drafts' do
-      subject = create(:post, title: 'First Draft')
-      published_post = create(:post, :published, title: 'First Published')
-
-      visit blog_admin_drafts_path
-
-      result = page
-
-      expect(result).to have_content(subject.title)
-      expect(result).not_to have_content(published_post.title)
-    end
-  end
+  before { login_as current_user }
 
   describe 'user searches drafts index' do
     scenario 'they see all the matching posts' do
