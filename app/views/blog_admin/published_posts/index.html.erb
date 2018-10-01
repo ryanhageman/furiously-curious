@@ -1,7 +1,7 @@
 <h1>Your Published Posts</h1>
 
-<%= render partial: 'blog_admin/shared/search_form',
-              locals: {endpoint: blog_admin_published_posts_path} %>
+<%= render partial: 'shared/search_form',
+           locals: {endpoint: blog_admin_published_posts_path} %>
 
 <div id="published-post-list">
   <%= render 'blog_admin/shared/post_list' %>
