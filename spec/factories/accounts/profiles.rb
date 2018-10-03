@@ -8,25 +8,25 @@ FactoryBot.define do
     username
 
     trait :first_name do
-      first_name 'Firstname'
+      first_name { 'Firstname' }
     end
 
     trait :last_name do
-      last_name 'Lastname'
+      last_name { 'Lastname' }
     end
 
     trait :bio do
-      bio 'I like to move it move it!'
+      bio { 'I like to move it move it!' }
     end
 
     trait :full_profile do
-      first_name 'Firstname'
-      last_name 'LastName'
-      bio 'I like to move it move it!'
+      first_name { 'Firstname' }
+      last_name { 'LastName' }
+      bio { 'I like to move it move it!' }
     end
 
     trait :invalid_username do
-      username nil
+      username { nil }
     end
   end
 end

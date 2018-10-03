@@ -7,7 +7,7 @@ FactoryBot.define do
     name { generate(:category_name) }
 
     trait :invalid_category_name do
-      name nil
+      name { nil }
     end
   end
 end

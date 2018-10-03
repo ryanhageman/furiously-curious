@@ -6,7 +6,7 @@ FactoryBot.define do
     name { generate(:tag_name) }
 
     trait :invalid_tag_name do
-      name nil
+      name { nil }
     end
   end
 end
