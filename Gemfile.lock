@@ -72,7 +72,7 @@ GEM
     concurrent-ruby (1.1.4)
     crass (1.0.4)
     database_cleaner (1.7.0)
-    devise (4.5.0)
+    devise (4.6.2)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 4.1.0, < 6.0)
@@ -214,9 +214,9 @@ GEM
       ffi (~> 1.0)
     redcarpet (3.4.0)
     regexp_parser (1.3.0)
-    responders (2.4.0)
-      actionpack (>= 4.2.0, < 5.3)
-      railties (>= 4.2.0, < 5.3)
+    responders (2.4.1)
+      actionpack (>= 4.2.0, < 6.0)
+      railties (>= 4.2.0, < 6.0)
     rspec (3.8.0)
       rspec-core (~> 3.8.0)
       rspec-expectations (~> 3.8.0)
@@ -307,7 +307,7 @@ DEPENDENCIES
   coderay
   coffee-rails (~> 4.2)
   database_cleaner
-  devise
+  devise (~> 4.6.0)
   factory_bot_rails
   fuubar
   guard
@@ -340,7 +340,7 @@ DEPENDENCIES
   webpacker (~> 3.5)
 
 RUBY VERSION
-   ruby 2.4.2p198
+   ruby 2.5.1p57
 
 BUNDLED WITH
-   1.16.4
+   1.17.3
