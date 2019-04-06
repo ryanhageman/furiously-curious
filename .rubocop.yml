@@ -1,10 +1,18 @@
+require: rubocop-performance
+
 Metrics/BlockLength:
   ExcludedMethods: ['describe', 'context', 'feature']
+
 Style/Documentation:
   Include:
     - app/models/**/*
     - lib/**/*
+
 AllCops:
-  Excludes:
+  AutoCorrect: false
+  Exclude:
     - Gemfile
     - db/**/*
+
+Rails:
+  Enabled: true
