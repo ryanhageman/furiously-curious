@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   end
   namespace :blog_admin do
     resources :posts
+    resources :categories
     resources :drafts, only: [:index, :update]
     resources :hidden_posts, only: [:index, :update]
     resources :published_posts, only: [:index, :update]
@@ -16,6 +17,6 @@ Rails.application.routes.draw do
 
   resources :articles, only: [:index, :show]
   resources :tags
-  resources :categories
+  # resources :categories
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -1,0 +1,10 @@
+<h1>Your Categories</h1>
+
+<%= link_to 'New Category', new_blog_admin_category_path %>
+<br>
+
+<% @categories.each do |category| %>
+  <%= link_to category.name, edit_blog_admin_category_path(category) %>
+  <%= link_to 'Delete', blog_admin_category_path(category), method: :delete %>
+  <br>
+<% end %>
