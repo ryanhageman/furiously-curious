@@ -23,6 +23,7 @@ class ArticlesController < ApplicationController
     return view_scope.with_specific_tag(tag_filter) if tag_filter
     return view_scope.with_specific_category(category_filter) if category_filter
     return view_scope.search_titles_and_body(@search) if @search
+
     Post.latest
   end
 
