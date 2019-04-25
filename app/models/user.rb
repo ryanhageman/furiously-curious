@@ -13,7 +13,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_one :profile, dependent: :destroy
-  has_many :posts, foreign_key: :author_id
+  has_many :posts, foreign_key: :author_id, inverse_of: :user, dependent: :destroy
 
   def profile
     super || DefaultProfile.new

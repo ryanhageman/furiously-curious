@@ -12,7 +12,7 @@ class Post < ApplicationRecord
 
   paginates_per 10
 
-  belongs_to :author, class_name: 'User'
+  belongs_to :author, class_name: 'User', inverse_of: :posts
   has_many :post_tags, dependent: :destroy
   has_many :tags, -> { distinct }, through: :post_tags
   has_many :post_categories, dependent: :destroy
