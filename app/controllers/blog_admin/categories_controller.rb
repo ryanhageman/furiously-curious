@@ -2,7 +2,6 @@
 
 module BlogAdmin
   class CategoriesController < BlogAdminController
-    before_action :authenticate_user!
     before_action :set_category, only: %i[edit update destroy]
 
     def index
