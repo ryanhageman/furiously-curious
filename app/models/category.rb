@@ -8,4 +8,8 @@ class Category < ApplicationRecord
   validates :name, presence: true, uniqueness: true
 
   before_validation { self.name &&= name.downcase }
+
+  def self.search_names(name)
+    where('name ILIKE ?', "%#{name}%")
+  end
 end
