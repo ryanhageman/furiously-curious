@@ -5,7 +5,7 @@ module BlogAdmin
     before_action :set_category, only: %i[edit update destroy]
 
     def index
-      @categories = Category.all
+      @categories = requested_categories
     end
 
     def new
@@ -46,6 +46,10 @@ module BlogAdmin
 
     def set_category
       @category = Category.find(params[:id])
+    end
+
+    def requested_categories
+      @search ? Category.search_names(@search) : Category.select(:name, :id)
     end
   end
 end
