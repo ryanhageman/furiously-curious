@@ -10,7 +10,7 @@ RSpec.feature 'Blog Post Features', type: :feature do
     create(:profile, user_id: current_user.id)
   end
 
-  describe 'user visits the post index' do
+  describe 'author visits the post index' do
     let(:post1) do
       create(:post,
              title: 'First Post',

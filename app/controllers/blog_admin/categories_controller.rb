@@ -1,0 +1,64 @@
+# frozen_string_literal: true
+
+module BlogAdmin
+  class CategoriesController < BlogAdminController
+    before_action :set_authorized_category, only: %i[edit update destroy]
+
+    def index
+      @categories = requested_categories
+    end
+
+    def new
+      @category = new_authorized_category
+    end
+
+    def create
+      @category = new_authorized_category(category_params)
+      save_category
+    end
+
+    def edit; end
+
+    def update
+      if @category.update(category_params)
+        redirect_to blog_admin_categories_path, notice: 'Updated'
+      else
+        render :edit
+      end
+    end
+
+    def destroy
+      @category.destroy
+      redirect_to blog_admin_categories_path
+    end
+
+    private
+
+    def category_params
+      params.require(:category).permit(:name)
+    end
+
+    def new_authorized_category(params = {})
+      category = Category.new(params)
+      authorize category
+      category
+    end
+
+    def set_authorized_category
+      @category = Category.find(params[:id])
+      authorize @category
+    end
+
+    def save_category
+      if @category.save
+        redirect_to blog_admin_categories_path, notice: 'Created'
+      else
+        render :new
+      end
+    end
+
+    def requested_categories
+      @search ? Category.search_names(@search) : Category.select(:name, :id)
+    end
+  end
+end

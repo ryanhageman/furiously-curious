@@ -5,7 +5,7 @@ module BlogAdmin
     after_action :verify_authorized, except: %i[index]
 
     def index
-      requested_posts
+      @posts = requested_posts
     end
 
     def update

@@ -12,7 +12,7 @@ RSpec.describe 'Category requests' do
       subject1 = create(:category, name: 'category one')
       subject2 = create(:category, name: 'category two')
 
-      get categories_path
+      get blog_admin_categories_path
 
       result = response.body
 

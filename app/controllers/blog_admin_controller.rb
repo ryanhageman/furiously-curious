@@ -23,9 +23,10 @@ class BlogAdminController < ApplicationController
 
   def requested_posts
     if @search
-      return @posts = view_scope.search_titles(@search).page(current_page)
+      return view_scope.search_titles(@search).page(current_page)
     end
-    @posts = view_scope.page current_page
+
+    view_scope.page current_page
   end
 
   def set_authorized_post

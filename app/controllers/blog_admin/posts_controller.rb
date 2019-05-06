@@ -6,17 +6,17 @@ module BlogAdmin
     after_action :verify_authorized, except: %i[index]
 
     def index
-      requested_posts
+      @posts = requested_posts
     end
 
     def show; end
 
     def new
-      new_authorized_post
+      @post = new_authorized_post
     end
 
     def create
-      prepare_post
+      @post = prepare_post
       save_post
     end
 
@@ -44,14 +44,16 @@ module BlogAdmin
     end
 
     def new_authorized_post(params = {})
-      @post = Post.new(params)
-      authorize @post
+      post = Post.new(params)
+      authorize post
+      post
     end
 
     def prepare_post
-      new_authorized_post(post_params)
-      @post.author_id = current_user.id
-      @post.add_taxonomy(params)
+      post = new_authorized_post(post_params)
+      post.author_id = current_user.id
+      post.add_taxonomy(params)
+      post
     end
 
     def save_post

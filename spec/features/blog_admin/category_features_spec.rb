@@ -3,16 +3,16 @@
 require 'rails_helper'
 
 RSpec.feature 'Category Features', type: :feature do
-  let(:current_user) { create(:user) }
+  let(:current_user) { create(:user, :admin) }
 
   before { login_as current_user }
 
-  describe 'user visits the category index' do
+  describe 'admin visits the category index' do
     let(:category1) { create(:category, name: 'category one') }
     let(:category2) { create(:category, name: 'category two') }
 
     scenario 'they create a new category' do
-      visit categories_path
+      visit blog_admin_categories_path
       click_on 'New Category'
       fill_in 'Name', with: 'the new category'
       click_on 'Create Category'
@@ -26,7 +26,7 @@ RSpec.feature 'Category Features', type: :feature do
       subject = category1
       other_category = category2
 
-      visit categories_path
+      visit blog_admin_categories_path
       click_on subject.name
       fill_in 'Name', with: 'Updated category'
       click_on 'Update Category'
@@ -41,7 +41,7 @@ RSpec.feature 'Category Features', type: :feature do
       subject = category1
       other_category = category2
 
-      visit categories_path
+      visit blog_admin_categories_path
 
       expect(page).to have_content(subject.name)
 
