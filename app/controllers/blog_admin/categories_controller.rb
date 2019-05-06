@@ -2,24 +2,19 @@
 
 module BlogAdmin
   class CategoriesController < BlogAdminController
-    before_action :set_category, only: %i[edit update destroy]
+    before_action :set_authorized_category, only: %i[edit update destroy]
 
     def index
       @categories = requested_categories
     end
 
     def new
-      @category = Category.new
+      @category = new_authorized_category
     end
 
     def create
-      @category = Category.new(category_params)
-
-      if @category.save
-        redirect_to blog_admin_categories_path, notice: 'Created'
-      else
-        render :new
-      end
+      @category = new_authorized_category(category_params)
+      save_category
     end
 
     def edit; end
@@ -34,7 +29,6 @@ module BlogAdmin
 
     def destroy
       @category.destroy
-
       redirect_to blog_admin_categories_path
     end
 
@@ -44,8 +38,23 @@ module BlogAdmin
       params.require(:category).permit(:name)
     end
 
-    def set_category
+    def new_authorized_category(params = {})
+      category = Category.new(params)
+      authorize category
+      category
+    end
+
+    def set_authorized_category
       @category = Category.find(params[:id])
+      authorize @category
+    end
+
+    def save_category
+      if @category.save
+        redirect_to blog_admin_categories_path, notice: 'Created'
+      else
+        render :new
+      end
     end
 
     def requested_categories

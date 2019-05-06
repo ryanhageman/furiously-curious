@@ -3,11 +3,11 @@
 require 'rails_helper'
 
 RSpec.feature 'Category Features', type: :feature do
-  let(:current_user) { create(:user) }
+  let(:current_user) { create(:user, :admin) }
 
   before { login_as current_user }
 
-  describe 'user visits the category index' do
+  describe 'admin visits the category index' do
     let(:category1) { create(:category, name: 'category one') }
     let(:category2) { create(:category, name: 'category two') }
 
