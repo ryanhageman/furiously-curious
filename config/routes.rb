@@ -7,16 +7,17 @@ Rails.application.routes.draw do
     resources :profiles
     resources :post_images
   end
+
   namespace :blog_admin do
     resources :posts
     resources :categories
-    resources :drafts, only: [:index, :update]
-    resources :hidden_posts, only: [:index, :update]
-    resources :published_posts, only: [:index, :update]
+    resources :drafts, only: %i[index update]
+    resources :hidden_posts, only: %i[index update]
+    resources :published_posts, only: %i[index update]
   end
 
-  resources :articles, only: [:index, :show]
+  resources :articles, only: %i[index show]
+  resources :categories, only: %i[index show]
   resources :tags
-  # resources :categories
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
