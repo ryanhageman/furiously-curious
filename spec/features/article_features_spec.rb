@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.feature 'Articles Features', type: :feature do
+RSpec.feature 'Article Features', type: :feature do
   describe 'user searches articles index' do
     scenario 'they see all the matching articles' do
       subject1 = create(:post, :published, title: 'Lightsaber')
