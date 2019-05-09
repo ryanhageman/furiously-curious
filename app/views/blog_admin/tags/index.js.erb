@@ -1,0 +1,7 @@
+var newContent = "<%= j render 'blog_admin/shared/tag_list' %>"
+
+if (<%= @tags.length %> === 0) {
+  newContent = "<h1>Sorry, Didn't Find Anything</h1>"
+}
+
+document.getElementsByClassName('js-tags__list')[0].innerHTML = newContent

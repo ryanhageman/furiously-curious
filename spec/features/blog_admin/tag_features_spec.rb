@@ -7,6 +7,24 @@ RSpec.feature 'Tag Features', type: :feature do
 
   before { login_as current_user }
 
+  describe 'user searches admin tags index' do
+    scenario 'they see all the matching tags' do
+      subject1 = create(:tag, name: 'taco tuesday')
+      subject2 = create(:tag, name: 'enchilada friday')
+      other_tag = create(:tag, name: 'fish')
+
+      visit blog_admin_tags_path
+      fill_in 'search',	with: 'day'
+      click_on 'Search'
+
+      result = page
+
+      expect(result).to have_content(subject1.name)
+      expect(result).to have_content(subject2.name)
+      expect(result).not_to have_content(other_tag.name)
+    end
+  end
+
   describe 'admin visits the tag index' do
     let(:tag1) { create(:tag, name: 'tag one') }
     let(:tag2) { create(:tag, name: 'tag two') }

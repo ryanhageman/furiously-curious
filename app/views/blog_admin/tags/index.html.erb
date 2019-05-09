@@ -1,6 +1,8 @@
-<%= link_to 'New Tag', new_blog_admin_tag_path %>
-<br>
-<% @tags.each do |tag| %>
-  <%= link_to tag.name, edit_blog_admin_tag_path(tag) %>
-  <%= link_to 'Delete', blog_admin_tag_path(tag), method: :delete %><br>
-<% end %>
+<h1>Your Tags</h1>
+
+<%= render partial: 'shared/search_form',
+           locals: {endpoint: blog_admin_tags_path} %>
+
+<div class="js-tags__list">
+  <%= render 'blog_admin/shared/tag_list' %>
+</div>
