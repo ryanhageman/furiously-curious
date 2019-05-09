@@ -7,6 +7,24 @@ RSpec.feature 'Category Features', type: :feature do
 
   before { login_as current_user }
 
+  describe 'user searches admin categories index' do
+    scenario 'they see all the matching categories' do
+      subject1 = create(:category, name: 'wolverine bit some poutin')
+      subject2 = create(:category, name: 'gambit')
+      other_category = create(:category, name: 'beast')
+
+      visit blog_admin_categories_path
+      fill_in 'search',	with: 'bit'
+      click_on 'Search'
+
+      result = page
+
+      expect(result).to have_content(subject1.name)
+      expect(result).to have_content(subject2.name)
+      expect(result).not_to have_content(other_category.name)
+    end
+  end
+
   describe 'admin visits the category index' do
     let(:category1) { create(:category, name: 'category one') }
     let(:category2) { create(:category, name: 'category two') }

@@ -1,6 +1,0 @@
-<%= link_to 'New Tag', new_tag_path %>
-<br>
-<% @tags.each do |tag| %>
-  <%= link_to tag.name, edit_tag_path(tag) %>
-  <%= link_to 'Delete', tag, method: :delete %><br>
-<% end %>
