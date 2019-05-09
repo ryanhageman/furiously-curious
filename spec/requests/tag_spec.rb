@@ -12,7 +12,7 @@ RSpec.describe 'Tag requests' do
       subject1 = create(:tag, name: 'tag one')
       subject2 = create(:tag, name: 'tag two')
 
-      get blog_admin_tags_path
+      get tags_path
 
       result = response.body
 

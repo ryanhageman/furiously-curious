@@ -3,20 +3,20 @@
 require 'rails_helper'
 
 RSpec.feature 'Profile Features', type: :feature do
-  let(:current_user) { create(:user) }
+  let(:current_user) { create(:user, :admin) }
   let(:second_user) { create(:user) }
   let(:bio) { 'I be the first mate of the sea itself.' }
 
   before { login_as current_user }
 
-  describe 'User visits the profile show view' do
+  describe 'Admin visits the profile show view' do
     scenario 'they see the details of the profile' do
       subject = create(:profile,
                        :full_profile,
                        username: 'look_at_me',
                        user_id: current_user.id)
 
-      visit accounts_profiles_path
+      visit blog_admin_profiles_path
       click_on 'look_at_me'
 
       result = page

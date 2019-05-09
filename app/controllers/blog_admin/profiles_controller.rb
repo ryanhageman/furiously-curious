@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Accounts
+module BlogAdmin
   class ProfilesController < ApplicationController
     before_action :authenticate_user!
     before_action :set_profile, only: %i[show edit update destroy]
@@ -23,7 +23,7 @@ module Accounts
 
       authorize @profile
       if @profile.save
-        redirect_to accounts_profile_url(@profile), notice: "Here's your new Profile"
+        redirect_to blog_admin_profile_url(@profile), notice: "Here's your new Profile"
       else
         render :new, notice: "Your profile couldn't be saved."
       end
@@ -36,7 +36,7 @@ module Accounts
     def update
       authorize @profile
       if @profile.update(profile_params)
-        redirect_to accounts_profile_url(@profile), notice: 'Your profile has been updated.'
+        redirect_to blog_admin_profile_url(@profile), notice: 'Your profile has been updated.'
       else
         render :edit
       end

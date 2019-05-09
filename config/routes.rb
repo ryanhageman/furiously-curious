@@ -4,11 +4,11 @@ Rails.application.routes.draw do
   devise_for :users
 
   namespace :accounts do
-    resources :profiles
     resources :post_images
   end
 
   namespace :blog_admin do
+    resources :profiles
     resources :tags
     resources :categories
     resources :posts

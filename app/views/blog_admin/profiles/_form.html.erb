@@ -1,4 +1,4 @@
-<%= simple_form_for([:accounts, @profile]) do |f| %>
+<%= simple_form_for([:blog_admin, @profile]) do |f| %>
   <% if @profile.avatar.attached? %>
     <%= image_tag @profile.avatar.variant(resize: '200x200') %>
     <%= f.input :delete_avatar, as: :boolean, label: 'Delete image' %>
