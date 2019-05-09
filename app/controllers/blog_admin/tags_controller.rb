@@ -3,6 +3,7 @@
 module BlogAdmin
   class TagsController < BlogAdminController
     before_action :set_authorized_tag, only: %i[edit update destroy]
+    after_action :verify_authorized, except: %i[index]
 
     def index
       @tags = requested_tag

@@ -3,6 +3,7 @@
 module BlogAdmin
   class CategoriesController < BlogAdminController
     before_action :set_authorized_category, only: %i[edit update destroy]
+    after_action :verify_authorized, except: %i[index]
 
     def index
       @categories = requested_categories
