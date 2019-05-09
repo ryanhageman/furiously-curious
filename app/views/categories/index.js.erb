@@ -4,4 +4,4 @@ if (<%= @categories.length %> === 0) {
   newContent = "<h1>Sorry, Didn't Find Anything</h1>"
 }
 
-document.getElementsByClassName('js-categories__list').innerHTML = newContent
+document.getElementsByClassName('js-categories__list')[0].innerHTML = newContent
