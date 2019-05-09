@@ -2,25 +2,19 @@
 
 module BlogAdmin
   class TagsController < BlogAdminController
-    before_action :authenticate_user!
-    before_action :set_tag, only: %i[edit update destroy]
+    before_action :set_authorized_tag, only: %i[edit update destroy]
 
     def index
-      @tags = Tag.all
+      @tags = requested_tag
     end
 
     def new
-      @tag = Tag.new
+      @tag = new_authorized_tag
     end
 
     def create
-      @tag = Tag.new(tag_params)
-
-      if @tag.save
-        redirect_to blog_admin_tags_url, notice: 'Your tag was created.'
-      else
-        render :new
-      end
+      @tag = new_authorized_tag(tag_params)
+      save_tag
     end
 
     def edit; end
@@ -35,7 +29,6 @@ module BlogAdmin
 
     def destroy
       @tag.destroy
-
       redirect_to blog_admin_tags_url
     end
 
@@ -45,8 +38,27 @@ module BlogAdmin
       params.require(:tag).permit(:name)
     end
 
-    def set_tag
+    def new_authorized_tag(params = {})
+      tag = Tag.new(params)
+      authorize tag
+      tag
+    end
+
+    def set_authorized_tag
       @tag = Tag.find(params[:id])
+      authorize @tag
+    end
+
+    def save_tag
+      if @tag.save
+        redirect_to blog_admin_tags_url, notice: 'Your tag was created.'
+      else
+        render :new
+      end
+    end
+
+    def requested_tag
+      @search ? Tag.search_names(@search) : Tag.select(:name, :id)
     end
   end
 end
