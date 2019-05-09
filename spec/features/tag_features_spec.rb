@@ -12,7 +12,7 @@ RSpec.feature 'Tag Features', type: :feature do
     let(:tag2) { create(:tag, name: 'tag two') }
 
     scenario 'user creates a new tag' do
-      visit tags_path
+      visit blog_admin_tags_path
       click_on 'New Tag'
       fill_in 'Name', with: 'the new tag'
       click_on 'Create Tag'
@@ -26,7 +26,7 @@ RSpec.feature 'Tag Features', type: :feature do
       subject = tag1
       other_tag = tag2
 
-      visit tags_path
+      visit blog_admin_tags_path
       click_on subject.name
       fill_in 'Name', with: 'Updated tag'
       click_on 'Update Tag'
@@ -41,7 +41,7 @@ RSpec.feature 'Tag Features', type: :feature do
       subject = tag1
       other_tag = tag2
 
-      visit tags_path
+      visit blog_admin_tags_path
 
       expect(page).to have_content(subject.name)
 

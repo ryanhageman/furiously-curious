@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe TagsController, type: :controller do
+RSpec.describe BlogAdmin::TagsController, type: :controller do
   let(:current_user) { create(:user) }
 
   before { sign_in current_user }
