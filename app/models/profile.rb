@@ -12,4 +12,8 @@ class Profile < ApplicationRecord
 
   before_validation { self.username &&= username.downcase }
   before_validation { avatar.purge if delete_avatar == '1' }
+
+  def self.search_usernames(username)
+    where('username ILIKE ?', "%#{username}%")
+  end
 end

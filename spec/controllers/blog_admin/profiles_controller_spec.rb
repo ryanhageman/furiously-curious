@@ -2,8 +2,8 @@
 
 require 'rails_helper'
 
-RSpec.describe Accounts::ProfilesController, type: :controller do
-  let(:current_user) { create(:user) }
+RSpec.describe BlogAdmin::ProfilesController, type: :controller do
+  let(:current_user) { create(:user, :admin) }
 
   before { sign_in current_user }
 

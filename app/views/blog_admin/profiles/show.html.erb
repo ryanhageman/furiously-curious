@@ -11,5 +11,5 @@
   <li><strong>Bio: </strong><%= markdown @profile.bio %></li>
 </ul>
 
-<%= link_to 'Edit your profile', edit_accounts_profile_path(@profile) %><br>
-<%= link_to 'Delete your profile', accounts_profile_path(@profile), method: :delete %>
+<%= link_to 'Edit your profile', edit_blog_admin_profile_path(@profile) %><br>
+<%= link_to 'Delete your profile', blog_admin_profile_path(@profile), method: :delete %>

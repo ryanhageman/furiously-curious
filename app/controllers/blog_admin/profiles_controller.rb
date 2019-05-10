@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-module Accounts
-  class ProfilesController < ApplicationController
+module BlogAdmin
+  class ProfilesController < BlogAdminController
     before_action :authenticate_user!
     before_action :set_profile, only: %i[show edit update destroy]
     after_action :verify_authorized, except: %i[index show]
 
     def index
-      @profiles = Profile.all
+      @profiles = requested_profiles
     end
 
     def show; end
@@ -23,7 +23,7 @@ module Accounts
 
       authorize @profile
       if @profile.save
-        redirect_to accounts_profile_url(@profile), notice: "Here's your new Profile"
+        redirect_to blog_admin_profile_url(@profile), notice: "Here's your new Profile"
       else
         render :new, notice: "Your profile couldn't be saved."
       end
@@ -36,7 +36,7 @@ module Accounts
     def update
       authorize @profile
       if @profile.update(profile_params)
-        redirect_to accounts_profile_url(@profile), notice: 'Your profile has been updated.'
+        redirect_to blog_admin_profile_url(@profile), notice: 'Your profile has been updated.'
       else
         render :edit
       end
@@ -58,6 +58,10 @@ module Accounts
         :avatar, :delete_avatar,
         :post_images, post_images: []
       )
+    end
+
+    def requested_profiles
+      @search ? Profile.search_usernames(@search) : Profile.select(:username, :id)
     end
 
     def set_profile

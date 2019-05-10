@@ -2,12 +2,12 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Accounts::Profiles requests' do
+RSpec.describe 'BlogAdmin::Profiles requests' do
   let(:current_user) { create(:user, :admin) }
 
   before { login_as current_user }
 
-  describe 'the Accounts::Profiles index' do
+  describe 'the BlogAdmin::Profiles index' do
     it 'returns all the profiles' do
       second_user = create(:user)
       subject1 = create(:profile,
@@ -17,7 +17,7 @@ RSpec.describe 'Accounts::Profiles requests' do
                         username: 'second_user',
                         user_id: second_user.id)
 
-      get accounts_profiles_path
+      get blog_admin_profiles_path
 
       result = response.body
 

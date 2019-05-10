@@ -2,7 +2,7 @@
 	<h1>Add an image</h1>
 
 	<div id="content">
-		<%= simple_form_for([:accounts, @profile], html: { multipart: true, class: "dropzone", id: "post-images-dropzone", "data-profile-id": @profile.id }) do |f| %>
+		<%= simple_form_for([:blog_admin, @profile], html: { multipart: true, class: "dropzone", id: "post-images-dropzone", "data-profile-id": @profile.id }) do |f| %>
 			<div class="dz-message needsclick">
 				<h3>Drop file here</h3> or
 				<strong>click</strong> to upload

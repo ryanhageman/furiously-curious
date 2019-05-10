@@ -1,0 +1,7 @@
+var newContent = "<%= j render 'blog_admin/shared/profile_list' %>"
+
+if (<%= @profiles.length %> === 0) {
+  newContent = "<h1>Sorry, Didn't Find Anything</h1>"
+}
+
+document.getElementsByClassName('js-profiles__list')[0].innerHTML = newContent
