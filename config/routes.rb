@@ -3,6 +3,8 @@
 Rails.application.routes.draw do
   devise_for :users
 
+  get 'about', to: 'pages#about', as: 'about'
+
   namespace :accounts do
     resources :post_images
     resources :profiles
