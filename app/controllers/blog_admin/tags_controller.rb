@@ -6,7 +6,7 @@ module BlogAdmin
     after_action :verify_authorized, except: %i[index]
 
     def index
-      @tags = requested_tag
+      @tags = requested_tags
     end
 
     def new
@@ -58,7 +58,7 @@ module BlogAdmin
       end
     end
 
-    def requested_tag
+    def requested_tags
       @search ? Tag.search_names(@search) : Tag.select(:name, :id)
     end
   end
