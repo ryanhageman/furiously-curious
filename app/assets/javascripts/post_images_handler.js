@@ -1,7 +1,8 @@
 /* global $, Dropzone */
 
+Dropzone.autoDiscover = false
+
 $(document).on('turbolinks:load', () => {
-  Dropzone.autoDiscover = false
   let dropzoneElement = $('#post-images-dropzone')
 
   let addSuccessClass = element => {
