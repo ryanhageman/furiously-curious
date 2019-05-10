@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   end
 
   namespace :blog_admin do
+    get 'dashboard', to: 'dashboard#main', as: 'dashboard'
     resources :profiles
     resources :tags
     resources :categories
