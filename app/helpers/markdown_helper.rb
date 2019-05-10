@@ -40,6 +40,7 @@ module MarkdownHelper
   end
 
   def markdown_to_html(text, options, extensions)
+    text ||= ''
     Redcarpet::Markdown
       .new(highlight_syntax(options), extensions)
       .render(text).html_safe
