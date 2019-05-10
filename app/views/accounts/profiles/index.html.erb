@@ -1,0 +1,8 @@
+<h1>Your Profiles</h1>
+
+<%= render partial: 'shared/search_form',
+           locals: {endpoint: accounts_profiles_path} %>
+
+<div class="js-profiles__list">
+  <%= render 'profile_list' %>
+</div>

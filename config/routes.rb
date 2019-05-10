@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   namespace :accounts do
     resources :post_images
+    resources :profiles
   end
 
   namespace :blog_admin do

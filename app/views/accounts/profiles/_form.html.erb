@@ -1,0 +1,21 @@
+<%= simple_form_for([:accounts, @profile]) do |f| %>
+  <% if @profile.avatar.attached? %>
+    <%= image_tag @profile.avatar.variant(resize: '200x200') %>
+    <%= f.input :delete_avatar, as: :boolean, label: 'Delete image' %>
+  <% end %>
+
+  <%= f.input :avatar, as: :file, label: 'Profile pic' %>
+  <%= f.input :first_name %>
+  <%= f.input :last_name %>
+  <%= f.input :username %>
+  <%= f.input :bio %>
+
+  <%= f.button :submit %>
+<% end %>
+
+<script type="text/javascript">
+  let editor = new Editor({
+    element: document.getElementById('profile_bio')
+  });
+  editor.render();
+</script>

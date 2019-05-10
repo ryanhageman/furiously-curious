@@ -21,6 +21,5 @@ class CategoriesController < ApplicationController
 
   def requested_categories
     @search ? Category.search_names(@search) : Category.select(:name, :id)
-
   end
 end
