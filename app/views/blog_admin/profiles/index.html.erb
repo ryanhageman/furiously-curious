@@ -1,3 +1,8 @@
-<% @profiles.each do |profile| %>
-  <h3><%= link_to profile.username, blog_admin_profile_path(profile) %>'s Profile</h3>
-<% end %>
+<h1>Your Profiles</h1>
+
+<%= render partial: 'shared/search_form',
+           locals: {endpoint: blog_admin_profiles_path} %>
+
+<div class="js-profiles__list">
+  <%= render 'blog_admin/shared/profile_list' %>
+</div>

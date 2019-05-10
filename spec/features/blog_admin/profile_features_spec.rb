@@ -9,6 +9,24 @@ RSpec.feature 'Profile Features', type: :feature do
 
   before { login_as current_user }
 
+  describe 'Admin searches admin profiles index' do
+    scenario 'they see all the matching profiles' do
+      subject1 = create(:profile, username: 'billybones')
+      subject2 = create(:profile, username: 'hillbilly')
+      other_tag = create(:profile, username: 'smurfette')
+
+      visit blog_admin_profiles_path
+      fill_in 'search',	with: 'billy'
+      click_on 'Search'
+
+      result = page
+
+      expect(result).to have_content(subject1.username)
+      expect(result).to have_content(subject2.username)
+      expect(result).not_to have_content(other_tag.username)
+    end
+  end
+
   describe 'Admin visits the profile show view' do
     scenario 'they see the details of the profile' do
       subject = create(:profile,

@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
 module BlogAdmin
-  class ProfilesController < ApplicationController
+  class ProfilesController < BlogAdminController
     before_action :authenticate_user!
     before_action :set_profile, only: %i[show edit update destroy]
     after_action :verify_authorized, except: %i[index show]
 
     def index
-      @profiles = Profile.all
+      @profiles = requested_profiles
     end
 
     def show; end
@@ -58,6 +58,10 @@ module BlogAdmin
         :avatar, :delete_avatar,
         :post_images, post_images: []
       )
+    end
+
+    def requested_profiles
+      @search ? Profile.search_usernames(@search) : Profile.select(:username, :id)
     end
 
     def set_profile
