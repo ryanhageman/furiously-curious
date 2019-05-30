@@ -91,6 +91,8 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 
   gem 'letter_opener'
+  gem 'guard-livereload', '~> 2.5.2', require: false
+  gem "rack-livereload"
 end
 
 
