@@ -12,7 +12,11 @@
   </head>
 
   <body>
+    <%= render 'layouts/navbar' %>
     <%= render 'layouts/alerts' %>
-    <%= yield %>
+
+    <section class="c-application-content">
+      <%= yield %>
+    </section>
   </body>
 </html>
