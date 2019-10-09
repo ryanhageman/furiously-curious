@@ -1,29 +1,40 @@
-<nav class="c-navbar">
-  <div class="c-navbar__brand">Furiously Curious</div>
-  <div class="c-navbar__hamburger-wrapper">
+<nav class="c-navbar is-closed initial-load" data-controller="navbar" data-target="navbar.visibility">
+  <div class="c-navbar__brand">
+
+    <%= image_tag "brand_icon.png", class: "c-navbar__brand-icon" %>
+    <div class="c-navbar__brand-name">
+      Furiously Curious
+    </div>
+  </div>
+
+  <div class="c-navbar__toggle" data-action="click->navbar#toggle">
     <div class="c-navbar__hamburger"></div>
   </div>
-  <div class="c-navbar__mobile-dropdown">
-    <div class="c-navbar--left">
-      <ul class="c-navbar__link-list">
-        <li class="c-navbar__link-wrapper">
-          <a href="" class="c-navbar__link">Articles</a>
-        </li>
-        <li class="c-navbar__link-wrapper">
-          <a href="" class="c-navbar__link">About</a>
-        </li>
-      </ul>
-    </div>
 
-    <div class="c-navbar--right">
-      <ul class="c-navbar__link-list">
-        <li class="c-navbar__link-wrapper">
-          <a href="" class="c-navbar__link">Login</a>
-        </li>
-        <li class="c-navbar__link-wrapper">
-          <a href="" class="c-navbar__link">Sign Up</a>
-        </li>
-      </ul>
-    </div>
+  <div class="c-navbar__buffer"></div>
+
+  <div class="c-navbar__mobile-list-item">
+    <%= link_to 'Admin', blog_admin_dashboard_path, class: "c-navbar__link" %>
   </div>
+
+  <div class="c-navbar__mobile-list-item">
+    <%= link_to 'Search', blog_admin_dashboard_path, class: "c-navbar__link" %>
+  </div>
+
+  <div class="c-navbar__mobile-list-item">
+    <%= link_to 'Tags', blog_admin_dashboard_path, class: "c-navbar__link" %>
+  </div>
+
+  <div class="c-navbar__mobile-list-item">
+    <%= link_to 'Categories', blog_admin_dashboard_path, class: "c-navbar__link" %>
+  </div>
+
+  <div class="c-navbar__mobile-list-item">
+    <%= link_to 'About', blog_admin_dashboard_path, class: "c-navbar__link" %>
+  </div>
+
+  <div class="c-navbar__buffer"></div>
+  <div class="c-navbar__buffer"></div>
+  <div class="c-navbar__buffer"></div>
+  <div class="c-navbar__buffer"></div>
 </nav>
