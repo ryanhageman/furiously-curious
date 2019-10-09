@@ -13,9 +13,12 @@
 
   <div class="c-navbar__buffer"></div>
 
-  <div class="c-navbar__mobile-list-item">
-    <%= link_to 'Admin', blog_admin_dashboard_path, class: "c-navbar__link" %>
-  </div>
+  <% if @current_visitor.admin? %>
+    <div class="c-navbar__mobile-list-item">
+      <%= link_to 'Admin', blog_admin_dashboard_path, class: "c-navbar__link" %>
+    </div>
+  <% end %>
+
 
   <div class="c-navbar__mobile-list-item">
     <%= link_to 'Search', blog_admin_dashboard_path, class: "c-navbar__link" %>
@@ -33,7 +36,6 @@
     <%= link_to 'About', blog_admin_dashboard_path, class: "c-navbar__link" %>
   </div>
 
-  <div class="c-navbar__buffer"></div>
   <div class="c-navbar__buffer"></div>
   <div class="c-navbar__buffer"></div>
   <div class="c-navbar__buffer"></div>
