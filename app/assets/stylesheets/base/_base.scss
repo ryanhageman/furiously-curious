@@ -2,3 +2,11 @@ body {
   color: $base--font-color;
   margin: 0;
 }
+
+.o-base-layout {
+  display: grid;
+  grid-template-areas:
+    "navbar"
+    "content"
+    "footer";
+}

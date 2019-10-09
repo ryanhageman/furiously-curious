@@ -11,11 +11,14 @@
 
   </head>
 
-  <body>
-    <%= render 'layouts/navbar' %>
+  <body class="o-base-layout">
+    <section class="o-navbar">
+      <%= render 'layouts/navbar' %>
+    </section>
+
     <%= render 'layouts/alerts' %>
 
-    <section class="c-application-content">
+    <section class="o-content">
       <%= yield %>
     </section>
   </body>
