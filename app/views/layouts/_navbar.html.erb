@@ -1,7 +1,7 @@
 <nav class="c-navbar is-closed initial-load" data-controller="navbar" data-target="navbar.visibility">
   <div class="c-navbar__brand">
 
-    <%= image_tag "brand_icon.png", class: "c-navbar__brand-icon" %>
+    <%= link_to (image_tag "brand_icon.png", class: "c-navbar__brand-icon"), root_path %>
     <div class="c-navbar__brand-name">
       Furiously Curious
     </div>
@@ -21,7 +21,7 @@
 
 
   <div class="c-navbar__mobile-list-item">
-    <%= link_to 'Search', blog_admin_dashboard_path, class: "c-navbar__link" %>
+    <%= link_to 'Articles', articles_path, class: "c-navbar__link" %>
   </div>
 
   <div class="c-navbar__mobile-list-item">
