@@ -11,8 +11,15 @@
 
   </head>
 
-  <body>
+  <body class="o-base-layout">
+    <section class="o-navbar">
+      <%= render 'layouts/navbar' %>
+    </section>
+
     <%= render 'layouts/alerts' %>
-    <%= yield %>
+
+    <section class="o-content">
+      <%= yield %>
+    </section>
   </body>
 </html>

@@ -19,6 +19,7 @@ FactoryBot.define do
 
   trait :published do
     aasm_state { 'published' }
+    publish_date { Time.current }
   end
 
   trait :hidden do
