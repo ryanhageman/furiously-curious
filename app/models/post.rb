@@ -69,7 +69,7 @@ class Post < ApplicationRecord
   end
 
   def ready_to_show?
-    publish_date < Time.current
+    publish_date <= Time.current
   end
 
   def wait_to_show?
