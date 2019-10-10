@@ -22,6 +22,12 @@
   width: 100vw;
   z-index: 1;
 
+  @media (min-width: $desktop) {
+    grid-template-columns: 60% repeat(6, auto);
+    grid-template-rows: 70px;
+    justify-content: space-between;
+  }
+
   &.is-closed {
     animation: navbar-up .5s ease-in-out;
     animation-fill-mode: forwards;
@@ -61,15 +67,29 @@
     grid-column: 1 / -1;
     grid-row: 1 / 2;
     justify-content: center;
+
+    @media (min-width: $tablet) {
+      justify-content: flex-start;
+    }
+
+    @media (min-width: $desktop) {
+      grid-column: 1 / 2;
+    }
   }
 
   &__brand-icon {
-    margin: 10px 0;
+    margin: 10px;
     max-height: 50px;
   }
 
   &__brand-name {
     display: none;
+    font-size: 1.3rem;
+
+    @media (min-width: $tablet) {
+      align-items: center;
+      display: flex;
+    }
   }
 
   &__toggle {
@@ -83,6 +103,10 @@
     justify-self: flex-end;
     margin: 10px;
     width: 2rem;
+
+    @media (min-width: $desktop) {
+      display: none;
+    }
   }
 
   &__hamburger {
@@ -114,11 +138,27 @@
     color: $base--font-color;
     font-size: 1.3rem;
     text-decoration: none;
+
+    @media (min-width: $desktop) {
+      font-size: 1rem;
+    }
   }
 
-  &__mobile-list-item {
+  &__list-item {
     align-items: center;
     display: flex;
     justify-content: center;
+  }
+
+  &__buffer {
+    @media (min-width: $desktop) {
+      display: none;
+    }
+  }
+
+  &__log-out {
+    @media (min-width: $desktop) {
+      margin-right: 20px;
+    }
   }
 }
