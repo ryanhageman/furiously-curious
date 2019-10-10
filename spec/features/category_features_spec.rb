@@ -21,7 +21,7 @@ RSpec.feature 'Category Features', type: :feature do
     end
   end
 
-  let(:post) { create(:post, :with_specific_category) }
+  let(:post) { create(:post, :published, :with_specific_category) }
 
   describe 'user clicks a category name' do
     scenario 'they see a list of all the articles in a specific category' do

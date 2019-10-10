@@ -21,7 +21,7 @@ RSpec.feature 'Tag Features', type: :feature do
     end
   end
 
-  let(:post) { create(:post, :with_specific_tag) }
+  let(:post) { create(:post, :published, :with_specific_tag) }
 
   describe 'user clicks a tag name' do
     scenario 'they see a list of all the articles in a specific tag' do
