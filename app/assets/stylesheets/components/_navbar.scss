@@ -9,9 +9,31 @@
   width: 2rem;
 }
 
+@keyframes navbar-down {
+  0% {
+    height: 70px;
+  }
+
+  100% {
+    height: 100vh;
+  }
+}
+
+
+@keyframes navbar-up {
+  0% {
+    height: 100vh;
+  }
+
+  100% {
+    height: 70px;
+  }
+}
+
 .c-navbar {
   background-color: $navbar--background-color;
   display: grid;
+  font-family: $fira;
   grid-template-columns: 1fr;
   grid-template-rows: 70px auto;
   height: 70px;

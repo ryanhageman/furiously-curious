@@ -4,11 +4,13 @@
     <title>Furiously Curious</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <%= preload_link_tag("roboto-slab-v9-latin-regular.woff2") %>
+    <%= preload_link_tag("roboto-slab-v9-latin-700.woff2") %>
+    <%= preload_link_tag("fira-sans-v10-latin-regular.woff2") %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application' %>
-
   </head>
 
   <body class="o-base-layout">

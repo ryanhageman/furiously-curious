@@ -9,11 +9,15 @@
 @import 'dropzone';
 @import 'awesomplete/awesomplete';
 
-@import 'base/variables';
-@import 'base/base';
-@import 'base/animations';
+@import 'settings/variables';
+@import 'settings/fonts';
 
-@import 'layout/navbar';
-@import 'layout/content';
+@import 'generic/normalize';
+
+@import 'elements/basic_elements';
+
+@import 'objects/base_layout';
+@import 'objects/navbar';
+@import 'objects/content';
 
 @import 'components/navbar';
