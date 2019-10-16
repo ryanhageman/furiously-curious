@@ -1,0 +1,24 @@
+.c-hero-image {
+  background-image: url(hero_800.jpg);
+  background-position: center;
+  background-size: cover;
+  height: 20vh;
+  width: 100vw;
+
+  &__title-background {
+    background-image: radial-gradient(circle at bottom left, rgba(256, 256, 256, .6), rgba(256, 256, 256, 0) 70%);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: flex-end;
+  }
+
+  &__title {
+    font-family: $roboto-slab;
+    font-size: 1.9rem;
+  }
+
+  &__subtitle {
+    font-size: 1.2rem;
+  }
+}
