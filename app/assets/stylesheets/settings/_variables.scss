@@ -2,12 +2,13 @@
 $black: #35383b;
 $white: #f7fafe;
 
-$base--font-color: $white;
 $navbar--background-color: rgba(0, 0, 0, .8);
 $content--font-color: $black;
+$base--font-color: $white;
+
+$hero-image--text-background-gradient: radial-gradient(circle at bottom left, rgba(256, 256, 256, .6), rgba(256, 256, 256, 0) 70%);
 
 // Fonts
-
 $fira: 'Fira Sans', 'Helvetica', 'Arial', sans-serif;
 $roboto-slab: 'Roboto Slab', serif;
 

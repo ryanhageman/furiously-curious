@@ -6,7 +6,7 @@
   width: 100vw;
 
   &__title-background {
-    background-image: radial-gradient(circle at bottom left, rgba(256, 256, 256, .6), rgba(256, 256, 256, 0) 70%);
+    background-image: $hero-image--text-background-gradient;
     display: flex;
     flex-direction: column;
     height: 100%;
