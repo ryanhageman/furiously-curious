@@ -3,6 +3,7 @@
   display: grid;
   grid-template-columns: 1fr;
   margin: 10px 0;
+  padding: 10px;
   width: 90vw;
 
   h1 {
@@ -13,7 +14,6 @@
     justify-self: center;
     max-height: 15vh;
     max-width: 100%;
-    margin: 5px 0;
   }
 
   &__title {
@@ -25,5 +25,10 @@
 
   &__date-updated {
     font-size: .75rem;
+  }
+
+  &__read-more-link {
+    text-decoration: none;
+    color: $black;
   }
 }

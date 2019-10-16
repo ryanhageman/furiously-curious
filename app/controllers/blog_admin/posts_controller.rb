@@ -38,9 +38,9 @@ module BlogAdmin
     private
 
     def post_params
-      params.require(:post).permit(:main_image, :title, :body, :raw_tags,
-                                   :raw_categories, :delete_main_image,
-                                   profiles_attributes: [post_images: []])
+      params.require(:post).permit( :main_image, :title, :summary, :body,
+                                    :raw_tags, :raw_categories, :delete_main_image,
+                                    profiles_attributes: [post_images: []])
     end
 
     def new_authorized_post(params = {})

@@ -7,7 +7,9 @@
       <div class="c-article-preview__date-updated">Last updated: <%= article.updated_at.strftime("%B %m, %Y") %></div>
 
       <div class="c-article-preview__summary">
-        <%= markdown(article.body) %>
+        <%= markdown(article.summary) %>
       </div>
+
+      <%= link_to ' read more...', article_path(article), class: "c-article-preview__read-more-link" %>
     </div>
   <% end %>

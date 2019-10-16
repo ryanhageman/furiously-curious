@@ -11,6 +11,9 @@
 
   <h2>By: <%= post_presenter.author_username %></h2>
 
+  <h4>Summary:</h4>
+  <%= markdown(post_presenter.post.summary) %>
+
   <h4>Tags:</h4>
   <%= post_presenter.post_tags %>
 
