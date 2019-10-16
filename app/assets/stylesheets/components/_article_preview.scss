@@ -1,0 +1,29 @@
+.c-article-preview {
+  border: 1px solid $black;
+  display: grid;
+  grid-template-columns: 1fr;
+  margin: 10px 0;
+  width: 90vw;
+
+  h1 {
+    font-size: 1.2rem;
+  }
+
+  &__main-image {
+    justify-self: center;
+    max-height: 15vh;
+    max-width: 100%;
+    margin: 5px 0;
+  }
+
+  &__title {
+    color: $content--font-color;
+    cursor: pointer;
+    font-size: 1.5rem;
+    text-decoration: none;
+  }
+
+  &__date-updated {
+    font-size: .75rem;
+  }
+}

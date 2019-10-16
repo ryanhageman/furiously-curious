@@ -1,5 +1,13 @@
   <% @articles.each do |article| %>
-    <div>
-      <h2><%= link_to article.title, article_path(article) %></h2>
+    <div class="c-article-preview">
+      <%= image_tag article.main_image, class: "c-article-preview__main-image" if article.main_image.attached? %>
+
+      <%= link_to article.title, article_path(article), class: "c-article-preview__title" %>
+
+      <div class="c-article-preview__date-updated">Last updated: <%= article.updated_at.strftime("%B %m, %Y") %></div>
+
+      <div class="c-article-preview__summary">
+        <%= markdown(article.body) %>
+      </div>
     </div>
   <% end %>
