@@ -1,0 +1,11 @@
+.c-search-form {
+  justify-self: center;
+  padding: 1rem;
+
+  &__button {
+    background-color: $green;
+    border: 1px solid $green--border;
+    border-radius: 15px;
+    font-size: .8rem;
+  }
+}
