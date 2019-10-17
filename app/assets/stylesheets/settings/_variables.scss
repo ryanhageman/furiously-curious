@@ -1,8 +1,13 @@
 // Colors
-$black: #35383b;
-$white: #f7fafe;
+$white: #edf2f3;
+$white--background: #cedce0;
+$green: #5bba6f;
+$green--border: #4b995b;
+$danger: #d93b4b;
+$black: #2d3142;
+$black--transparent: rgba(45, 49, 66, .9);
 
-$navbar--background-color: rgba(0, 0, 0, .8);
+$navbar--background-color: $black--transparent;
 $content--font-color: $black;
 $base--font-color: $white;
 
