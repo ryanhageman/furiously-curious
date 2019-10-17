@@ -4,12 +4,12 @@
 
       <%= link_to article.title, article_path(article), class: "c-article-preview__title" %>
 
-      <div class="c-article-preview__date-updated">Last updated: <%= article.updated_at.strftime("%B %m, %Y") %></div>
+      <div class="c-article-preview__date-updated"><%= article.publish_date.strftime("%B %m, %Y") %></div>
 
       <div class="c-article-preview__summary">
         <%= markdown(article.summary) %>
       </div>
 
-      <%= link_to ' read more...', article_path(article), class: "c-article-preview__read-more-link" %>
+      <%= link_to ' read more', article_path(article), class: "c-article-preview__read-more-link" %>
     </div>
   <% end %>

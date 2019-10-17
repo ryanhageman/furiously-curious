@@ -1,10 +1,10 @@
 .c-article-preview {
-  border: 1px solid $black;
+  background-color: $white;
   display: grid;
   grid-template-columns: 1fr;
   margin: 10px 0;
   padding: 10px;
-  width: 90vw;
+  width: 80vw;
 
   h1 {
     font-size: 1.2rem;
@@ -12,6 +12,7 @@
 
   &__main-image {
     justify-self: center;
+    margin-bottom: 1rem;
     max-height: 15vh;
     max-width: 100%;
   }
@@ -19,16 +20,30 @@
   &__title {
     color: $content--font-color;
     cursor: pointer;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
+    margin-bottom: .5rem;
     text-decoration: none;
   }
 
   &__date-updated {
     font-size: .75rem;
+    margin-bottom: 1rem;
+  }
+
+  &__summary {
+    font-size: .8rem;
   }
 
   &__read-more-link {
-    text-decoration: none;
+    background-color: $green;
+    border: 1px solid $green--border;
+    border-radius: 15px;
     color: $black;
+    font-size: .8rem;
+    justify-self: center;
+    padding: .2rem .3rem;
+    text-align: center;
+    text-decoration: none;
+    width: 30%;
   }
 }
