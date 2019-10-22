@@ -6,19 +6,37 @@
   width: 100vw;
 
   &__title-background {
-    background-image: $hero-image--text-background-gradient;
+    background-image: $hero-image--text-linear-gradient;
     display: flex;
     flex-direction: column;
     height: 100%;
     justify-content: flex-end;
+
+    @media (min-width: $tablet) {
+      background-image: $hero-image--text-radial-gradient;
+    }
   }
 
   &__title {
     font-family: $roboto-slab;
-    font-size: 1.9rem;
+    font-size: 3.0rem;
+    padding-left: 1rem;
+
+    @media (min-width: $tablet) {
+      padding-left: 2rem;
+      font-size: 4.0rem;
+    }
   }
 
   &__subtitle {
-    font-size: 1.2rem;
+    font-size: 2.4rem;
+    padding-left: 1rem;
+    padding-bottom: .8rem;
+
+    @media (min-width: $tablet) {
+      font-size: 2.8rem;
+      padding-left: 2rem;
+      padding-bottom: 2rem;
+    }
   }
 }

@@ -4,7 +4,7 @@
 
       <%= link_to article.title, article_path(article), class: "c-article-preview__title" %>
 
-      <div class="c-article-preview__date-updated"><%= article.publish_date.strftime("%B %m, %Y") %></div>
+      <div class="c-article-preview__date"><%= article.publish_date.strftime("%B %m, %Y") %></div>
 
       <div class="c-article-preview__summary">
         <%= markdown(article.summary) %>

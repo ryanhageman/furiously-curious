@@ -1,4 +1,4 @@
-<%= form_with url: endpoint, method: :get do |form| %>
-  <%= form.text_field :search, value: @search %>
+<%= form_with url: endpoint, method: :get, html: { class: "c-search-form" } do |form| %>
+  <%= form.text_field :search, value: @search, class: "c-search-form__search-box" %>
   <%= form.submit 'Search', class: "c-search-form__button" %>
 <% end %>

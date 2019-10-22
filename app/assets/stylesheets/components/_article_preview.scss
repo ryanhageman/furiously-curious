@@ -6,10 +6,6 @@
   padding: 10px;
   width: 80vw;
 
-  h1 {
-    font-size: 1.2rem;
-  }
-
   &__main-image {
     justify-self: center;
     margin-bottom: 1rem;
@@ -20,18 +16,26 @@
   &__title {
     color: $content--font-color;
     cursor: pointer;
-    font-size: 1.4rem;
+    font-size: 3.0rem;
     margin-bottom: .5rem;
     text-decoration: none;
+
+    @media (min-width: $tablet) {
+      font-size: 4.0rem;
+    }
   }
 
-  &__date-updated {
-    font-size: .75rem;
+  &__date {
+    font-size: 1.4rem;
     margin-bottom: 1rem;
+
+    @media (min-width: $tablet) {
+      font-size: 1.4rem;
+    }
   }
 
   &__summary {
-    font-size: .8rem;
+    font-size: 1.6rem;
   }
 
   &__read-more-link {
@@ -39,7 +43,7 @@
     border: 1px solid $green--border;
     border-radius: 15px;
     color: $black;
-    font-size: .8rem;
+    font-size: 1.4rem;
     justify-self: center;
     padding: .2rem .3rem;
     text-align: center;

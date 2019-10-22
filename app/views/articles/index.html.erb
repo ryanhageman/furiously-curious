@@ -5,10 +5,8 @@
   </div>
 </section>
 
-<div class="c-search-form">
-  <%= render  partial: 'shared/search_form',
-              locals: { endpoint: articles_path } %>
-</div>
+<%= render  partial: 'shared/search_form',
+            locals: { endpoint: articles_path } %>
 
 <div class="c-articles-list js-articles-list">
   <%= render 'articles_list'%>
