@@ -22,8 +22,9 @@
   }
 
   &__title {
-    font-family: $roboto-slab;
+    font-family: $roboto;
     font-size: 3rem;
+    font-weight: bold;
     padding-left: 1rem;
 
     @media (min-width: $tablet) {
