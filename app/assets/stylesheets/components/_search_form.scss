@@ -3,12 +3,21 @@
   justify-self: center;
   padding: 1rem;
 
-  @media (min-width: $tablet) {
+  @media (min-width: $tablet) and (max-width: $desktop) {
     justify-self: flex-end;
   }
 
   &__search-box {
     padding: .5rem;
+    width: 50vw;
+
+    @media (min-width: $tablet) {
+      width: 30vw;
+    }
+
+    @media (min-width: $desktop) {
+      width: 25vw;
+    }
   }
 
   &__button {
