@@ -1,41 +1,68 @@
 .c-article-preview {
   background-color: $white;
   display: grid;
+  grid-template-areas:
+  'main-image'
+  'headline'
+  'date'
+  'summary'
+  'read-more';
   grid-template-columns: 1fr;
   margin: 10px 0;
   padding: 10px;
   width: 80vw;
 
+  @media (min-width: $tablet) {
+    grid-template-areas:
+    'main-image headline'
+    'main-image date'
+    'summary summary'
+    'read-more read-more';
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+
+  @media (min-width: $desktop) {
+    width: 60vw;
+  }
+
   &__main-image {
+    align-self: center;
+    grid-area: main-image;
     justify-self: center;
     margin-bottom: 1rem;
-    max-height: 15vh;
-    max-width: 100%;
+    max-width: 95%;
   }
 
   &__title {
+    align-self: flex-end;
     color: $content--font-color;
     cursor: pointer;
-    font-size: 3.0rem;
+    font-size: 3rem;
+    grid-area: headline;
     margin-bottom: .5rem;
     text-decoration: none;
 
     @media (min-width: $tablet) {
-      font-size: 4.0rem;
+      font-size: 4rem;
+      padding-left: 1rem;
     }
   }
 
   &__date {
     font-size: 1.4rem;
+    grid-area: date;
     margin-bottom: 1rem;
 
     @media (min-width: $tablet) {
       font-size: 1.4rem;
+      padding-left: 1rem;
     }
   }
 
   &__summary {
     font-size: 1.6rem;
+    grid-area: summary;
   }
 
   &__read-more-link {
@@ -44,6 +71,7 @@
     border-radius: 15px;
     color: $black;
     font-size: 1.4rem;
+    grid-area: read-more;
     justify-self: center;
     padding: .2rem .3rem;
     text-align: center;
