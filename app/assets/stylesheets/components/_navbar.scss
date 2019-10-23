@@ -4,9 +4,9 @@
   content: '';
   cursor: pointer;
   display: block;
-  height: .2rem;
+  height: .3rem;
   position: absolute;
-  width: 2rem;
+  width: 2.8rem;
 }
 
 @keyframes navbar-down {
@@ -106,7 +106,7 @@
 
   &__brand-name {
     display: none;
-    font-size: 1.3rem;
+    font-size: 2.8rem;
 
     @media (min-width: $tablet) {
       align-items: center;
@@ -124,7 +124,7 @@
     justify-content: flex-end;
     justify-self: flex-end;
     margin: 10px;
-    width: 2rem;
+    width: 2.8rem;
 
     @media (min-width: $desktop) {
       display: none;
@@ -158,11 +158,11 @@
 
   &__link {
     color: $base--font-color;
-    font-size: 1.3rem;
+    font-size: 2.1rem;
     text-decoration: none;
 
     @media (min-width: $desktop) {
-      font-size: 1rem;
+      font-size: 1.6rem;
     }
   }
 

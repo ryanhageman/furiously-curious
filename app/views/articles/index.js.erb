@@ -1,7 +1,11 @@
-var newContent = "<%= j render 'articles_list' %>"
+function updateArticlesList() {
+  var newContent = "<h1>Sorry, Didn't Find Anything</h1>"
 
-if (<%= @articles.length %> === 0) {
-  newContent = "<h1>Sorry, Didn't Find Anything</h1>"
+  if (<%= @articles.length %> > 0) {
+    newContent = "<%= j render 'articles_list' %>"
+  }
+
+  document.querySelector('.js-articles-list').innerHTML = newContent
 }
 
-document.getElementById('articles-list').innerHTML = newContent
+updateArticlesList()

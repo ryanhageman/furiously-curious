@@ -1,0 +1,56 @@
+.c-hero-image {
+  background-image: url(hero_800.jpg);
+  background-position: center;
+  background-size: cover;
+  height: 30vh;
+  width: 100vw;
+
+  @media (min-width: $tablet) {
+    height: 60vh;
+  }
+
+  &__title-background {
+    background-image: $hero-image--text-linear-gradient;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: flex-end;
+
+    @media (min-width: $tablet) {
+      background-image: $hero-image--text-radial-gradient;
+    }
+  }
+
+  &__title {
+    font-family: $roboto-slab;
+    font-size: 3rem;
+    padding-left: 1rem;
+
+    @media (min-width: $tablet) {
+      font-size: 4rem;
+      padding-left: 2rem;
+    }
+
+    @media (min-width: $desktop) {
+      font-size: 4.8rem;
+      padding-left: 3.5rem;
+    }
+  }
+
+  &__subtitle {
+    font-size: 2.4rem;
+    padding-bottom: .8rem;
+    padding-left: 1rem;
+
+    @media (min-width: $tablet) {
+      font-size: 2.8rem;
+      padding-bottom: 2rem;
+      padding-left: 2rem;
+    }
+
+    @media (min-width: $desktop) {
+      padding-bottom: 4rem;
+      padding-left: 3.5rem;
+    }
+  }
+}

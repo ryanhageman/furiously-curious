@@ -1,5 +1,6 @@
 .o-content {
   color: $content--font-color;
+  display: grid;
   grid-area: content;
   margin-top: 70px;
 }

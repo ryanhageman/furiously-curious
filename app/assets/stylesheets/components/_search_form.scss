@@ -1,0 +1,30 @@
+.c-search-form {
+  display: flex;
+  justify-self: center;
+  padding: 1rem;
+
+  @media (min-width: $tablet) and (max-width: $desktop) {
+    justify-self: flex-end;
+  }
+
+  &__search-box {
+    padding: .5rem;
+    width: 50vw;
+
+    @media (min-width: $tablet) {
+      width: 30vw;
+    }
+
+    @media (min-width: $desktop) {
+      width: 25vw;
+    }
+  }
+
+  &__button {
+    background-color: $green;
+    border: 1px solid $green--border;
+    border-radius: 15px;
+    font-size: 1.6rem;
+    margin-left: .5rem;
+  }
+}
