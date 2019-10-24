@@ -1,0 +1,57 @@
+.c-about {
+  display: grid;
+  grid-template-areas:
+  'profile-image title'
+  'profile-image subtitle'
+  'content content';
+  grid-template-columns: repeat(2, 1fr);
+  justify-self: center;
+  margin-top: 1rem;
+  max-width: 1000px;
+  width: 80vw;
+
+  &__profile-image {
+    align-self: center;
+    grid-area: profile-image;
+    justify-self: center;
+    padding: 1rem;
+    width: 100%;
+  }
+
+  &__title {
+    align-self: flex-end;
+    font-family: $font--heading;
+    font-size: 3rem;
+    font-weight: bold;
+    grid-area: title;
+    margin-left: 1rem;
+
+    @media (min-width: $tablet) {
+      font-size: 4rem;
+    }
+
+    @media (min-width: $desktop) {
+      font-size: 5rem;
+    }
+  }
+
+  &__subtitle {
+    font-family: $font--heading;
+    font-size: 2.4rem;
+    grid-area: subtitle;
+    margin-left: 1rem;
+
+    @media (min-width: $desktop) {
+      font-size: 2.8rem;
+    }
+  }
+
+  &__content {
+    grid-area: content;
+  }
+
+  &__content-text {
+    font-size: 1.6rem;
+    margin: 1rem 0;
+  }
+}

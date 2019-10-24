@@ -15,8 +15,8 @@ $hero-image--text-radial-gradient: radial-gradient(circle at bottom left, rgba(2
 $hero-image--text-linear-gradient: linear-gradient(rgba(256, 256, 256, 0), rgba(256, 256, 256, .5) 70%);
 
 // Fonts
-$fira: 'Fira Sans', 'Helvetica', 'Arial', sans-serif;
-$roboto-slab: 'Roboto Slab', serif;
+$font--body: 'Fira Sans', 'Helvetica', 'Arial', sans-serif;
+$font--heading: 'Roboto', 'Helvetica', 'Arial', sans-serif;
 
 // Breakpoints
 $desktop: 992px;

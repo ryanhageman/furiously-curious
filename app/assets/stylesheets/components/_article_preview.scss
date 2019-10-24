@@ -38,7 +38,9 @@
     align-self: flex-end;
     color: $content--font-color;
     cursor: pointer;
+    font-family: $font--heading;
     font-size: 3rem;
+    font-weight: normal;
     grid-area: headline;
     margin-bottom: .5rem;
     text-decoration: none;
@@ -50,12 +52,12 @@
   }
 
   &__date {
+    font-family: $font--heading;
     font-size: 1.4rem;
     grid-area: date;
     margin-bottom: 1rem;
 
     @media (min-width: $tablet) {
-      font-size: 1.4rem;
       padding-left: 1rem;
     }
   }
