@@ -43,7 +43,7 @@ gem 'devise', '~> 4.6.0'
 gem 'pundit'
 
 # Clean forms
-gem 'simple_form'
+gem 'simple_form', '>= 5.0.0'
 
 # Pagination
 gem 'kaminari'
