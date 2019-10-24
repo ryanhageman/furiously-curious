@@ -39,7 +39,7 @@ gem 'mini_magick', '~> 4.8'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 # User authentication / authorization
-gem 'devise', '~> 4.6.0'
+gem 'devise', '>= 4.7.1'
 gem 'pundit'
 
 # Clean forms
