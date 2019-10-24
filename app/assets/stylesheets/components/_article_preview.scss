@@ -38,7 +38,7 @@
     align-self: flex-end;
     color: $content--font-color;
     cursor: pointer;
-    font-family: $roboto;
+    font-family: $font--heading;
     font-size: 3rem;
     font-weight: normal;
     grid-area: headline;
@@ -52,7 +52,7 @@
   }
 
   &__date {
-    font-family: $roboto;
+    font-family: $font--heading;
     font-size: 1.4rem;
     grid-area: date;
     margin-bottom: 1rem;
