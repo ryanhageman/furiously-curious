@@ -1,7 +1,23 @@
+<div class="c-article">
+  <div class="c-article__title">
+    <%= @article.title %>
+  </div>
 
-<%= image_tag @article.main_image if @article.main_image.attached? %>
+  <div class="c-article__meta">
+    <div class="c-article__author">
+      Written by <%= @article.author.profile.username %>&nbsp;
+    </div>
 
-<h1><%= @article.title %></h1>
-<h3>By: <%= @article.author.profile.username %></h3>
+    <div class="c-article__date">
+      on <%= @article.publish_date.strftime("%B %d, %Y") %>
+    </div>
+  </div>
 
-<p><%= markdown(@article.body) %></p>
+  <% if @article.main_image.attached?  %>
+    <%= image_tag @article.main_image, class: 'c-article__main-image' %>
+  <% end %>
+
+  <div class="c-article__content">
+    <%= markdown(@article.body) %>
+  </div>
+</div>
