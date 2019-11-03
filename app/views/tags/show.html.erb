@@ -1,7 +1,10 @@
-<%= @tag.name %>
-<br>
+<div class="c-tag">
+  <div class="c-tag__title">
+    <%= @tag.name %>
+  </div>
+  <br>
 
-<% @posts.each do |post| %>
-  <%= link_to post.title, article_path(post) %> <br>
-<% end %>
-
+  <div class="c-articles-list">
+    <%= render 'articles/articles_list'%>
+  </div>
+</div>
