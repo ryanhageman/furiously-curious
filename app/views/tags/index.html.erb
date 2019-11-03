@@ -1,6 +1,9 @@
 <%= render partial: 'shared/search_form',
            locals: {endpoint: tags_path} %>
 
-<div class="js-tags__list">
-  <%= render 'tags_list'%>
+<div class="c-tags">
+  <div class="c-tags__title">Tags</div>
+  <div class="c-tags__list js-tags__list">
+    <%= render 'tags_list'%>
+  </div>
 </div>
