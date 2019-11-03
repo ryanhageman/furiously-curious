@@ -1,0 +1,65 @@
+.c-devise {
+  display: grid;
+  justify-content: center;
+  justify-self: center;
+  padding: 0 5vw;
+  max-width: 500px;
+
+  &__title {
+    @include title;
+    text-align: center;
+  }
+
+  &__form {
+    align-items: center;
+    display: flex;
+    font-size: 1.6rem;
+    flex-direction: column;
+  }
+
+  &__input {
+    border: 1px solid $black--transparent;
+    border-radius: 1rem;
+    margin: 1rem 0;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    padding-left: 1rem;
+    width: 95%;
+  }
+
+  &__button {
+    background-color: $green;
+    border: 1px solid $green--border;
+    border-radius: 15px;
+    margin: 2rem 0;
+    padding: .5rem 6rem;
+    transition: all ease-in-out .05s;
+
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 2px 2px 5px $black--shadow;
+    }
+  }
+
+  &__link {
+    color: $content--font-color;
+    font-size: 1.6rem;
+    margin: .5rem 0;
+    text-align: center;
+    text-decoration: none;
+    transition: all ease-in-out .05s;
+
+    &:hover {
+      transform: scale(1.02);
+    }
+  }
+
+  .field_with_hint {
+    margin-bottom: 1.5rem;
+  }
+
+  .hint {
+    font-size: 1.2rem;
+    font-style: italic;
+  }
+}

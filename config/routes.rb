@@ -5,6 +5,10 @@ Rails.application.routes.draw do
 
   get 'about', to: 'pages#about', as: 'about'
 
+  devise_scope :user do
+    get 'admin', to: 'devise/sessions#new'
+  end
+
   namespace :accounts do
     resources :post_images
     resources :profiles
@@ -26,5 +30,4 @@ Rails.application.routes.draw do
   resources :tags, only: %i[index show]
 
   root 'articles#index'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -12,6 +12,8 @@
 @import 'settings/variables';
 @import 'settings/fonts';
 
+@import 'tools/mixins';
+
 @import 'generic/normalize';
 
 @import 'elements/basic_elements';
@@ -31,3 +33,4 @@
 @import 'components/category';
 @import 'components/tags';
 @import 'components/tag';
+@import 'components/devise';
