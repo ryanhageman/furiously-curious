@@ -1,0 +1,18 @@
+.c-category {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  justify-self: center;
+  max-width: 1000px;
+  width: 100%;
+
+  &__title {
+    font-family: $font--heading;
+    font-size: 4rem;
+    margin-bottom: 1rem;
+
+    @media (min-width: $tablet) {
+      font-size: 4.5rem;
+    }
+  }
+}

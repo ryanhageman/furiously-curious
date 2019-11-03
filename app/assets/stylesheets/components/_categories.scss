@@ -9,8 +9,12 @@
 
   &__title {
     font-family: $font--heading;
-    font-size: 3rem;
+    font-size: 4rem;
     margin-bottom: 1rem;
+
+    @media (min-width: $tablet) {
+      font-size: 4.5rem;
+    }
   }
 
   &__list {
