@@ -1,6 +1,9 @@
 <%= render partial: 'shared/search_form',
            locals: {endpoint: categories_path} %>
 
-<div class="js-categories__list">
-  <%= render 'categories_list'%>
+<div class="c-categories">
+  <div class="c-categories__title">Series</div>
+  <div class="c-categories__list js-categories__list">
+    <%= render 'categories_list'%>
+  </div>
 </div>
