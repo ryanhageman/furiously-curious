@@ -21,8 +21,10 @@
     border: 1px solid $black--transparent;
     border-radius: 1rem;
     margin: 1rem 0;
-    padding: .5rem 0;
-    width: 100%;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    padding-left: 1rem;
+    width: 95%;
   }
 
   &__button {
@@ -50,5 +52,14 @@
     &:hover {
       transform: scale(1.02);
     }
+  }
+
+  .field_with_hint {
+    margin-bottom: 1.5rem;
+  }
+
+  .hint {
+    font-size: 1.2rem;
+    font-style: italic;
   }
 }
