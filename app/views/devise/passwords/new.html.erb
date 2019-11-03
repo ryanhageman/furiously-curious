@@ -1,17 +1,17 @@
-<div class="c-login">
-  <div class="c-login__title">
+<div class="c-devise">
+  <div class="c-devise__title">
     Forgot your password?
   </div>
 
-  <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: "c-login__form" }) do |f| %>
+  <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: "c-devise__form" }) do |f| %>
     <%= f.error_notification %>
 
     <div class="form-inputs">
-      <%= f.input :email, required: true, autofocus: true, input_html: { class: 'c-login__input' } %>
+      <%= f.input :email, required: true, autofocus: true, input_html: { class: 'c-devise__input' } %>
     </div>
 
     <div class="form-actions">
-      <%= f.button :submit, "Send me reset password instructions", class: 'c-login__button' %>
+      <%= f.button :submit, "Send me reset password instructions", class: 'c-devise__button' %>
     </div>
   <% end %>
 

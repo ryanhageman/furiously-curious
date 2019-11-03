@@ -1,35 +1,35 @@
-<div class="c-login">
-  <div class="c-login__title">
+<div class="c-devise">
+  <div class="c-devise__title">
     Edit <%= resource_name.to_s.humanize %>
   </div>
 
   <% if current_user.profile.class.name == 'DefaultProfile' %>
-    <%= link_to 'Setup your profile', new_blog_admin_profile_path, class: 'c-login__link' %>
+    <%= link_to 'Setup your profile', new_blog_admin_profile_path, class: 'c-devise__link' %>
   <% else %>
-    <%= link_to 'Update your profile', edit_blog_admin_profile_path(current_user.profile), class: 'c-login__link' %>
+    <%= link_to 'Update your profile', edit_blog_admin_profile_path(current_user.profile), class: 'c-devise__link' %>
   <% end %>
 
-  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "c-login__form" }) do |f| %>
+  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "c-devise__form" }) do |f| %>
     <%= f.error_notification %>
 
     <div class="form-inputs">
-      <%= f.input :email, required: true, autofocus: true, input_html: { class: 'c-login__input' } %>
+      <%= f.input :email, required: true, autofocus: true, input_html: { class: 'c-devise__input' } %>
 
       <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
         <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
       <% end %>
 
-      <%= f.input :password, autocomplete: "off", hint: "leave it blank if you don't want to change it", required: false, input_html: { class: 'c-login__input' } %>
-      <%= f.input :password_confirmation, required: false, input_html: { class: 'c-login__input' } %>
-      <%= f.input :current_password, hint: "we need your current password to confirm your changes", required: true, input_html: { class: 'c-login__input' } %>
+      <%= f.input :password, autocomplete: "off", hint: "leave it blank if you don't want to change it", required: false, input_html: { class: 'c-devise__input' } %>
+      <%= f.input :password_confirmation, required: false, input_html: { class: 'c-devise__input' } %>
+      <%= f.input :current_password, hint: "we need your current password to confirm your changes", required: true, input_html: { class: 'c-devise__input' } %>
     </div>
 
     <div class="form-actions">
-      <%= f.button :submit, "Update", class: 'c-login__button' %>
+      <%= f.button :submit, "Update", class: 'c-devise__button' %>
     </div>
   <% end %>
 
-  <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: 'c-login__link' %>
+  <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: 'c-devise__link' %>
 
-  <%= link_to "Back", :back, class: 'c-login__link' %>
+  <%= link_to "Back", :back, class: 'c-devise__link' %>
 </div>
