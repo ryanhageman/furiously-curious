@@ -12,7 +12,6 @@ class CategoriesController < ApplicationController
     @articles = Post.with_specific_category(@category.id).visible_posts
   end
 
-
   private
 
   def set_search

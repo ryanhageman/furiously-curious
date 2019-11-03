@@ -11,8 +11,12 @@ $navbar--background-color: $black--transparent;
 $content--font-color: $black;
 $base--font-color: $white;
 
-$hero-image--text-radial-gradient: radial-gradient(circle at bottom left, rgba(256, 256, 256, .6), rgba(256, 256, 256, 0) 90%);
-$hero-image--text-linear-gradient: linear-gradient(rgba(256, 256, 256, 0), rgba(256, 256, 256, .5) 70%);
+$gradient-white--transparent: rgba(256, 256, 256, 0);
+$gradient-white--6: rgba(256, 256, 256, .6);
+$gradient-white--5: rgba(256, 256, 256, .5);
+
+$hero-image--text-radial-gradient: radial-gradient(circle at bottom left, $gradient-white--6, $gradient-white--transparent 90%);
+$hero-image--text-linear-gradient: linear-gradient($gradient-white--transparent, $gradient-white--5 70%);
 
 // Fonts
 $font--body: 'Fira Sans', 'Helvetica', 'Arial', sans-serif;
