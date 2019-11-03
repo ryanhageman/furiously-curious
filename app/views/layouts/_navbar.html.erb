@@ -2,9 +2,8 @@
   <div class="c-navbar__brand">
 
     <%= link_to (image_tag "brand_icon.png", class: "c-navbar__brand-icon"), root_path %>
-    <div class="c-navbar__brand-name">
-      Furiously Curious
-    </div>
+
+    <%= link_to 'Furiously Curious', root_path, class: "c-navbar__brand-name" %>
   </div>
 
   <div class="c-navbar__toggle" data-action="click->navbar#toggle">
@@ -29,7 +28,7 @@
   </div>
 
   <div class="c-navbar__list-item">
-    <%= link_to 'Categories', categories_path, class: "c-navbar__link" %>
+    <%= link_to 'Series', categories_path, class: "c-navbar__link" %>
   </div>
 
   <div class="c-navbar__list-item">
