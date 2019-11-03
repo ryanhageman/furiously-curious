@@ -12,7 +12,6 @@ class TagsController < ApplicationController
     @articles = Post.with_specific_tag(@tag.id).visible_posts
   end
 
-
   private
 
   def set_search
@@ -21,6 +20,5 @@ class TagsController < ApplicationController
 
   def requested_tags
     @search ? Tag.search_names(@search) : Tag.select(:name, :id)
-
   end
 end
