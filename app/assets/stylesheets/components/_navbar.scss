@@ -105,8 +105,10 @@
   }
 
   &__brand-name {
+    color: $base--font-color;
     display: none;
     font-size: 2.8rem;
+    text-decoration: none;
 
     @media (min-width: $tablet) {
       align-items: center;

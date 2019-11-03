@@ -1,15 +1,15 @@
-  <% @articles.each do |article| %>
-    <div class="c-article-preview">
-      <%= image_tag article.main_image, class: "c-article-preview__main-image" if article.main_image.attached? %>
+<% @articles.each do |article| %>
+  <div class="c-article-preview">
+    <%= image_tag article.main_image, class: "c-article-preview__main-image" if article.main_image.attached? %>
 
-      <%= link_to article.title, article_path(article), class: "c-article-preview__title" %>
+    <%= link_to article.title, article_path(article), class: "c-article-preview__title" %>
 
-      <div class="c-article-preview__date"><%= article.publish_date.strftime("%B %m, %Y") %></div>
+    <div class="c-article-preview__date"><%= article.publish_date.strftime("%B %m, %Y") %></div>
 
-      <div class="c-article-preview__summary">
-        <%= markdown(article.summary) %>
-      </div>
-
-      <%= link_to ' read more', article_path(article), class: "c-article-preview__read-more-link" %>
+    <div class="c-article-preview__summary">
+      <%= markdown(article.summary) %>
     </div>
-  <% end %>
+
+    <%= link_to ' read more', article_path(article), class: "c-article-preview__read-more-link" %>
+  </div>
+<% end %>

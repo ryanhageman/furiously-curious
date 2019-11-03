@@ -1,6 +1,10 @@
-<%= @category.name %>
+<div class="c-category">
+  <div class="c-category__title">
+    <%= @category.name %>
+  </div>
 
-<% @posts.each do |post| %>
-  <%= link_to post.title, article_path(post) %> <br>
-<% end %>
+  <div class="c-articles-list">
+    <%= render 'articles/articles_list'%>
+  </div>
+</div>
 
