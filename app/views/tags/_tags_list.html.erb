@@ -1,5 +1,3 @@
 <% @tags.each do |tag| %>
-  <div>
-    <h2><%= link_to tag.name, tag_path(tag) %></h2>
-  </div>
+  <%= link_to tag.name, tag_path(tag), class: "c-tags__name" %>
 <% end %>
