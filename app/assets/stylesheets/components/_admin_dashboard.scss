@@ -1,0 +1,79 @@
+.c-admin-dashboard {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  width: 80vw;
+
+  @media (min-width: $tablet) {
+    width: 65vw;
+  }
+
+  @media (min-width: $desktop) {
+    width: 40vw;
+  }
+
+  &__title {
+    @include title;
+    margin-bottom: 3rem;
+    text-align: center;
+    width: 90vw;
+  }
+
+  &__subtitle {
+    font-family: $font--heading;
+    font-size: 3rem;
+    margin-bottom: 1rem;
+
+    @media (min-width: $tablet) {
+      font-size: 3.5rem;
+    }
+  }
+
+  &__card {
+    border: 1px solid $black--transparent;
+    border-radius: 1rem;
+    display: grid;
+    gap: 1rem;
+    margin: 3rem;
+    padding: 2rem;
+    text-align: center;
+    width: 100%;
+  }
+
+  &__meta {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+  }
+
+  &__card-buttons {
+    display: grid;
+    gap: 2rem;
+
+    @media (min-width: $tablet) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &__button {
+    background-color: $blue;
+    border: 1px solid $blue--border;
+    border-radius: .8rem;
+    box-shadow: 1px 1px 3px $black--shadow;
+    color: $base--font-color;
+    font-size: 1.8rem;
+    line-height: 2.3rem;
+    padding: 1.5rem 0;
+    text-align: center;
+    text-decoration: none;
+    transition: scale ease-in-out .05s;
+    width: 100%;
+
+    &:hover {
+      box-shadow: 2px 2px 5px $black--shadow;
+      transform: scale(1.05);
+    }
+  }
+}
