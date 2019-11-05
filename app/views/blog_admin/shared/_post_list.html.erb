@@ -1,15 +1,45 @@
-  <%= link_to 'New Post', new_blog_admin_post_path %>
+  <%= link_to 'New Post', new_blog_admin_post_path, class: 'c-admin-posts__button' %>
 
   <% @posts.order('aasm_state').each do |post| %>
     <% present post do |post_presenter| %>
-      <div>
-        <strong><%= post_presenter.title_link %></strong>
-        <small><em><%= post_presenter.state.capitalize %></em></small>
-        (<small><%= post_presenter.change_state_links %></small>
-        <small><%= post_presenter.edit_post_link %></small>
-        <small><%= post_presenter.delete_post_link %></small>)
+      <div class="c-admin-post-preview">
+        <%= post_presenter.main_image 'c-admin-post-preview__main-image' %>
+
+        <div class="c-admin-post-preview__info">
+          <div class="c-admin-post-preview__state"><%= post_presenter.state.capitalize %></div>
+          <%= post_presenter.title_link 'c-admin-post-preview__title' %>
+          <div class="c-admin-post-preview__date">Updated <%= post_presenter.last_update %></div>
+        </div>
+
+        <div class="c-admin-post-preview__summary">
+          <%= markdown(post_presenter.post.summary) %>
+        </div>
+
+        <div class="c-admin-post-preview__editing-links">
+          <%= post_presenter.edit_post_link 'c-admin-post-preview__link' %>
+          <%= post_presenter.change_state_links 'c-admin-post-preview__link' %>
+          <%= post_presenter.delete_post_link 'c-admin-post-preview__link' %>
+        </div>
       </div>
     <% end %>
   <% end %>
 
   <%= paginate @posts %>
+
+
+
+<%# @articles.each do |article| %>
+  <%# <div class="c-article-preview"> %>
+    <%#= image_tag article.main_image, class: "c-article-preview__main-image" if article.main_image.attached? %>
+
+    <%#= link_to article.title, article_path(article), class: "c-article-preview__title" %>
+
+    <%# <div class="c-article-preview__date">= article.publish_date.strftime("%B %m, %Y")</div> %>
+
+    <%# <div class="c-article-preview__summary"> %>
+      <%#= markdown(article.summary) %>
+    <%# </div> %>
+
+    <%#= link_to ' read more', article_path(article), class: "c-article-preview__read-more-link" %>
+  <%# </div> %>
+<%# end %>

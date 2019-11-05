@@ -1,0 +1,86 @@
+.c-admin-post-preview {
+  background-color: $white;
+  border-radius: 1rem;
+  display: grid;
+  gap: 1rem;
+  grid-template-areas:
+  'main-image info'
+  'summary summary'
+  'buttons buttons';
+  grid-template-columns: .75fr 1fr;
+  padding: 1rem;
+
+  @media (min-width: $desktop) {
+    grid-template-areas:
+    'main-image'
+    'info'
+    'summary'
+    'buttons';
+    grid-template-columns: 1fr;
+  }
+
+  &__main-image {
+    grid-area: main-image;
+    place-self: center center;
+    width: 100%;
+  }
+
+  &__info {
+    align-content: start;
+    display: grid;
+    grid-area: info;
+    text-align: left;
+  }
+
+  &__title {
+    color: $content--font-color;
+    font-family: $font--heading;
+    font-size: 3rem;
+    font-weight: normal;
+    text-decoration: none;
+
+    @media (min-width: $tablet) {
+      font-size: 4rem;
+    }
+  }
+
+  &__state {
+    font-size: 1.3rem;
+    font-style: italic;
+    margin: .5rem 0;
+  }
+
+  &__date {
+    font-size: 1.3rem;
+  }
+
+  &__summary {
+    font-size: 1.4rem;
+    grid-area: summary;
+    text-align: left;
+  }
+
+  &__editing-links {
+    display: grid;
+    gap: 1rem;
+    grid-area: buttons;
+    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+  }
+
+  &__link {
+    background-color: $blue;
+    border: 1px solid $blue--border;
+    border-radius: .5rem;
+    box-shadow: 1px 1px 3px $black--shadow;
+    color: $content--font-color;
+    font-size: 1.6rem;
+    padding: 1rem;
+    text-decoration: none;
+    transition: scale ease-in-out .05s;
+
+    &:hover {
+      box-shadow: 2px 2px 5px $black--shadow;
+      transform: scale(1.05);
+    }
+  }
+}

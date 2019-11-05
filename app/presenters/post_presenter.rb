@@ -16,12 +16,22 @@ class PostPresenter < BasePresenter
     post.aasm_state
   end
 
-  def main_image
-    h.image_tag post.main_image if main_image?
+  def main_image(class_name = '')
+    return h.image_tag post.main_image, class: class_name if main_image?
+
+    h.image_tag 'no_image_available.svg', class: class_name
   end
 
   def author_username
     post.author.profile.username
+  end
+
+  def created_date
+    post.created_at.strftime('%B %d, %Y')
+  end
+
+  def last_update
+    post.updated_at.strftime('%B %d, %Y')
   end
 
   def post_tags
@@ -32,22 +42,22 @@ class PostPresenter < BasePresenter
     post.categories.empty? ? 'No Categories' : render_categories
   end
 
-  def change_state_links
+  def change_state_links(class_name = '')
     PostPresenter::StateLinks
-      .new(post, template)
-      .links(state)
+      .new(post, template, class_name)
+      .links(state, class_name)
   end
 
-  def title_link
-    h.link_to post.title, h.blog_admin_post_path(post)
+  def title_link(class_name = '')
+    h.link_to post.title, h.blog_admin_post_path(post), class: class_name
   end
 
-  def edit_post_link
-    h.link_to 'Edit', h.edit_blog_admin_post_path(post)
+  def edit_post_link(class_name = '')
+    h.link_to 'Edit', h.edit_blog_admin_post_path(post), class: class_name
   end
 
-  def delete_post_link
-    h.link_to 'Delete', h.blog_admin_post_path(post), method: :delete
+  def delete_post_link(class_name = '')
+    h.link_to 'Delete', h.blog_admin_post_path(post), method: :delete, class: class_name
   end
 
   def markdown_body
