@@ -1,8 +1,12 @@
-<h1>Your Published Posts</h1>
+<div class="c-admin-posts">
+  <div class="c-admin-posts__title">
+    Your Published Posts
+  </div>
 
-<%= render partial: 'shared/search_form',
-           locals: {endpoint: blog_admin_published_posts_path} %>
+  <%= render partial: 'shared/search_form',
+             locals: {endpoint: blog_admin_published_posts_path} %>
 
-<div id="published-post-list">
-  <%= render 'blog_admin/shared/post_list' %>
+  <div class="c-admin-posts__list js-admin-posts__list--published">
+    <%= render 'blog_admin/shared/post_list' %>
+  </div>
 </div>
