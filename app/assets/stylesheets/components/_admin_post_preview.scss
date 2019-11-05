@@ -10,6 +10,10 @@
   grid-template-columns: 1fr 2fr;
   padding: 1rem;
 
+  @media (min-width: $tablet) {
+    grid-template-columns: .75fr 1fr;
+  }
+
   &__main-image {
     grid-area: main-image;
     place-self: center center;

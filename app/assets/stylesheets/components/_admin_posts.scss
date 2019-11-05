@@ -4,6 +4,11 @@
   margin: 1.5rem;
   padding: 1.5rem;
 
+  @media (min-width: $tablet) {
+    margin: auto;
+    max-width: 80vw;
+  }
+
   &__title {
     @include title;
   }
