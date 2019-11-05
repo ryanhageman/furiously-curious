@@ -9,6 +9,10 @@
     max-width: 80vw;
   }
 
+  @media (min-width: $desktop) {
+    max-width: 45vw;
+  }
+
   &__title {
     @include title;
   }
@@ -19,6 +23,7 @@
     margin: 1rem;
     text-align: center;
     width: 100%;
+
   }
 
   &__button {

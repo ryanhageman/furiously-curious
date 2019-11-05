@@ -7,11 +7,16 @@
   'main-image info'
   'summary summary'
   'buttons buttons';
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: .75fr 1fr;
   padding: 1rem;
 
-  @media (min-width: $tablet) {
-    grid-template-columns: .75fr 1fr;
+  @media (min-width: $desktop) {
+    grid-template-areas:
+    'main-image'
+    'info'
+    'summary'
+    'buttons';
+    grid-template-columns: 1fr;
   }
 
   &__main-image {
