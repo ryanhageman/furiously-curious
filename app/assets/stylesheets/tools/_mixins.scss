@@ -7,3 +7,21 @@
     font-size: 4.5rem;
   }
 }
+
+@mixin admin-button {
+  background-color: $blue;
+  border: 1px solid $blue--border;
+  border-radius: .8rem;
+  box-shadow: 1px 1px 3px $black--shadow;
+  color: $base--font-color;
+  font-size: 1.8rem;
+  padding: 1.5rem 0;
+  text-align: center;
+  text-decoration: none;
+  transition: scale ease-in-out .05s;
+
+  &:hover {
+    box-shadow: 2px 2px 5px $black--shadow;
+    transform: scale(1.01);
+  }
+}

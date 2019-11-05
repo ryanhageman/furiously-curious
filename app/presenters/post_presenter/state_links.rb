@@ -5,9 +5,15 @@ class PostPresenter
   class StateLinks < BasePresenter
     presents :post
 
-    def links(state)
+    def initialize(object, template, class_name = '')
+      @object = object
+      @template = template
+      @class_name = class_name
+    end
+
+    def links(state, class_name = '')
       klass = "PostPresenter::#{state.capitalize}StateLinks".constantize
-      klass.new(post, template).links
+      klass.new(post, template, class_name).links
     end
 
     private
@@ -21,7 +27,7 @@ class PostPresenter
     end
 
     def link_options
-      { method: :patch, remote: true }
+      { method: :patch, remote: true, class: @class_name }
     end
   end
 end
