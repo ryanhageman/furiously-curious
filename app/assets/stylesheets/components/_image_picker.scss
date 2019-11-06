@@ -1,0 +1,102 @@
+
+.c-image-picker {
+  display: grid;
+  gap: 1.5rem;
+  justify-items: center;
+
+  &__card {
+    display: grid;
+    place-items: center center;
+    width: 100%;
+  }
+
+  &__toggle-button {
+    background-color: $blue;
+    border: 1px solid $blue--border;
+    border-radius: .7rem;
+    box-shadow: 1px 1px 3px $black--shadow;
+    color: $content--font-color;
+    cursor: pointer;
+    font-family: $font--heading;
+    font-size: 2rem;
+    grid-column: 1 / -1;
+    padding: 1rem 0;
+    text-align: center;
+    transition: transform ease-in-out .05s, box-shadow .05s;
+    width: 100%;
+
+    @media (min-width: $tablet) {
+      font-size: 2.4rem;
+    }
+
+    &:hover {
+      box-shadow: 3px 3px 5px $black--shadow;
+      transform: scale(1.01) translateY(-1px) translateX(-1px);
+    }
+  }
+
+  &__images {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    height: 0;
+    justify-items: center;
+    overflow: hidden;
+    transition: height .5s;
+    width: 100%;
+
+    &.is-open {
+      height: 400px;
+      overflow: scroll;
+    }
+  }
+
+  &__image {
+    cursor: pointer;
+  }
+
+  &__links {
+    align-self: end;
+    display: grid;
+    gap: .8rem;
+    justify-items: center;
+    width: 100%;
+  }
+
+  &__link {
+    background-color: $blue;
+    border: 1px solid $blue--border;
+    border-radius: .7rem;
+    box-shadow: 1px 1px 3px $black--shadow;
+    color: $content--font-color;
+    cursor: pointer;
+    padding: .2rem 0;
+    text-align: center;
+    text-decoration: none;
+    transition: transform ease-in-out .05s, box-shadow .05s;
+    width: 90%;
+
+    &:hover {
+      box-shadow: 3px 3px 5px $black--shadow;
+      transform: scale(1.01) translateY(-1px) translateX(-1px);
+    }
+  }
+
+  &__link--danger {
+    background-color: $danger;
+    border: 1px solid $danger--border;
+    border-radius: .7rem;
+    box-shadow: 1px 1px 3px $black--shadow;
+    color: $content--font-color;
+    padding: .2rem 0;
+    text-align: center;
+    text-decoration: none;
+    transition: transform ease-in-out .05s, box-shadow .05s;
+    width: 90%;
+
+    &:hover {
+      box-shadow: 3px 3px 5px $black--shadow;
+      transform: scale(1.01) translateY(-1px) translateX(-1px);
+    }
+  }
+}

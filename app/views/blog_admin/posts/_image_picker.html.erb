@@ -1,28 +1,35 @@
-<% if @profile.post_images.attached? %>
-  <% @profile.post_images.each do |image| %>
-    <div data-controller="clipboard">
-      <%= image_tag(image.variant(resize: "120x120"),
-              "data-action": "click->clipboard#copy")  %>
+<div class="c-image-picker" data-controller="image-picker">
+  <div class="c-image-picker__toggle-button" data-target="image-picker.toggleButton" data-action="click->image-picker#toggleImagePicker">
+    Add An Image
+  </div>
+  <div class="c-image-picker__images" data-target="image-picker.imageList">
+    <% if @profile.post_images.attached? %>
+      <% @profile.post_images.order('created_at DESC').each do |image| %>
+        <div class="c-image-picker__card" data-controller="clipboard">
+          <%= image_tag(image.variant(resize: "120x120"),
+                  "data-action": "click->clipboard#copy", class: 'c-image-picker__image')  %>
 
-      <input style="border: none; width: 0.1px;"
-              data-target="clipboard.source"
-              type="text"
-              value="![](<%= url_for(image) %>)"
-              placeholder="link"
-              readonly>
-      <br>
-      <button id="clipbutton"
-               data-action="clipboard#copy">
-        Copy Link
-      </button>
+          <div class="c-image-picker__links">
+            <input  style="border: none; width: 0.1px; height: 0.1px;"
+                    data-target="clipboard.source"
+                    type="text"
+                    value="![](<%= url_for(image) %>)"
+                    placeholder="link"
+                    readonly>
+            <div class="c-image-picker__link" data-action="click->clipboard#copy">
+              Copy Link
+            </div>
+            <%= link_to 'Remove',
+                    accounts_post_image_path(image.blob_id),
+                    method: :delete,
+                    remote: true,
+                    class: 'c-image-picker__link--danger' %>
+          </div>
 
-      <%= button_to 'Remove',
-              accounts_post_image_path(image.blob_id),
-              method: :delete,
-              remote: true %>
-
-    </div>
-  <% end %>
-<% else %>
-  <h3>No images available</h3>
-<% end %>
+        </div>
+      <% end %>
+    <% else %>
+      <h3>No images available</h3>
+    <% end %>
+  </div>
+</div>
