@@ -1,6 +1,7 @@
 .c-admin-post-form {
   display: grid;
   font-size: 1.6rem;
+  justify-items: center;
   margin: 1.5rem;
 
   &__title {
@@ -18,6 +19,11 @@
     display: grid;
     gap: 1rem;
     padding: 1rem;
+
+
+    @media (min-width: $desktop) {
+      max-width: 65vw;
+    }
   }
 
   &__heading {
