@@ -2,7 +2,6 @@
   display: grid;
   font-size: 1.6rem;
   justify-items: center;
-  margin: 1.5rem;
 
   &__title {
     @include title;
@@ -19,10 +18,10 @@
     display: grid;
     gap: 1rem;
     padding: 1rem;
-
+    width: 90vw;
 
     @media (min-width: $desktop) {
-      max-width: 65vw;
+      width: 65vw;
     }
   }
 
