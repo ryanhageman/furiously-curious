@@ -40,7 +40,7 @@
     <div class="c-admin-post-form__heading">Upload An Image</div>
 
     <div class="c-admin-post-form__image-upload-area">
-      <%= simple_form_for([:blog_admin, @profile], html: { multipart: true, class: "dropzone js-admin-post-form__dropzone", "data-profile-id": @profile.id }) do |form| %>
+      <%= simple_form_for([:blog_admin, @profile], html: { multipart: true, class: "dropzone c-admin-post-form__dropzone js-admin-post-form__dropzone", "data-profile-id": @profile.id }) do |form| %>
         <div class="dz-message needsclick c-admin-post-form__dropzone-message">
           <h3>Drop file here</h3> or
           <strong>click</strong> to upload

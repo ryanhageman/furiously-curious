@@ -34,6 +34,16 @@
     margin: auto;
   }
 
+  &__image-upload-area {
+    display: grid;
+  }
+
+  &__dropzone {
+    border-radius: 1rem;
+    justify-self: center;
+    width: calc(95% + 1rem);
+  }
+
   &__input-wrapper {
     display: grid;
     justify-items: center;
@@ -60,8 +70,11 @@
     background-color: $white--text-area;
     border: 1px solid $black--transparent;
     border-radius: 1rem;
+    display: grid;
+    justify-self: center;
     margin-top: 1rem;
-    max-width: 86vw;
+    padding-left: .5rem;
+    width: calc(95% + 1rem);
 
     img {
       max-width: 95%;
@@ -86,11 +99,12 @@
     color: $content--font-color;
     cursor: pointer;
     font-size: 2rem;
+    justify-self: center;
     padding: 1rem 0;
     text-align: center;
     text-decoration: none;
     transition: transform ease-in-out .05s, box-shadow .05s;
-    width: 100%;
+    width: calc(95% + 1rem);
 
     &:hover {
       box-shadow: 3px 3px 5px $black--shadow;
@@ -109,5 +123,7 @@
 }
 
 .awesomplete {
+  display: grid;
+  justify-items: center;
   width: 100%;
 }

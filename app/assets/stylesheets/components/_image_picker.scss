@@ -20,10 +20,11 @@
     font-family: $font--heading;
     font-size: 2rem;
     grid-column: 1 / -1;
+    justify-self: center;
     padding: 1rem 0;
     text-align: center;
     transition: transform ease-in-out .05s, box-shadow .05s;
-    width: 100%;
+    width: calc(95% + 1rem);
 
     @media (min-width: $tablet) {
       font-size: 2.4rem;
