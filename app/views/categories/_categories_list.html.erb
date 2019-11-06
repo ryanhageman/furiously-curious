@@ -1,3 +1,3 @@
 <% @categories.each do |category| %>
-  <%= link_to category.name, category_path(category), class: 'c-categories__name' %>
+  <%= link_to category.name.titleize, category_path(category), class: 'c-categories__name' %>
 <% end %>
