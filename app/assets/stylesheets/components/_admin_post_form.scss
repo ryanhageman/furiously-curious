@@ -30,6 +30,10 @@
     }
   }
 
+  &__image {
+    margin: auto;
+  }
+
   &__input-wrapper {
     display: grid;
     justify-items: center;
@@ -57,6 +61,15 @@
     border: 1px solid $black--transparent;
     border-radius: 1rem;
     margin-top: 1rem;
+    max-width: 86vw;
+
+    img {
+      max-width: 95%;
+    }
+
+    pre {
+      word-wrap: break-word;
+    }
   }
 
   &__file-upload {
