@@ -1,7 +1,7 @@
-var newContent = "<%= j render 'blog_admin/shared/category_list' %>"
+var newContent = "<h1>Sorry, Didn't Find Anything</h1>"
 
-if (<%= @categories.length %> === 0) {
-  newContent = "<h1>Sorry, Didn't Find Anything</h1>"
+if (<%= @categories.length %> > 0) {
+  newContent = "<%= j render 'blog_admin/shared/category_list' %>"
 }
 
-document.getElementById('category-list').innerHTML = newContent
+document.querySelector('.js-admin-categories__list').innerHTML = newContent
