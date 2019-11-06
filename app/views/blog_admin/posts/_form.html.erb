@@ -1,51 +1,74 @@
-<% present @post do |post_presenter| %>
-  <h1>Add an image</h1>
+<div class="c-admin-post-form__card">
+  <% present @post do |post_presenter| %>
+    <%= simple_form_for([:blog_admin, @post],
+                        html: { class: "c-admin-post-form__form" },
+                        defaults: { wrapper_html: { class: 'c-admin-post-form__input-wrapper'} }
+                        ) do |f| %>
+      <% if @post.main_image.attached? %>
+        <%= image_tag @post.main_image.variant(resize: '200x200'), class: 'c-admin-post-form__image' %>
+        <%= f.input :delete_main_image, as: :boolean, label: 'Delete image' %>
+      <% end %>
 
-  <div id="content">
-    <%= simple_form_for([:blog_admin, @profile], html: { multipart: true, class: "dropzone", id: "post-images-dropzone", "data-profile-id": @profile.id }) do |f| %>
-      <div class="dz-message needsclick">
-        <h3>Drop file here</h3> or
-        <strong>click</strong> to upload
-      </div>
+      <%= f.input :main_image,
+                  as: :file,
+                  input_html: { class: 'c-admin-post-form__file-upload' },
+                  label_html: { class: 'c-admin-post-form__label'} %>
+      <%= f.input :title,
+                  input_html: { class: 'c-admin-post-form__input' },
+                  label_html: { class: 'c-admin-post-form__label'} %>
+      <%= f.input :summary,
+                  as: :text,
+                  input_html: { class: 'c-admin-post-form__input', rows: 6 },
+                  label_html: { class: 'c-admin-post-form__label'} %>
+      <%= f.input :body,
+                  label: false,
+                  wrapper_html: { class: 'c-admin-post-form__body' } %>
 
-      <div class="fallback">
-        <%= f.input :post_images, as: :file %>
-        <%= f.submit 'Upload the Image' %>
-      </div>
+      <div class="js-admin-post-form__image-picker"></div>
+
+      <%= f.input :raw_tags,
+                  label: 'Tags',
+                  input_html: { class: 'c-admin-post-form__input' },
+                  label_html: { class: 'c-admin-post-form__label'} %>
+      <%= f.input :raw_categories,
+                  label: 'Categories',
+                  input_html: { class: 'c-admin-post-form__input' },
+                  label_html: { class: 'c-admin-post-form__label'} %>
+      <%= f.button :submit, class: 'c-admin-post-form__submit-button' %>
     <% end %>
-  </div>
 
-  <h1>Choose An Image</h1>
+    <div class="c-admin-post-form__heading">Upload An Image</div>
 
-  <div id="image-picker"></div>
+    <div class="c-admin-post-form__image-upload-area">
+      <%= simple_form_for([:blog_admin, @profile], html: { multipart: true, class: "dropzone c-admin-post-form__dropzone js-admin-post-form__dropzone", "data-profile-id": @profile.id }) do |form| %>
+        <div class="dz-message needsclick c-admin-post-form__dropzone-message">
+          <h3>Drop file here</h3> or
+          <strong>click</strong> to upload
+        </div>
 
-  <%= simple_form_for([:blog_admin, @post]) do |f| %>
-    <% if @post.main_image.attached? %>
-      <%= image_tag @post.main_image.variant(resize: '200x200') %>
-      <%= f.input :delete_main_image, as: :boolean, label: 'Delete image' %>
-    <% end %>
+        <div class="fallback">
+          <%= form.input :post_images, as: :file %>
+          <%= form.submit 'Upload the Image' %>
+        </div>
+      <% end %>
+    </div>
 
-    <%= f.input :main_image, as: :file %>
-    <%= f.input :title %>
-    <%= f.input :summary, as: :text %>
-    <%= f.input :raw_tags, label: 'Tags' %>
-    <%= f.input :raw_categories, label: 'Categories' %>
-    <%= f.input :body, label: false %>
-    <%= f.button :submit %>
+
+
+
+    <script type="text/javascript">
+        let tagInput = document.getElementById('post_raw_tags');
+        let tagList = <%= raw post_presenter.all_tags %>;
+        let categoryInput = document.getElementById('post_raw_categories');
+        let categoryList = <%= raw post_presenter.all_categories %>
+
+        autocomplete(tagInput, tagList);
+        autocomplete(categoryInput, categoryList);
+
+        let editor = new Editor({
+          element: document.getElementById('post_body')
+        });
+        editor.render();
+    </script>
   <% end %>
-
-  <script type="text/javascript">
-      let tagInput = document.getElementById('post_raw_tags');
-      let tagList = <%= raw post_presenter.all_tags %>;
-      let categoryInput = document.getElementById('post_raw_categories');
-      let categoryList = <%= raw post_presenter.all_categories %>
-
-      autocomplete(tagInput, tagList);
-      autocomplete(categoryInput, categoryList);
-
-      let editor = new Editor({
-        element: document.getElementById('post_body')
-      });
-      editor.render();
-  </script>
-<% end %>
+</div>

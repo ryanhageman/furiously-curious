@@ -2,8 +2,8 @@
   display: grid;
   justify-content: center;
   justify-self: center;
-  padding: 0 5vw;
   max-width: 500px;
+  padding: 0 5vw;
 
   &__title {
     @include title;
@@ -13,17 +13,17 @@
   &__form {
     align-items: center;
     display: flex;
-    font-size: 1.6rem;
     flex-direction: column;
+    font-size: 1.6rem;
   }
 
   &__input {
     border: 1px solid $black--transparent;
     border-radius: 1rem;
     margin: 1rem 0;
-    padding-top: .5rem;
     padding-bottom: .5rem;
     padding-left: 1rem;
+    padding-top: .5rem;
     width: 95%;
   }
 
@@ -33,11 +33,11 @@
     border-radius: 15px;
     margin: 2rem 0;
     padding: .5rem 6rem;
-    transition: all ease-in-out .05s;
+    transition: transform ease-in-out .05s;
 
     &:hover {
-      transform: scale(1.05);
       box-shadow: 2px 2px 5px $black--shadow;
+      transform: scale(1.05);
     }
   }
 
@@ -47,7 +47,7 @@
     margin: .5rem 0;
     text-align: center;
     text-decoration: none;
-    transition: all ease-in-out .05s;
+    transition: transform ease-in-out .05s;
 
     &:hover {
       transform: scale(1.02);

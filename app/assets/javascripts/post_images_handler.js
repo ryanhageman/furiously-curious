@@ -3,7 +3,7 @@
 Dropzone.autoDiscover = false
 
 $(document).on('turbolinks:load', () => {
-  let dropzoneElement = $('#post-images-dropzone')
+  let dropzoneElement = $('.js-admin-post-form__dropzone')
 
   let addSuccessClass = element => {
     element.classList.add('dz-success')
