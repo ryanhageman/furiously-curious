@@ -1,7 +1,7 @@
-var newContent = "<%= j render 'blog_admin/shared/post_list' %>"
+var newContent = "<h1>Sorry, No Posts Left</h1>"
 
-if (<%= @posts.length %> === 0) {
-  newContent = "<h1>Sorry, No Posts Left</h1>"
+if (<%= @posts.length %> > 0) {
+  newContent = "<%= j render 'blog_admin/shared/post_list' %>"
 }
 
-document.getElementById('hidden-post-list').innerHTML = newContent
+document.querySelector('.js-admin-posts__list--hidden').innerHTML = newContent
