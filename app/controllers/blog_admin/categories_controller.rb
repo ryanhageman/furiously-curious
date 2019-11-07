@@ -70,6 +70,5 @@ module BlogAdmin
       category = Category.find(params[:id])
       Post.with_specific_category(category.id)
     end
-
   end
 end
