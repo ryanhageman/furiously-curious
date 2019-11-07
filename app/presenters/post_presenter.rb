@@ -79,7 +79,7 @@ class PostPresenter < BasePresenter
   def render_categories
     h.content_tag :ul do
       post.categories.collect do |category|
-        h.content_tag :li, category.name
+        h.content_tag :li, category.name.titleize
       end.join.html_safe
     end
   end
