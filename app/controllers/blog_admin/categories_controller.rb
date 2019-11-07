@@ -25,7 +25,10 @@ module BlogAdmin
     def edit; end
 
     def update
-      if @category.update(category_params)
+      if params[:post_id]
+        set_authorized_post
+        change_post_state
+      elsif @category.update(category_params)
         redirect_to blog_admin_categories_path, notice: 'Updated'
       else
         render :edit
@@ -52,6 +55,11 @@ module BlogAdmin
     def set_authorized_category
       @category = Category.find(params[:id])
       authorize @category
+    end
+
+    def set_authorized_post
+      @post = Post.find(params[:post_id])
+      authorize @post
     end
 
     def save_category

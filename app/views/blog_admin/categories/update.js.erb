@@ -1,0 +1,7 @@
+var newContent = "<h1>Sorry, No Posts Left</h1>"
+
+if (<%= @posts.length %> > 0) {
+  newContent = "<%= j render 'blog_admin/shared/post_list' %>"
+}
+
+document.querySelector('.js-admin-posts__list').innerHTML = newContent
