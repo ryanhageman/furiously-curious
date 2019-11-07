@@ -1,0 +1,11 @@
+.c-admin-tags {
+  display: grid;
+  font-size: 1.6rem;
+  justify-items: center;
+  justify-self: center;
+  width: 90vw;
+
+  &__title {
+    @include title;
+  }
+}
