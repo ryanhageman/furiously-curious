@@ -2,7 +2,7 @@
 
 module BlogAdmin
   class CategoriesController < BlogAdminController
-    before_action :set_authorized_category, only: %i[edit update destroy]
+    before_action :set_authorized_category, only: %i[edit show update destroy]
     after_action :verify_authorized, except: %i[index]
 
     def index
@@ -11,6 +11,10 @@ module BlogAdmin
 
     def new
       @category = new_authorized_category
+    end
+
+    def show
+      @posts = requested_posts
     end
 
     def create
@@ -61,5 +65,11 @@ module BlogAdmin
     def requested_categories
       @search ? Category.search_names(@search) : Category.select(:name, :id)
     end
+
+    def view_scope
+      category = Category.find(params[:id])
+      Post.with_specific_category(category.id)
+    end
+
   end
 end

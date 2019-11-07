@@ -1,0 +1,10 @@
+<div class="c-admin-category">
+  <div class="c-admin-category__title">
+    <%= @category.name.titleize %>
+  </div>
+  <div class="c-admin-posts__list">
+    <%= link_to "Edit", edit_blog_admin_category_path(@category), class: 'c-admin-posts__button' %>
+    <%= render 'blog_admin/shared/post_list'%>
+  </div>
+</div>
+

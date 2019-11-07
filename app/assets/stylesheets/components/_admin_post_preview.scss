@@ -50,6 +50,26 @@
     margin: .5rem 0;
   }
 
+  &__post-meta {
+    display: grid;
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+
+    @media (min-width: $tablet) {
+      grid-template-columns: repeat(2, auto);
+      gap: 2rem;
+      justify-content: start;
+    }
+
+    ul {
+      font-style: italic;
+      font-size: 1.3rem;
+      list-style: none;
+      margin: 0;
+      padding-left: 1rem;
+    }
+  }
+
   &__date {
     font-size: 1.3rem;
   }
