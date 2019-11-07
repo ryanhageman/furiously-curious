@@ -16,8 +16,8 @@ RSpec.describe 'Category requests' do
 
       result = response.body
 
-      expect(result).to include(subject1.name)
-      expect(result).to include(subject2.name)
+      expect(result).to include(subject1.name.titleize)
+      expect(result).to include(subject2.name.titleize)
     end
   end
 end

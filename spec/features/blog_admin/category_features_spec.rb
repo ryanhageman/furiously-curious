@@ -19,9 +19,9 @@ RSpec.feature 'Category Features', type: :feature do
 
       result = page
 
-      expect(result).to have_content(subject1.name)
-      expect(result).to have_content(subject2.name)
-      expect(result).not_to have_content(other_category.name)
+      expect(result).to have_content(/#{subject1.name}/i)
+      expect(result).to have_content(/#{subject2.name}/i)
+      expect(result).not_to have_content(/#{other_category.name}/i)
     end
   end
 
@@ -31,13 +31,13 @@ RSpec.feature 'Category Features', type: :feature do
 
     scenario 'they create a new category' do
       visit blog_admin_categories_path
-      click_on 'New Category'
+      click_on 'New Series'
       fill_in 'Name', with: 'the new category'
       click_on 'Create Category'
 
       result = page
 
-      expect(result).to have_content('the new category')
+      expect(result).to have_content('The New Category')
     end
 
     scenario 'they edit a category' do
@@ -45,14 +45,15 @@ RSpec.feature 'Category Features', type: :feature do
       other_category = category2
 
       visit blog_admin_categories_path
-      click_on subject.name
+      click_on subject.name.titleize
+      click_on 'Edit'
       fill_in 'Name', with: 'Updated category'
       click_on 'Update Category'
 
       result = page
 
-      expect(result).to have_content('updated category')
-      expect(result).to have_content(other_category.name)
+      expect(result).to have_content(/updated category/i)
+      expect(result).to have_content(/#{other_category.name}/i)
     end
 
     scenario 'they destroy a category' do
@@ -61,14 +62,14 @@ RSpec.feature 'Category Features', type: :feature do
 
       visit blog_admin_categories_path
 
-      expect(page).to have_content(subject.name)
+      expect(page).to have_content(/#{subject.name}/i)
 
       click_on 'Delete', match: :first
 
       result = page
 
-      expect(result).not_to have_content(subject.name)
-      expect(result).to have_content(other_category.name)
+      expect(result).not_to have_content(/#{subject.name}/i)
+      expect(result).to have_content(/#{other_category.name}/i)
     end
   end
 end
