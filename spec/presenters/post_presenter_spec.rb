@@ -61,7 +61,7 @@ RSpec.describe PostPresenter do
 
         result = presenter.post_categories
 
-        expect(result).to include(subject)
+        expect(result).to include(subject.titleize)
       end
 
       it 'returns "No Categories" when the post has no categories' do
