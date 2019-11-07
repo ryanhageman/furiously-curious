@@ -1,0 +1,68 @@
+.c-admin-tag {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  justify-self: center;
+  width: 90vw;
+
+  @media (min-width: $tablet) {
+    margin: auto;
+    width: 80vw;
+  }
+
+  @media (min-width: $desktop) {
+    width: 45vw;
+  }
+
+  &__title {
+    @include title
+  }
+
+  &__form {
+    display: grid;
+    font-size: 1.6rem;
+  }
+
+  &__form-input-wrapper {
+    display: grid;
+    justify-items: center;
+    width: 100%;
+  }
+
+  &__form-label {
+    font-family: $font--heading;
+    font-size: 1.8rem;
+    font-weight: bold;
+  }
+
+  &__form-input {
+    border: 1px solid $black--transparent;
+    border-radius: 1rem;
+    margin: 1rem 0;
+    padding-bottom: .5rem;
+    padding-left: 1rem;
+    padding-top: .5rem;
+    width: 95%;
+  }
+
+  &__form-submit-button {
+    background-color: $blue;
+    border: 1px solid $blue--border;
+    border-radius: .7rem;
+    box-shadow: 1px 1px 3px $black--shadow;
+    color: $content--font-color;
+    cursor: pointer;
+    justify-self: center;
+    padding: 1rem 0;
+    text-align: center;
+    text-decoration: none;
+    transition: transform ease-in-out .05s, box-shadow .05s;
+    width: calc(95% + 1rem);
+
+    &:hover {
+      box-shadow: 3px 3px 5px $black--shadow;
+      transform: scale(1.01) translateY(-1px) translateX(-1px);
+    }
+  }
+
+}

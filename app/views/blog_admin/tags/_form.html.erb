@@ -1,4 +1,9 @@
-<%= simple_form_for([:blog_admin, @tag]) do |f| %>
-  <%= f.input :name %>
-  <%= f.button :submit %>
-<% end %>
+<div class="c-admin-tag__form">
+  <%= simple_form_for([:blog_admin, @tag],
+                        defaults: { wrapper_html: { class: 'c-admin-tag__form-input-wrapper'} }) do |f| %>
+    <%= f.input :name,
+                input_html: { class: 'c-admin-tag__form-input' },
+                label_html: { class: 'c-admin-tag__form-label'} %>
+    <%= f.button :submit, class: 'c-admin-tag__form-submit-button' %>
+  <% end %>
+</div>

@@ -1,7 +1,20 @@
-<%= link_to 'New Tag', new_blog_admin_tag_path %>
-<br>
+<div class="c-admin-tags-list">
+  <%= link_to 'New Tag', new_blog_admin_tag_path, class: 'c-admin-tags-list__button' %>
 
-<% @tags.each do |tag| %>
-  <%= link_to tag.name, edit_blog_admin_tag_path(tag) %>
-  <%= link_to 'Delete', blog_admin_tag_path(tag), method: :delete %><br>
-<% end %>
+
+  <% @tags.order('name ASC').each do |tag| %>
+    <div class="c-admin-tags-list__card">
+      <div>
+        <%= link_to tag.name, blog_admin_tag_path(tag), class: 'c-admin-tags-list__heading' %>
+        <div class="c-admin-tags-list__post-count">
+          <%= pluralize tag.posts.count, 'posts' %>
+        </div>
+      </div>
+
+      <div class="c-admin-tags-list__links">
+        <%= link_to 'Edit', edit_blog_admin_tag_path(tag), class: 'c-admin-tags-list__link' %>
+        <%= link_to 'Delete', blog_admin_tag_path(tag), method: :delete, class: 'c-admin-tags-list__link--danger' %>
+      </div>
+    </div>
+  <% end %>
+</div>

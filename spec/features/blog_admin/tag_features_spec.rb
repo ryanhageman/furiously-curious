@@ -46,6 +46,7 @@ RSpec.feature 'Tag Features', type: :feature do
 
       visit blog_admin_tags_path
       click_on subject.name
+      click_on 'Edit'
       fill_in 'Name', with: 'Updated tag'
       click_on 'Update Tag'
 
