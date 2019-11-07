@@ -2,7 +2,7 @@
 
 module BlogAdmin
   class TagsController < BlogAdminController
-    before_action :set_authorized_tag, only: %i[edit update destroy]
+    before_action :set_authorized_tag, only: %i[edit show update destroy]
     after_action :verify_authorized, except: %i[index]
 
     def index
@@ -13,6 +13,10 @@ module BlogAdmin
       @tag = new_authorized_tag
     end
 
+    def show
+      @posts = requested_posts
+    end
+
     def create
       @tag = new_authorized_tag(tag_params)
       save_tag
@@ -21,7 +25,10 @@ module BlogAdmin
     def edit; end
 
     def update
-      if @tag.update(tag_params)
+      if params[:post_id]
+        set_authorized_post
+        change_post_state
+      elsif @tag.update(tag_params)
         redirect_to blog_admin_tags_url, notice: 'Updated'
       else
         render :edit, notice: 'There was a problem'
@@ -48,6 +55,11 @@ module BlogAdmin
     def set_authorized_tag
       @tag = Tag.find(params[:id])
       authorize @tag
+    end
+
+    def set_authorized_post
+      @post = Post.find(params[:post_id])
+      authorize @post
     end
 
     def save_tag

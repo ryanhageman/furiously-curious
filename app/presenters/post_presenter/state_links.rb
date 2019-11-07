@@ -32,6 +32,7 @@ class PostPresenter
 
     def params(new_state)
       return category_params(new_state) if categories_controller?
+      return tag_params(new_state) if tags_controller?
 
       "#{post.id}?new_state=#{new_state}"
     end
@@ -43,8 +44,17 @@ class PostPresenter
     def category_params(new_state)
       %W[ #{template.instance_variable_get('@category').id}
           ?post_id=#{post.id}
-          &new_state=#{new_state}
-      ].join
+          &new_state=#{new_state} ].join
+    end
+
+    def tags_controller?
+      h.controller_name == 'tags'
+    end
+
+    def tag_params(new_state)
+      %W[ #{template.instance_variable_get('@tag').id}
+          ?post_id=#{post.id}
+          &new_state=#{new_state} ].join
     end
   end
 end
