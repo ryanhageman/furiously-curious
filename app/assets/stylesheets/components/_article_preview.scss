@@ -2,11 +2,11 @@
   background-color: $white;
   display: grid;
   grid-template-areas:
-  'main-image'
-  'headline'
-  'date'
-  'summary'
-  'read-more';
+    'main-image' // sass-lint:disable-line indentation
+    'headline' // sass-lint:disable-line indentation
+    'date' // sass-lint:disable-line indentation
+    'summary' // sass-lint:disable-line indentation
+    'read-more'; // sass-lint:disable-line indentation
   grid-template-columns: 1fr;
   margin: 10px 0;
   padding: 10px;
@@ -14,13 +14,12 @@
 
   @media (min-width: $tablet) {
     grid-template-areas:
-    'main-image headline'
-    'main-image date'
-    'summary summary'
-    'read-more read-more';
+      'main-image headline' // sass-lint:disable-line indentation
+      'main-image date' // sass-lint:disable-line indentation
+      'summary summary' // sass-lint:disable-line indentation
+      'read-more read-more'; // sass-lint:disable-line indentation
     grid-template-columns: repeat(2, 1fr);
   }
-
 
   @media (min-width: $desktop) {
     width: 60vw;

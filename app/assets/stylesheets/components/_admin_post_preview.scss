@@ -56,14 +56,14 @@
     margin-bottom: 1rem;
 
     @media (min-width: $tablet) {
-      grid-template-columns: repeat(2, auto);
       gap: 2rem;
+      grid-template-columns: repeat(2, auto);
       justify-content: start;
     }
 
     ul {
-      font-style: italic;
       font-size: 1.3rem;
+      font-style: italic;
       list-style: none;
       margin: 0;
       padding-left: 1rem;
