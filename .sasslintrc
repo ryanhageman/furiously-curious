@@ -1,0 +1,20 @@
+files:
+  ignore:
+  - 'vendor/**/*.scss'
+
+rules:
+  class-name-format:
+    - 1
+    -
+      convention: hyphenatedbem
+  placeholder-name-format:
+    - 1
+    -
+      convention: hyphenatedbem
+  placeholder-in-extend: 0
+  no-misspelled-properties:
+  - 1
+  -
+    'extra-properties':
+      - 'gap'
+      - 'row-gap'

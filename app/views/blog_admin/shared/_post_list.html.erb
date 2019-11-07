@@ -8,6 +8,16 @@
         <div class="c-admin-post-preview__info">
           <div class="c-admin-post-preview__state"><%= post_presenter.state.capitalize %></div>
           <%= post_presenter.title_link 'c-admin-post-preview__title' %>
+          <div class="c-admin-post-preview__post-meta">
+            <div>
+              Series:
+              <%= post_presenter.post_categories %>
+            </div>
+            <div>
+              Tags:
+              <%= post_presenter.post_tags %>
+            </div>
+          </div>
           <div class="c-admin-post-preview__date">Updated <%= post_presenter.last_update %></div>
         </div>
 
@@ -25,21 +35,3 @@
   <% end %>
 
   <%= paginate @posts %>
-
-
-
-<%# @articles.each do |article| %>
-  <%# <div class="c-article-preview"> %>
-    <%#= image_tag article.main_image, class: "c-article-preview__main-image" if article.main_image.attached? %>
-
-    <%#= link_to article.title, article_path(article), class: "c-article-preview__title" %>
-
-    <%# <div class="c-article-preview__date">= article.publish_date.strftime("%B %m, %Y")</div> %>
-
-    <%# <div class="c-article-preview__summary"> %>
-      <%#= markdown(article.summary) %>
-    <%# </div> %>
-
-    <%#= link_to ' read more', article_path(article), class: "c-article-preview__read-more-link" %>
-  <%# </div> %>
-<%# end %>

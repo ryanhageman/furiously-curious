@@ -32,15 +32,17 @@ module BlogAdmin
 
     def destroy
       @post.destroy
-      redirect_to blog_admin_posts_url
+      redirect_back fallback_location: blog_admin_posts_url
     end
 
     private
 
     def post_params
-      params.require(:post).permit( :main_image, :title, :summary, :body,
-                                    :raw_tags, :raw_categories, :delete_main_image,
-                                    profiles_attributes: [post_images: []])
+      params.require(:post).permit(
+        :main_image, :title, :summary, :body,
+        :raw_tags, :raw_categories, :delete_main_image,
+        profiles_attributes: [post_images: []]
+      )
     end
 
     def new_authorized_post(params = {})

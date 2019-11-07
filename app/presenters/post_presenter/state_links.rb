@@ -23,11 +23,28 @@ class PostPresenter
     end
 
     def path_to_change_state(new_state)
-      "/blog_admin/#{h.controller_name}/#{post.id}?new_state=#{new_state}"
+      "/blog_admin/#{h.controller_name}/" + params(new_state)
     end
 
     def link_options
       { method: :patch, remote: true, class: @class_name }
+    end
+
+    def params(new_state)
+      return category_params(new_state) if categories_controller?
+
+      "#{post.id}?new_state=#{new_state}"
+    end
+
+    def categories_controller?
+      h.controller_name == 'categories'
+    end
+
+    def category_params(new_state)
+      %W[ #{template.instance_variable_get('@category').id}
+          ?post_id=#{post.id}
+          &new_state=#{new_state}
+      ].join
     end
   end
 end

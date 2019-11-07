@@ -15,9 +15,9 @@ RSpec.feature 'Category Features', type: :feature do
 
       result = page
 
-      expect(result).to have_content(subject1.name)
-      expect(result).to have_content(subject2.name)
-      expect(result).not_to have_content(other_category.name)
+      expect(result).to have_content(/#{subject1.name}/i)
+      expect(result).to have_content(/#{subject2.name}/i)
+      expect(result).not_to have_content(/#{other_category.name}/i)
     end
   end
 
@@ -29,16 +29,16 @@ RSpec.feature 'Category Features', type: :feature do
       subject_post = post
 
       visit categories_path
-      click_on subject_category.name
+      click_on subject_category.name.titleize
 
       result = page
 
-      expect(result).to have_content(subject_category.name)
+      expect(result).to have_content(/#{subject_category.name}/i)
       expect(result).to have_content(subject_post.title)
     end
 
     scenario 'they can click an article in that category and see it' do
-      post_category = post.categories.first.name
+      post_category = post.categories.first.name.titleize
       subject_post = post
 
       visit categories_path

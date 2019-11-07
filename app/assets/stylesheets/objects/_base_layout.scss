@@ -2,7 +2,7 @@
   background-color: $white--background;
   display: grid;
   grid-template-areas:
-    "navbar"
-    "content"
-    "footer";
+    'navbar' // sass-lint:disable-line indentation
+    'content' // sass-lint:disable-line indentation
+    'footer'; // sass-lint:disable-line indentation
 }

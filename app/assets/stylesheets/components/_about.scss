@@ -1,9 +1,9 @@
 .c-about {
   display: grid;
   grid-template-areas:
-  'profile-image title'
-  'profile-image subtitle'
-  'content content';
+    'profile-image title' // sass-lint:disable-line indentation
+    'profile-image subtitle' // sass-lint:disable-line indentation
+    'content content'; // sass-lint:disable-line indentation
   grid-template-columns: repeat(2, 1fr);
   justify-self: center;
   margin-top: 1rem;

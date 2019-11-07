@@ -24,8 +24,8 @@ RSpec.describe BlogAdmin::CategoriesController, type: :controller do
       let(:subject) { create(:category, name: 'the category') }
 
       it 're-renders the edit category form' do
-        result = patch :update,
-                       params: { id: subject.id, category: invalid_attributes }
+        result = patch  :update,
+                        params: { id: subject.id, category: invalid_attributes }
 
         expect(result).to render_template(:edit)
       end
