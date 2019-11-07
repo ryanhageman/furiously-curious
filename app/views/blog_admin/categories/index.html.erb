@@ -1,8 +1,12 @@
-<h1>Your Categories</h1>
+<div class="c-admin-categories">
+  <div class="c-admin-categories__title">
+    Your Series
+  </div>
 
-<%= render  partial: 'shared/search_form',
-            locals: {endpoint: blog_admin_categories_path} %>
+  <%= render  partial: 'shared/search_form',
+              locals: {endpoint: blog_admin_categories_path} %>
 
-<div class="js-admin-categories__list">
-  <%= render 'blog_admin/shared/category_list'  %>
+  <div class="js-admin-categories__list">
+    <%= render 'blog_admin/shared/category_list'  %>
+  </div>
 </div>

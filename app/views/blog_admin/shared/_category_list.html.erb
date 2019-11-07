@@ -1,7 +1,18 @@
-<%= link_to 'New Category', new_blog_admin_category_path %>
-<br>
-<% @categories.each do |category| %>
-  <%= link_to category.name, edit_blog_admin_category_path(category) %>
-  <%= link_to 'Delete', blog_admin_category_path(category), method: :delete %>
-  <br>
-<% end %>
+<div class="c-admin-categories-list">
+  <%= link_to 'New Series', new_blog_admin_category_path, class: 'c-admin-categories-list__button' %>
+
+  <% @categories.order('name ASC').each do |category| %>
+    <div class="c-admin-categories-list__card">
+      <div>
+        <%= link_to category.name.titleize, blog_admin_category_path(category), class: 'c-admin-categories-list__heading' %>
+        <div class="c-admin-categories-list__post-count">
+          <%= pluralize category.posts.count, 'posts' %>
+        </div>
+      </div>
+      <div class="c-admin-categories-list__links">
+        <%= link_to 'Edit', edit_blog_admin_category_path(category), class: 'c-admin-categories-list__link' %>
+        <%= link_to 'Delete', blog_admin_category_path(category), method: :delete, class: 'c-admin-categories-list__link--danger' %>
+      </div>
+    </div>
+  <% end %>
+</div>
