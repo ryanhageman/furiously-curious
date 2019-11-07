@@ -32,7 +32,7 @@ module BlogAdmin
 
     def destroy
       @post.destroy
-      redirect_to blog_admin_posts_url
+      redirect_back fallback_location: blog_admin_posts_url
     end
 
     private
