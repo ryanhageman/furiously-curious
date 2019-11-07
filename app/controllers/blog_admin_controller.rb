@@ -22,9 +22,7 @@ class BlogAdminController < ApplicationController
   end
 
   def requested_posts
-    if @search
-      return view_scope.search_titles(@search).page(current_page)
-    end
+    return view_scope.search_titles(@search).page(current_page) if @search
 
     view_scope.page current_page
   end
