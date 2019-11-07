@@ -1,0 +1,129 @@
+.c-admin-post {
+  display: grid;
+  font-size: 1.6rem;
+  gap: 1rem;
+  justify-items: center;
+  justify-self: center;
+  width: 90vw;
+
+  @media (min-width: $desktop) {
+    max-width: 45vw;
+  }
+
+  &__title {
+    @include title;
+    margin-bottom: 0;
+  }
+
+  &__heading {
+    color: $content--font-color;
+    font-family: $font--heading;
+    font-size: 2rem;
+    text-decoration: none;
+  }
+
+  &__subheading {
+    color: $content--font-color;
+    font-family: $font--heading;
+    font-size: 1.6rem;
+    text-decoration: none;
+  }
+
+  &__main-image {
+    margin: 1rem;
+    max-width: 100%;
+  }
+
+  &__links {
+    align-self: end;
+    display: grid;
+    gap: .8rem;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    justify-items: center;
+    width: 100%;
+  }
+
+  &__link {
+    background-color: $blue;
+    border: 1px solid $blue--border;
+    border-radius: .7rem;
+    box-shadow: 1px 1px 3px $black--shadow;
+    color: $content--font-color;
+    cursor: pointer;
+    padding: 1rem 0;
+    text-align: center;
+    text-decoration: none;
+    transition: transform ease-in-out .05s, box-shadow .05s;
+    width: 90%;
+
+    &:hover {
+      box-shadow: 3px 3px 5px $black--shadow;
+      transform: scale(1.01) translateY(-1px) translateX(-1px);
+    }
+  }
+
+  &__link--danger {
+    background-color: $danger;
+    border: 1px solid $danger--border;
+    border-radius: .7rem;
+    box-shadow: 1px 1px 3px $black--shadow;
+    color: $content--font-color;
+    cursor: pointer;
+    padding: .2rem 0;
+    text-align: center;
+    text-decoration: none;
+    transition: transform ease-in-out .05s, box-shadow .05s;
+    width: 90%;
+
+    &:hover {
+      box-shadow: 3px 3px 5px $black--shadow;
+      transform: scale(1.01) translateY(-1px) translateX(-1px);
+    }
+  }
+
+  &__post-meta {
+    display: grid;
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+
+    @media (min-width: $tablet) {
+      gap: 2rem;
+      grid-template-columns: repeat(2, auto);
+      justify-content: start;
+    }
+
+    ul {
+      font-size: 1.3rem;
+      font-style: italic;
+      list-style: none;
+      margin: 0;
+      padding-left: 1rem;
+    }
+  }
+
+  &__content {
+    display: grid;
+    font-family: $font--body;
+    font-size: 1.6rem;
+
+    img {
+      justify-self: center;
+      max-height: 70vh;
+      max-width: 95%;
+    }
+
+    p {
+      display: grid;
+      text-align: left;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: $font--heading;
+    }
+  }
+}

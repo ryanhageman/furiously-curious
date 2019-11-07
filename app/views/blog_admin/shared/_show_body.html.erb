@@ -1,27 +1,39 @@
-<% present @post do |post_presenter| %>
-  <%= post_presenter.edit_post_link %>
-  <br>
-  <h3><%= post_presenter.state.capitalize %></h3>
-  <%= post_presenter.change_state_links %>
+<div class="c-admin-post">
+  <% present @post do |post_presenter| %>
+    <div class="c-admin-post__title">
+      <%= post_presenter.title %>
+    </div>
+    <div><em><%= post_presenter.state.capitalize %></em></div>
+    <div class="c-admin-post__subheading">Written by <%= post_presenter.author_username %></div>
 
-  <br>
-  <%= post_presenter.main_image %>
+    <div class="c-admin-post__post-meta">
+      <div>
+        <div class="c-admin-post__heading">Tags:</div>
+        <%= post_presenter.post_tags %>
+      </div>
 
-  <h1><%= post_presenter.title %></h1>
+      <div>
+        <div class="c-admin-post__heading">Categories:</div>
+        <%= post_presenter.post_categories %>
+      </div>
+    </div>
 
-  <h2>By: <%= post_presenter.author_username %></h2>
+    <div>
+      <div class="c-admin-post__heading">Summary:</div>
+      <div class="c-admin-post__content">
+        <%= markdown(post_presenter.post.summary) %>
+      </div>
+    </div>
 
-  <h4>Summary:</h4>
-  <%= markdown(post_presenter.post.summary) %>
+    <%= post_presenter.main_image 'c-admin-post__main-image' %>
 
-  <h4>Tags:</h4>
-  <%= post_presenter.post_tags %>
+    <div class="c-admin-post__content">
+      <%= post_presenter.markdown_body %>
+    </div>
 
-
-  <h4>Categories:</h4>
-  <%= post_presenter.post_categories %>
-
-  <div>
-    <%= post_presenter.markdown_body %>
-  </div>
-<% end %>
+    <div class="c-admin-post__links">
+      <%= post_presenter.edit_post_link 'c-admin-post__link' %>
+      <%= post_presenter.change_state_links 'c-admin-post__link' %>
+    </div>
+  <% end %>
+</div>
