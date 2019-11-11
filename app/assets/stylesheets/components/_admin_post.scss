@@ -102,28 +102,6 @@
   }
 
   &__content {
-    display: grid;
-    font-family: $font--body;
-    font-size: 1.6rem;
-
-    img {
-      justify-self: center;
-      max-height: 70vh;
-      max-width: 95%;
-    }
-
-    p {
-      display: grid;
-      text-align: left;
-    }
-
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-      font-family: $font--heading;
-    }
+    @include markdown-content;
   }
 }

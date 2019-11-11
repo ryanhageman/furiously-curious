@@ -25,3 +25,74 @@
     transform: scale(1.01);
   }
 }
+
+@mixin markdown-content {
+  display: grid;
+  font-family: $font--body;
+  font-size: 1.6rem;
+  place-items: center;
+
+  img {
+    display: block;
+    margin: auto;
+    max-height: 70vh;
+    max-width: 95%;
+  }
+
+  a {
+    color: $link--font-color;
+    text-decoration: none;
+
+    &:visited {
+      color: $link--font-color;
+      text-decoration: none;
+    }
+  }
+
+  p {
+    width: 100%;
+  }
+
+  blockquote {
+    border-left: 3px solid $black--shadow;
+    font-style: italic;
+    margin-left: 4rem;
+    padding-left: 1rem;
+    width: calc(90% - 5rem);
+  }
+
+  mark {
+    background-color: $green;
+  }
+
+  hr {
+    display: block;
+    width: 100%;
+  }
+
+  .CodeRay { // sass-lint:disable-line class-name-format
+    background-color: $code--background-color;
+    border: 1px solid $code--border;
+    border-radius: 1rem;
+    padding-left: 1rem;
+    width: calc(100% - 1rem);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: $font--heading;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+  }
+
+  h1,
+  h2 {
+    border-bottom: 1px solid $black--transparent;
+    padding-bottom: 1rem;
+  }
+}
