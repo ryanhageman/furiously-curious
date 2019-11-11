@@ -1,0 +1,119 @@
+.c-admin-profile-form {
+  display: grid;
+  font-size: 1.6rem;
+  justify-items: center;
+
+  &__title {
+    @include title;
+    text-align: center;
+  }
+
+  &__form {
+    display: grid;
+    gap: 1rem;
+  }
+
+  &__card {
+    background-color: $white;
+    display: grid;
+    gap: 1rem;
+    padding: 1rem;
+    width: 90vw;
+
+    @media (min-width: $desktop) {
+      width: 65vw;
+    }
+  }
+
+  &__heading {
+    font-family: $font--heading;
+    font-size: 3rem;
+    text-align: center;
+
+    @media (min-width: $tablet) {
+      font-size: 3.5rem;
+    }
+  }
+
+  &__input-wrapper {
+    display: grid;
+    justify-items: center;
+    width: 100%;
+  }
+
+  &__label {
+    font-family: $font--heading;
+    font-size: 1.8rem;
+    font-weight: bold;
+
+    &--editor {
+      font-family: $font--heading;
+      font-size: 1.8rem;
+      font-weight: bold;
+      margin: 1rem;
+      text-align: center;
+    }
+  }
+
+  &__input {
+    border: 1px solid $black--transparent;
+    border-radius: 1rem;
+    margin: 1rem 0;
+    padding-bottom: .5rem;
+    padding-left: 1rem;
+    padding-top: .5rem;
+    width: 95%;
+  }
+
+  &__file-upload {
+    padding: .5rem 0;
+    text-align: center;
+    width: 100%;
+  }
+
+  &__body {
+    background-color: $white--text-area;
+    border: 1px solid $black--transparent;
+    border-radius: 1rem;
+    display: grid;
+    justify-self: center;
+    margin-top: 1rem;
+    padding-left: .5rem;
+    width: calc(95% + 1rem);
+
+    img {
+      max-width: 95%;
+    }
+
+    pre {
+      word-wrap: break-word;
+    }
+  }
+
+  &__button {
+    &--submit {
+      background-color: $blue;
+      border: 1px solid $blue--border;
+      border-radius: .7rem;
+      box-shadow: 1px 1px 3px $black--shadow;
+      color: $content--font-color;
+      cursor: pointer;
+      font-size: 2rem;
+      justify-self: center;
+      padding: 1rem 0;
+      text-align: center;
+      text-decoration: none;
+      transition: transform ease-in-out .05s, box-shadow .05s;
+      width: calc(95% + 1rem);
+
+      &:hover {
+        box-shadow: 3px 3px 5px $black--shadow;
+        transform: scale(1.01) translateY(-1px) translateX(-1px);
+      }
+
+      @media (min-width: $tablet) {
+        font-size: 2.4rem;
+      }
+    }
+  }
+}
