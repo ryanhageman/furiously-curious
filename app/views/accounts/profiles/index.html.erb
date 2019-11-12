@@ -1,8 +1,10 @@
-<h1>Your Profiles</h1>
+<div class="c-container">
+  <div class="c-container__title">Authors</div>
 
-<%= render partial: 'shared/search_form',
-           locals: {endpoint: accounts_profiles_path} %>
+  <%= render partial: 'shared/search_form',
+             locals: {endpoint: accounts_profiles_path} %>
 
-<div class="js-profiles__list">
-  <%= render 'profile_list' %>
+  <div class="c-container__list js-profiles__list">
+    <%= render 'profile_list' %>
+  </div>
 </div>

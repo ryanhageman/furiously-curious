@@ -1,0 +1,69 @@
+.c-container {
+  display: grid;
+  font-size: 1.6rem;
+  gap: 1rem;
+  justify-items: center;
+  justify-self: center;
+  width: 90vw;
+
+
+  @media (min-width: $tablet) {
+    max-width: 80vw;
+  }
+
+  @media (min-width: $desktop) {
+    max-width: 65vw;
+  }
+
+  &__title {
+    @include title;
+    text-align: center;
+  }
+
+  &__heading {
+    font-family: $font--heading;
+    font-size: 3rem;
+    text-align: center;
+
+    @media (min-width: $tablet) {
+      font-size: 3.5rem;
+    }
+  }
+
+  &__sub-heading {
+    font-family: $font--heading;
+    font-size: 2.4rem;
+
+    @media (min-width: $tablet) {
+      font-size: 2.8rem;
+    }
+
+    &--bold {
+      font-weight: bold;
+    }
+
+    &--italic {
+      font-style: italic;
+    }
+  }
+
+  &__list {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    justify-items: center;
+    width: 90vw;
+
+    @media (min-width: $tablet) {
+      max-width: 80vw;
+    }
+
+    @media (min-width: $desktop) {
+      max-width: 45vw;
+    }
+  }
+
+  &__content {
+    @include markdown-content;
+  }
+}

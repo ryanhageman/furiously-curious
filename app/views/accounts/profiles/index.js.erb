@@ -1,7 +1,7 @@
-var newContent = "<%= j render 'profile_list' %>"
+var newContent = "<div class='c-container__heading'>Sorry, Didn't Find Anything</div>"
 
-if (<%= @profiles.length %> === 0) {
-  newContent = "<h1>Sorry, Didn't Find Anything</h1>"
+if (<%= @profiles.length %> > 0) {
+  newContent = "<%= j render 'profile_list' %>"
 }
 
-document.getElementsByClassName('js-profiles__list')[0].innerHTML = newContent
+document.querySelector('.js-profiles__list').innerHTML = newContent
