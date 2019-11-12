@@ -1,18 +1,24 @@
-<h3><%= @profile.username %>'s Profile</h3>
+<div class="c-container">
+  <div class="c-container__title"><%= @profile.username %></div>
 
-<% if @profile.avatar.attached? %>
-  <%= image_tag @profile.avatar.variant(resize: '200x200') %>
-<% else %>
-  <%=  image_tag 'no_image_available.svg', size: '200x200' %>
-<% end %>
+  <% if @profile.avatar.attached? %>
+    <%= image_tag @profile.avatar.variant(resize: '200x200') %>
+  <% else %>
+    <%=  image_tag 'no_image_available.svg', size: '200x200' %>
+  <% end %>
 
-<ul>
-  <li><strong>Name: </strong><%= @profile.first_name %> <%= @profile.last_name %></li>
-  <li><strong>Bio: </strong><%= markdown @profile.bio %></li>
-</ul>
+  <div class="c-button__grid c-button__grid--half-row">
+    <% if current_user.id == @profile.user_id %>
+      <%= link_to 'Edit', edit_accounts_profile_path(@profile), class: 'c-button' %>
+      <%= link_to 'Delete', accounts_profile_path(@profile), method: :delete, class: 'c-button c-button--danger' %>
+    <% end %>
+  </div>
 
-<% if current_user.id == @profile.user_id %>
-  <%= link_to 'Edit your profile', edit_accounts_profile_path(@profile) %><br>
-  <%= link_to 'Delete your profile', accounts_profile_path(@profile), method: :delete %>
-<% end %>
+  <div class="c-container__sub-heading c-container__sub-heading--bold c-container__sub-heading--italic">
+    <%= @profile.first_name %> <%= @profile.last_name %> Bio:
+  </div>
 
+  <div class="c-container__content">
+    <%= markdown @profile.bio %>
+  </div>
+</div>
