@@ -4,7 +4,7 @@
                         defaults: { wrapper_html: { class: 'c-admin-profile-form__input-wrapper'} }
                       ) do |f| %>
     <% if @profile.avatar.attached? %>
-      <%= image_tag @profile.avatar.variant(resize: '200x200') %>
+      <%= image_tag @profile.avatar.variant(resize: '200x200'), class: 'c-admin-profile-form__image' %>
       <%= f.input :delete_avatar, as: :boolean, label: 'Delete image' %>
     <% end %>
 

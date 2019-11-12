@@ -2,6 +2,16 @@
   display: grid;
   font-size: 1.6rem;
   justify-items: center;
+  justify-self: center;
+  width: 90vw;
+
+  @media (min-width: $tablet) {
+    max-width: 80vw;
+  }
+
+  @media (min-width: $desktop) {
+    max-width: 65vw;
+  }
 
   &__title {
     @include title;
@@ -16,7 +26,6 @@
     width: 90vw;
 
     @media (min-width: $tablet) {
-      margin: auto;
       max-width: 80vw;
     }
 
@@ -38,6 +47,14 @@
     font-size: 2rem;
     margin: 1rem;
     text-decoration: none;
+  }
+
+  &__buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    justify-items: center;
+    margin: 1rem;
+    width: 45vw;
   }
 
   &__button {
@@ -68,5 +85,9 @@
       padding: .5rem;
       width: 40vw;
     }
+  }
+
+  &__content {
+    @include markdown-content;
   }
 }

@@ -70,6 +70,10 @@
     width: 100%;
   }
 
+  pre {
+    white-space: pre-wrap;
+  }
+
   .CodeRay { // sass-lint:disable-line class-name-format
     background-color: $code--background-color;
     border: 1px solid $code--border;

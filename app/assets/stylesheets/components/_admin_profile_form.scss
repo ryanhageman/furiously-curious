@@ -25,6 +25,11 @@
     }
   }
 
+  &__image {
+    display: block;
+    margin: auto;
+  }
+
   &__heading {
     font-family: $font--heading;
     font-size: 3rem;
