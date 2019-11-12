@@ -1,17 +1,34 @@
-<%= simple_form_for([:accounts, @profile]) do |f| %>
-  <% if @profile.avatar.attached? %>
-    <%= image_tag @profile.avatar.variant(resize: '200x200') %>
-    <%= f.input :delete_avatar, as: :boolean, label: 'Delete image' %>
+<div class="c-form__card">
+  <%= simple_form_for([:accounts, @profile],
+                        html: { class: "c-form" },
+                        defaults: { wrapper_html: { class: 'c-form__input-wrapper'} }
+                      ) do |f| %>
+    <% if @profile.avatar.attached? %>
+      <%= image_tag @profile.avatar.variant(resize: '200x200'), class: 'c-form__image' %>
+      <%= f.input :delete_avatar, as: :boolean, label: 'Delete image' %>
+    <% end %>
+
+    <%= f.input :avatar,
+                as: :file,
+                label: 'Profile pic',
+                input_html: { class: 'c-form__file-upload' },
+                label_html: { class: 'c-form__label' } %>
+    <%= f.input :first_name,
+                input_html: { class: 'c-form__file-upload' },
+                label_html: { class: 'c-form__label' } %>
+    <%= f.input :last_name,
+                input_html: { class: 'c-form__file-upload' },
+                label_html: { class: 'c-form__label' } %>
+    <%= f.input :username,
+                input_html: { class: 'c-form__file-upload' },
+                label_html: { class: 'c-form__label' } %>
+    <%= f.input :bio,
+                wrapper_html: { class: 'c-form__body' },
+                label_html: { class: 'c-form__label--editor' } %>
+
+    <%= f.button :submit, class: 'c-form__button' %>
   <% end %>
-
-  <%= f.input :avatar, as: :file, label: 'Profile pic' %>
-  <%= f.input :first_name %>
-  <%= f.input :last_name %>
-  <%= f.input :username %>
-  <%= f.input :bio %>
-
-  <%= f.button :submit %>
-<% end %>
+</div>
 
 <script type="text/javascript">
   let editor = new Editor({
