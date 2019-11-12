@@ -1,7 +1,7 @@
-var newContent = "<%= j render 'categories_list' %>"
+var newContent = "<h1>Sorry, Didn't Find Anything</h1>"
 
-if (<%= @categories.length %> === 0) {
-  newContent = "<h1>Sorry, Didn't Find Anything</h1>"
+if (<%= @categories.length %> > 0) {
+  newContent = "<%= j render 'categories_list' %>"
 }
 
-document.getElementsByClassName('js-categories__list')[0].innerHTML = newContent
+document.querySelector('.js-categories__list').innerHTML = newContent
