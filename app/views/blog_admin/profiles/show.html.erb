@@ -1,15 +1,26 @@
-<h3><%= @profile.username %>'s Profile</h3>
+<div class="c-admin-profiles">
+  <div class="c-admin-profiles__title"><%= @profile.username %> Profile</div>
 
-<% if @profile.avatar.attached? %>
-  <%= image_tag @profile.avatar.variant(resize: '200x200') %>
-<% else %>
-  <%=  image_tag 'no_image_available.svg', size: '200x200' %>
-<% end %>
+  <% if @profile.avatar.attached? %>
+    <%= image_tag @profile.avatar.variant(resize: '200x200') %>
+  <% else %>
+    <%=  image_tag 'no_image_available.svg', size: '200x200' %>
+  <% end %>
 
-<ul>
-  <li><strong>Name: </strong><%= @profile.first_name %> <%= @profile.last_name %></li>
-  <li><strong>Bio: </strong><%= markdown @profile.bio %></li>
-</ul>
+  <div class="c-admin-profiles__buttons">
+  	<%= link_to 'Edit', edit_blog_admin_profile_path(@profile), class: 'c-admin-profiles__button' %>
+  	<%= link_to 'Delete', blog_admin_profile_path(@profile), method: :delete, class: 'c-admin-profiles__button c-admin-profiles__button--danger' %>
+  </div>
 
-<%= link_to 'Edit your profile', edit_blog_admin_profile_path(@profile) %><br>
-<%= link_to 'Delete your profile', blog_admin_profile_path(@profile), method: :delete %>
+  <div class="c-admin-profiles__heading">
+    <strong>Name: </strong><%= @profile.first_name %> <%= @profile.last_name %>
+  </div>
+
+  <div class="c-admin-profiles__heading">
+    <strong>Bio:</strong>
+  </div>
+
+  <div class="c-admin-profiles__content">
+    <%= markdown @profile.bio %>
+  </div>
+</div>
