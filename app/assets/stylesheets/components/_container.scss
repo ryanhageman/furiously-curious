@@ -8,4 +8,30 @@
     @include title;
     text-align: center;
   }
+
+  &__heading {
+    font-family: $font--heading;
+    font-size: 3rem;
+    text-align: center;
+
+    @media (min-width: $tablet) {
+      font-size: 3.5rem;
+    }
+  }
+
+  &__list {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    justify-items: center;
+    width: 90vw;
+
+    @media (min-width: $tablet) {
+      max-width: 80vw;
+    }
+
+    @media (min-width: $desktop) {
+      max-width: 45vw;
+    }
+  }
 }

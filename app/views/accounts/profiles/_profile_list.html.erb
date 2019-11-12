@@ -1,3 +1,5 @@
 <% @profiles.each do |profile| %>
-  <h3><%= link_to profile.username, accounts_profile_path(profile) %>'s Profile</h3>
+  <div class="c-card">
+    <%= link_to profile.username, accounts_profile_path(profile), class: 'c-card__heading' %>
+  </div>
 <% end %>
