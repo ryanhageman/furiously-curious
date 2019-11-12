@@ -1,3 +1,9 @@
-<% @profiles.each do |profile| %>
-  <h3><%= link_to profile.username, blog_admin_profile_path(profile) %>'s Profile</h3>
-<% end %>
+<div class="c-admin-profiles__list">
+  <% @profiles.each do |profile| %>
+    <div class="c-admin-profiles__card">
+      <%= link_to profile.username, blog_admin_profile_path(profile), class: 'c-admin-profiles__heading' %>
+      <%= link_to 'Edit', edit_blog_admin_profile_path(profile), class: 'c-admin-profiles__button' %>
+      <%= link_to 'Delete', blog_admin_profile_path(profile), method: :delete, class: 'c-admin-profiles__button c-admin-profiles__button--danger' %>
+    </div>
+  <% end %>
+</div>

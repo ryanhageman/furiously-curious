@@ -1,8 +1,12 @@
-<h1>Your Profiles</h1>
+<div class="c-admin-profiles">
+  <div class="c-admin-profiles__title">Profiles</div>
 
-<%= render partial: 'shared/search_form',
-           locals: {endpoint: blog_admin_profiles_path} %>
+  <%= render partial: 'shared/search_form',
+            locals: {endpoint: blog_admin_profiles_path} %>
 
-<div class="js-profiles__list">
-  <%= render 'blog_admin/shared/profile_list' %>
+  <%= link_to 'New Profile', new_blog_admin_profile_path, class: 'c-admin-profiles__button c-admin-profiles__button--full-row' %>
+
+  <div class="js-admin-profiles__list">
+    <%= render 'blog_admin/shared/profile_list' %>
+  </div>
 </div>

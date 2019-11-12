@@ -1,0 +1,72 @@
+.c-admin-profiles {
+  display: grid;
+  font-size: 1.6rem;
+  justify-items: center;
+
+  &__title {
+    @include title;
+    text-align: center;
+  }
+
+  &__list {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    justify-items: center;
+    width: 90vw;
+
+    @media (min-width: $tablet) {
+      margin: auto;
+      max-width: 80vw;
+    }
+
+    @media (min-width: $desktop) {
+      max-width: 45vw;
+    }
+  }
+
+  &__card {
+    background-color: $white;
+    display: grid;
+    justify-items: center;
+    padding-bottom: .5rem;
+    width: 100%;
+  }
+
+  &__heading {
+    color: $content--font-color;
+    font-size: 2rem;
+    margin: 1rem;
+    text-decoration: none;
+  }
+
+  &__button {
+    background-color: $blue;
+    border: 1px solid $blue--border;
+    border-radius: .7rem;
+    box-shadow: 1px 1px 3px $black--shadow;
+    color: $content--font-color;
+    cursor: pointer;
+    margin: .5rem;
+    padding: .2rem 0;
+    text-align: center;
+    text-decoration: none;
+    transition: transform ease-in-out .05s, box-shadow .05s;
+    width: 70%;
+
+    &:hover {
+      box-shadow: 3px 3px 5px $black--shadow;
+      transform: scale(1.01) translateY(-1px) translateX(-1px);
+    }
+
+    &--danger {
+      background-color: $danger;
+    }
+
+    &--full-row {
+      margin-bottom: 1.5rem;
+      padding: .5rem;
+      width: 40vw;
+    }
+  }
+}
