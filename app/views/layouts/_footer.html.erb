@@ -1,0 +1,27 @@
+<div class="c-footer">
+  <div class="c-footer__brand">
+
+    <%= link_to (image_tag "brand_icon.png", class: "c-footer__brand-icon"), root_path %>
+
+    <%= link_to 'Furiously Curious', root_path, class: "c-footer__brand-name" %>
+  </div>
+
+
+  <div class="c-footer__link-list">
+    <div class="c-footer__list-item">
+      <%= link_to 'Articles', articles_path, class: "c-footer__link" %>
+    </div>
+
+    <div class="c-footer__list-item">
+      <%= link_to 'Tags', tags_path, class: "c-footer__link" %>
+    </div>
+
+    <div class="c-footer__list-item">
+      <%= link_to 'Series', categories_path, class: "c-footer__link" %>
+    </div>
+
+    <div class="c-footer__list-item">
+      <%= link_to 'About', about_path, class: "c-footer__link" %>
+    </div>
+  </div>
+</div>
