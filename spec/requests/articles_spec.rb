@@ -3,24 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Articles requests' do
-  describe 'the blog index' do
-    it 'returns the 7 newest posts' do
-      newest_post = create(:post, :published, title: 'Newest Post')
-      create_list(:post, 5, :published, created_at: 2.days.ago)
-      seventh_newest_post = create(:post, :published,
-                                   title: '7th', created_at: 3.days.ago)
-      subject = create(:post, :published,
-                       title: 'Cloaking Device', created_at: 4.days.ago)
-
-      get articles_path
-
-      result = response.body
-
-      expect(result).to include(newest_post.title)
-      expect(result).to include(seventh_newest_post.title)
-      expect(result).not_to include(subject.title)
-    end
-
+  describe 'the articles index' do
     it 'returns only published posts' do
       subject = create(:post, :published,  title: 'Published')
       hidden_post = create(:post, :hidden, title: 'Under The Stairs')

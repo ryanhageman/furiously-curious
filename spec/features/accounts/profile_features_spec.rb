@@ -43,10 +43,10 @@ RSpec.feature 'Profile Features', type: :feature do
 
       visit accounts_profiles_path
       click_on profile.username
-      click_on 'Edit your profile'
+      click_on 'Edit'
 
-      fill_in "First name",	with: 'Delicious'
-      fill_in "Last name",	with: 'Churros!'
+      fill_in 'First name', with: 'Delicious'
+      fill_in 'Last name',  with: 'Churros!'
 
       click_on 'Update Profile'
 
@@ -71,7 +71,7 @@ RSpec.feature 'Profile Features', type: :feature do
 
       visit accounts_profiles_path
       click_on profile.username
-      click_on 'Delete your profile'
+      click_on 'Delete'
 
       visit accounts_profiles_path
 

@@ -20,15 +20,27 @@ class ArticlesController < ApplicationController
   end
 
   def requested_articles
-    return view_scope.with_specific_tag(tag_filter) if tag_filter
-    return view_scope.with_specific_category(category_filter) if category_filter
-    return view_scope.search_titles_and_body(@search) if @search
+    return paginated_posts_with_specific_tag if tag_filter
+    return paginated_posts_with_specific_category if category_filter
+    return paginated_search_results if @search
 
-    Post.latest
+    view_scope.page params[:page]
   end
 
   def view_scope
     Post.published
+  end
+
+  def paginated_posts_with_specific_tag
+    view_scope.with_specific_tag(tag_filter).page params[:page]
+  end
+
+  def paginated_posts_with_specific_category
+    view_scope.with_specific_category(category_filter).page params[:page]
+  end
+
+  def paginated_search_results
+    view_scope.search_titles_and_body(@search).page params[:page]
   end
 
   def tag_filter

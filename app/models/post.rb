@@ -68,6 +68,20 @@ class Post < ApplicationRecord
     joins(:categories).merge(Category.where(id: params))
   end
 
+  def self.visible_with_specific_category(params)
+    published
+      .where('publish_date <= ?', Time.current)
+      .joins(:categories)
+      .merge(Category.where(id: params))
+  end
+
+  def self.visible_with_specific_tag(params)
+    published
+      .where('publish_date <= ?', Time.current)
+      .joins(:tags)
+      .merge(Tag.where(id: params))
+  end
+
   def ready_to_show?
     publish_date <= Time.current
   end
@@ -90,7 +104,8 @@ class Post < ApplicationRecord
 
   def add_taxonomy(params)
     self.post_tags_attributes = BlogPost::Tagger.new(params).add_post_tags
-    self.post_categories_attributes = BlogPost::Categorizer.new(params).add_post_categories
+    self.post_categories_attributes = BlogPost::Categorizer.new(params)
+                                                           .add_post_categories
   end
 
   def update_taxonomy(params)

@@ -9,7 +9,8 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.find(params[:id])
-    @articles = Post.with_specific_category(@category.id).visible_posts
+    @articles = Post.visible_with_specific_category(@category.id)
+                    .page params[:page]
   end
 
   private
