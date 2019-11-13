@@ -58,4 +58,19 @@ RSpec.describe Post, type: :model do
       expect(result).not_to include(other_post)
     end
   end
+
+  context '#visible_with_specific_category(params)' do
+    it 'returns all the published and visible posts with that category' do
+      category1 = create(:category)
+      category2 = create(:category)
+      subject1 = create(:post, :published, :with_specific_category, category: category1)
+      subject2 = create(:post, :with_specific_category, category: category1)
+      other_post = create(:post, :with_specific_category, category: category2)
+
+      result = Post.visible_with_specific_category(category1.id)
+
+      expect(result).to include(subject1)
+      expect(result).not_to include(subject2, other_post)
+    end
+  end
 end

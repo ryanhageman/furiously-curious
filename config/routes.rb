@@ -3,6 +3,7 @@
 Rails.application.routes.draw do
   devise_for :users
 
+  get 'recent', to: 'pages#recent', as: 'recent'
   get 'about', to: 'pages#about', as: 'about'
 
   devise_scope :user do
@@ -29,5 +30,5 @@ Rails.application.routes.draw do
   resources :categories, only: %i[index show]
   resources :tags, only: %i[index show]
 
-  root 'articles#index'
+  root 'pages#recent'
 end

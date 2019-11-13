@@ -9,7 +9,7 @@ class TagsController < ApplicationController
 
   def show
     @tag = Tag.find(params[:id])
-    @articles = Post.with_specific_tag(@tag.id).visible_posts
+    @articles = Post.visible_with_specific_tag(@tag.id).page params[:page]
   end
 
   private
