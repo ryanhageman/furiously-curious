@@ -1,0 +1,63 @@
+.c-footer {
+  background-color: $navbar--background-color;
+  display: grid;
+  margin-top: 2rem;
+  padding-bottom: 2rem;
+
+  @media (min-width: $tablet) {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 1rem 0;
+  }
+
+  &__brand {
+    align-content: center;
+    display: flex;
+    grid-column: 1 / -1;
+    grid-row: 1 / 2;
+    justify-content: center;
+
+    @media (min-width: $tablet) {
+      grid-column: 1 / 2;
+      justify-content: flex-start;
+    }
+  }
+
+  &__brand-icon {
+    margin: 10px;
+    max-height: 50px;
+  }
+
+  &__brand-name {
+    color: $base--font-color;
+    display: none;
+    font-size: 2.8rem;
+    text-decoration: none;
+
+    @media (min-width: $tablet) {
+      align-items: center;
+      display: flex;
+    }
+  }
+
+  &__link-list {
+    display: flex;
+    justify-content: center;
+
+    @media (min-width: $tablet) {
+      justify-self: end;
+    }
+  }
+
+  &__link {
+    color: $base--font-color;
+    font-size: 1.6rem;
+    text-decoration: none;
+  }
+
+  &__list-item {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin: 1rem;
+  }
+}
