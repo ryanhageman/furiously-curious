@@ -93,6 +93,11 @@ group :development do
   gem 'letter_opener'
   gem 'guard-livereload', '~> 2.5.2', require: false
   gem "rack-livereload"
+
+  gem 'capistrano', '~> 3.11', require: false
+  gem 'capistrano-rails', '~> 1.4', require: false
+  gem 'capistrano-passenger', '~> 0.2.0'
+  gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.4'
 end
 
 
