@@ -49,7 +49,8 @@ gem 'simple_form', '>= 5.0.0'
 gem 'kaminari'
 
 # JavaScript
-gem 'webpacker', '~> 4.x'
+# gem 'webpacker', '~> 4.x'
+gem 'webpacker', '~> 5.x'
 gem 'jquery-rails'
 
 # Markdown
