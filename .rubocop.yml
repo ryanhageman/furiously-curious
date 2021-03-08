@@ -12,6 +12,7 @@ Style/Documentation:
 
 AllCops:
   AutoCorrect: false
+  NewCops: enable
   Exclude:
     - Gemfile
     - db/**/*
