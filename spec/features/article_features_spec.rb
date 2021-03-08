@@ -30,7 +30,8 @@ RSpec.feature 'Article Features', type: :feature do
 
       result = page
 
-      expect(result).to have_content(subject.title, subject.body)
+      expect(result).to have_content(subject.title)
+      expect(result).to have_content(subject.body)
       expect(result).to have_content(subject.author.profile.username)
     end
   end
